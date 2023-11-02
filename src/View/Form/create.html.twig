@@ -1,0 +1,30 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}
+	Mes formulaires - Créer un formulaire
+{% endblock %}
+
+{% block stylesheet %}
+	<link rel="stylesheet" href="/assets/css/formstyle.css">
+{% endblock %}
+
+{% block content %}
+	<main class='createForm'>
+		<div>
+			{% if form %}
+				<h1>{{form.name}}</h1>
+			{% endif %}
+
+			<button class='button'>Ajouter une question</button>
+		</div>
+
+		<div>
+			<!-- les questions apparaitront ici -->
+		</div>
+		<div>
+			<button class='button not-priority'>Enregister le brouillon</button>
+			<button class='button'>Enregister le formulaire</button>
+		</div>
+
+	</main>
+{% endblock %}

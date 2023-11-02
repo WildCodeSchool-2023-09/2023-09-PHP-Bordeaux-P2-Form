@@ -1,0 +1,48 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}
+	Mes formulaires
+{% endblock %}
+
+{% block stylesheet %}
+	<link rel="stylesheet" href="/assets/css/formstyle.css">
+{% endblock %}
+
+{% block content %}
+	<main>
+		<h1>Mes Formulaires</h1>
+		<section>
+			<a href='chooseName'>
+				<button class='button'>Créer un formulaire</button>
+			</a>
+		</section>
+		<section>
+			<h2>Brouillons</h2>
+			{% if forms %}
+				<ul>
+					{% for form in forms %}
+
+						{% if not form.state %}
+							<li>{{form.name}}</li>
+						{% endif %}
+
+					{% endfor %}
+				</ul>
+			{% endif %}
+		</section>
+		<section>
+			<h2>Finis</h2>
+			{% if forms %}
+				<ul>
+					{% for form in forms %}
+
+						{% if form.state %}
+							<li>{{form.name}}</li>
+						{% endif %}
+
+					{% endfor %}
+				</ul>
+			{% endif %}
+		</section>
+	</main>
+{% endblock %}
