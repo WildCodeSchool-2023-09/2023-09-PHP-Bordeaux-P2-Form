@@ -1,8 +1,7 @@
 * {
-    
     box-sizing: border-box;
-    margin: auto;
-
+    margin: 0;
+    padding: 0;
   }
 
 :root {
@@ -11,9 +10,8 @@
     --brand-color: #F7146B ;
     --text-color: #343434 ;
     --tertiary-color: #D8D8D8;
-
-    
 } 
+
 body {
     color: var(--text-color);
     font-family: Verdana, sans-serif;
@@ -33,3 +31,72 @@ body {
     height: 3rem;
 }
 
+
+
+
+
+
+
+
+
+
+
+/* nav{
+    display: flex;
+    background-color: var(--secondary-color);
+    height: 140px;
+    width: 100vw;
+}
+
+.divleft {
+    display: flex;
+    float:left;
+    margin-left: 5px;
+    margin-right: 10px;
+}
+
+.divright {
+    display: flex;
+    float:right;
+    margin-right: 20px;
+    margin-left: 10px;
+}
+
+
+.logo-wildform {
+    height: 140px;
+}
+
+ul {
+    width: 100%;
+    display:flex;
+    list-style-type: none;
+}
+
+ul>li {
+    margin: 0 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+ul>li>a {
+    text-decoration: none;
+    font-size: 1.7rem;
+    color: var(--text-color);
+}
+
+ul>li>a.create {
+    justify-content: center;
+    background-color: var(--brand-color);
+    color: var(--primary-color);
+    border-radius: 10px;
+    padding: 0.7rem 1.5rem;
+}
+
+.utilisateur {
+    display: flex;
+    height: 60px;
+    margin: auto;
+} */
