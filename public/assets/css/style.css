@@ -17,6 +17,10 @@ body {
     font-family: Verdana, sans-serif;
 }
 
+.index {
+    padding-top: 90px;
+}
+
 .footer {
     position: fixed;
     left: 0;
