@@ -1,5 +1,5 @@
 .nav_authentication img {
-  height: 50px;
+  height: 40px;
 }
 
 nav {
@@ -16,7 +16,7 @@ nav {
 .nav_icon {
   display: flex;
   align-items: center;
-  margin-right: 20px;
+  margin-right: auto;
 }
 
 .nav_icon img {
@@ -25,6 +25,10 @@ nav {
 
 .hamburger {
   display: none
+}
+
+.navlinks_container {
+  margin-right: auto;
 }
 
 .navlinks_container a {
@@ -54,7 +58,7 @@ nav {
   transform: scaleX(1);
 }
 
-.nav_authentication {
+.nav_authentication a {
   margin-left: auto;
 }
 
@@ -86,6 +90,7 @@ nav {
   nav{
     padding: 15px 20px;
     position: fixed;
+    justify-content: space-around;
   }
   
   .nav_icon {

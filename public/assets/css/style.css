@@ -28,7 +28,7 @@ body {
     width: 100%;
     background-color: var(--secondary-color);
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 .footer img {
