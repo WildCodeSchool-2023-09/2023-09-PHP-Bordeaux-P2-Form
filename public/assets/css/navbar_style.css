@@ -51,6 +51,7 @@ nav {
   transform: scaleX(0);
   transform-origin: left;
   background: var(--brand-color);
+  transition: transform 0.3s ease-out;
 }
 
 .navlinks_container a:hover::after{
