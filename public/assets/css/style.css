@@ -22,6 +22,7 @@ body {
 }
 
 .footer {
+    /* height: 3rem; */
     position: fixed;
     left: 0;
     bottom: 0;
@@ -29,8 +30,11 @@ body {
     background-color: var(--secondary-color);
     display: flex;
     justify-content: space-around;
+    /* box-shadow: inset 0px 0px 0px 1px var(--tertiary-color); */
 }
 
 .footer img {
     height: 3rem;
+    /* height: 47px;
+    margin: auto 0; */
 }
