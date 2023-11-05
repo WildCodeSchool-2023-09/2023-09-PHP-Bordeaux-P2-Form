@@ -17,7 +17,7 @@ h1 {
     padding-bottom: 1rem;
 }
 main {
-    height: calc(100vh - var(--size-footer) - var(--size-navbar));
+    min-height: calc(100vh - var(--size-footer) - var(--size-navbar));
     padding-bottom: 1rem;
 }
 main > div {
@@ -56,6 +56,7 @@ body > main > section > a {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: center;
 }
 form {
     display: flex;
@@ -73,5 +74,75 @@ input {
     width: 80%;
     text-align: right;
     font-size: 0.75rem;
+    color: var(--brand-color);
+}
+
+button.validateQuestion {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background-color: chartreuse;
+}
+button.supprQuestion {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background-color: rgb(0, 47, 255);
+}
+.errors {
+    color: red;
+    font-weight: bold;
+}
+#savedQuestions {
+    width: 80vw;
+    text-align: right;
+}
+.savedQuestion {
+    margin: 0;
+}
+.newQuestion {
+    display: flex;
+    justify-content: space-between;
+}
+div.formButtons {
+    width: 3rem;
+    margin: 0;
+}
+.formLink {
+    padding-bottom: 4px;
+    font-size: 1.5rem;
+}
+.formLink > a {
+    text-decoration: none;
+}
+.delete {
+    display: inline-block;
+    text-decoration: none;
+    position: relative;
+}
+.form-dropdown-content {
+    opacity: 0;
+    font-size: 1rem;
+    position: absolute;
+    z-index: 1;
+    border: 2px solid var(--brand-color);
+    border-radius: 10px;
+    background-color: var(--secondary-color);
+    padding: 5px;
+    box-shadow: 5px 5px 10px 5px var(--tertiary-color);
+    transition: all 0.5s ease;
+    right: 0;
+    width: 50px;
+    height: 50px;
+}
+.delete:hover .form-dropdown-content {
+    opacity: 1;
+    width: auto;
+    height: auto;
+}
+button.none {
+    background-color: var(--primary-color);
+    float: right;
+    border: none;
     color: var(--brand-color);
 }

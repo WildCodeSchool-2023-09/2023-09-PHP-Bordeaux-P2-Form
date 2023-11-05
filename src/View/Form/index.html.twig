@@ -21,11 +21,16 @@
 			{% if forms %}
 				<ul>
 					{% for form in forms %}
-
 						{% if not form.state %}
-							<li>{{form.name}}</li>
-						{% endif %}
+							<li class='formLink'>
+								<a href='modifyForm?id={{form.id}}'>{{form.name}}</a>
+								<div class='delete'>
+									<a href='delete?id={{form.id}}' class='delete'><img src='assets/images/x-circle.svg'></a>
+									<div class='form-dropdown-content'>Attention, toute suppression est définitive</div>
+								</div>
 
+							</li>
+						{% endif %}
 					{% endfor %}
 				</ul>
 			{% endif %}

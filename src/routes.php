@@ -18,6 +18,8 @@ return [
     'items/delete' => ['ItemController', 'delete',],
     'forms' => ['FormController', 'index'],
     'chooseName' => ['FormController', 'chooseName'],
-    'createForm' => ['FormController', 'createForm', ['id']],
+    'modifyForm' => ['FormController', 'modifyForm', ['id']],
     'error' => ['HomeController', 'error'],
+    'test' => ['FormController', 'test'],
+    'delete' => ['FormController', 'delete', ['id']],
 ];

@@ -22,9 +22,7 @@ class FormManager extends AbstractManager
         return (int)$this->pdo->lastInsertId();
     }
 
-    /**
-     * Update item in database
-     */
+
     public function update(array $form): bool
     {
         $query = "UPDATE " . self::TABLE . " SET 'user_id' = :user_id, 'name' = :name, 'state' = :state WHERE id=:id";
@@ -61,5 +59,15 @@ class FormManager extends AbstractManager
 
         $statement->execute();
         return (int)$this->pdo->lastInsertId();
+    }
+
+    public function updateTitle(int $id, string $title): bool
+    {
+        $query = "UPDATE " . self::TABLE . " SET name = :name WHERE id=:id";
+        $statement = $this->pdo->prepare($query);
+        $statement->bindValue('id', $id, PDO::PARAM_INT);
+        $statement->bindValue('name', $title, PDO::PARAM_STR);
+
+        return $statement->execute();
     }
 }
