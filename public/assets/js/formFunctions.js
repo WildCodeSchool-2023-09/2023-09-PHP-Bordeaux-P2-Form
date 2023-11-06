@@ -34,11 +34,33 @@ function listenChange() {
 }
 
 function updateForms() {
-    console.log("plop");
     questionsList.display(divSavedQuestions);
     listen();
     listenSuppr();
     listenChange();
     document.getElementById("formContent").value =
         JSON.stringify(questionsList);
+}
+
+function askNewQuestion() {
+    questionsNb = questionsList.array.length + 1;
+    divQuestions.innerHTML +=
+        "<div>Quel est le titre de votre question numéro " +
+        questionsNb +
+        " ?<input type='text' id='question" +
+        questionsNb +
+        "'><button class='validateQuestion' id='validateQuestion" +
+        questionsNb +
+        "'>+</button></div>";
+
+    document.getElementById("question" + questionsNb).focus();
+    updateForms();
+}
+
+function displayTypeMenu() {
+    const menu = document.getElementById("menu-types");
+    console.log("show");
+    menu.style.display === "grid"
+        ? (menu.style.display = "none")
+        : (menu.style.display = "grid");
 }
