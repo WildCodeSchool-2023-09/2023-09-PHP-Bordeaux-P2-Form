@@ -4,6 +4,8 @@ class Question {
         this.order = order;
         this.type = type;
         this.toolid = toolid;
+        /*toolid par défaut de -1 : la question n'existe pas dans la bdd
+         */
     }
 
     displayQuestion() {
