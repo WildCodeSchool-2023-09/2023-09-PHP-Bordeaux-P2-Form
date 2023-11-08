@@ -88,8 +88,7 @@ nav {
 @media (max-width: 600px) {
   
   nav{
-    padding: 15px 20px;
-    position: fixed;
+    padding: 10px 20px;
     justify-content: space-around;
   }
   
@@ -156,7 +155,7 @@ nav {
     top: 100%;
     left: 0;
     height: calc(100vh - 72px);
-    padding: 25px;
+    padding: 20px;
     border-right: 1px solid var(--tertiary-color);
     transform: translate(-100%);
     transition: transform 0.2s ease-out;
