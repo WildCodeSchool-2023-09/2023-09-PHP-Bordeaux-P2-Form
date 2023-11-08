@@ -33,7 +33,7 @@ class RegisterController extends AbstractController
 
             if (empty($errors) && $username && $password && $email) {
                   $register->setUser($username, $email, $password);
-                  // redirect  to homepage or create form page?
+                 //redirect? add login method here?
             }
         }
 
@@ -58,9 +58,9 @@ class RegisterController extends AbstractController
         $errors = [];
 
         if (empty($password)) {
-            return 'Mot de passe requis';
+            return $errors['password'] = 'Mot de passe requis';
         } elseif (!$this->passwordMatch($password, $_POST['passwordRepeat'])) {
-            $errors[] = "Les mots de passe ne correspondent pas";
+            return $errors['email'] = "Les mots de passe ne correspondent pas";
         }
     }
 
@@ -69,14 +69,14 @@ class RegisterController extends AbstractController
         $errors = [];
 
         if (empty($email)) {
-            $errors[] = 'Email requis';
+            return $errors['email'] = 'Email requis';
         }
         if (!$this->invalidEmail($email)) {
-            $errors[] = "Email invalide";
+            return $errors['email'] = "Email invalide";
         } else {
             $register = new RegisterManager();
             if ($register->isEmailTaken($email)) {
-                $errors[] = "L'email existe déjà";
+                return $errors['email'] = "L'email existe déjà";
             }
         }
     }
@@ -86,18 +86,17 @@ class RegisterController extends AbstractController
         $errors = [];
 
         if (empty($username)) {
-            $errors[] = "Nom d'utilisateur requis";
+            return $errors['username'] = "Nom d'utilisateur requis";
         }
 
-        if ($username) {
-            if (!preg_match('/^[a-zA-Z0-9]*$/', $username)) {
-                $errors[] = "Nom d'utilisateur invalide";
+        elseif (!preg_match('/^[a-zA-Z0-9]*$/', $username)) {
+                return $errors['username'] = "Nom d'utilisateur invalide";
             } else {
                 $register = new RegisterManager();
                 if ($register->isUsernameTaken($username)) {
-                    $errors[] = "Le nom d'utilisateur existe déjà";
+                    return $errors['username'] = "Le nom d'utilisateur existe déjà";
                 }
             }
         }
     }
-}
+

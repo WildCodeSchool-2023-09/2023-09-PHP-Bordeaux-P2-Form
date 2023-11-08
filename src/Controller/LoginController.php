@@ -17,19 +17,19 @@ class LoginController extends AbstractController
             if (isset($_POST['email'])) {
                 $email = trim($_POST['email']);
                 if (empty($email)) {
-                    $errors[] = 'Email requis';
+                    $errors['email'] = 'Email requis';
                 }
             } else {
-                $errors[] = 'Email requis';
+                $errors['email'] = 'Email requis';
             }
 
             if (isset($_POST['password'])) {
                 $password = trim($_POST['password']);
                 if (empty($password)) {
-                    $errors[] = 'Mot de passe requis';
+                    $errors['password'] = 'Mot de passe requis';
                 }
             } else {
-                $errors[] = 'Mot de passe requis';
+                $errors['password'] = 'Mot de passe requis';
             }
 
 
@@ -44,10 +44,11 @@ class LoginController extends AbstractController
                         header("Location: /");
                         return;
                     } else {
-                        $errors[] = 'Mot de passe incorrect';
+                        $errors['password'] = 'Mot de passe incorrect';
+// this is still not displaing correctly
                     }
                 } else {
-                    $errors[] = 'Utilisateur non trouvé';
+                    $errors['email'] = 'Utilisateur non trouvé';
                 }
             }
         }

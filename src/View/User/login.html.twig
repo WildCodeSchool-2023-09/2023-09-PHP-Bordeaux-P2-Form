@@ -3,18 +3,17 @@
 
 
     <h1 class="connection_title">Se connecter à WildForm</h1>
-    <div class="errors">
-    <ul>
-    {% for error in errors %}
-       <li> {{ error }}</li>
-    {% endfor %}
-    </ul>
-    </div>
 
     <div class="connection_box">
     <form method="post" form action="">
     <input type="email" class="connection_input" id="email" name="email" placeholder="Email">
+{% if errors.email %}
+                <div class="errors">{{ errors.email }}</div>
+            {% endif %}
     <input type="password" class="connection_input" id="password" name="password" placeholder="Mot de passe">
+{% if errors.password %}
+                <div class="errors">{{ errors.password }}</div>
+            {% endif %}
     </div>
     <div>
     <button class="button">Se connecter</button>

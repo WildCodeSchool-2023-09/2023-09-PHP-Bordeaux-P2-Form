@@ -5,29 +5,30 @@
         <header class="mobile_nav">
         </header> 
         {% endblock %}
-{{ dump(errors) }}
+
         <h1 class="subscribe_title">Créer un compte</h1>
         <div class="subscribe_box">
         <form method="post" action=""=>
         <input type="text" class="subscribe_input" placeholder="Nom d'utilisateur" name="username" id="username">
-            {% if errors.username %}
-                {{ errors.username }}
+           {% if errors.username %}
+                <div class="errors">{{ errors.username }}</div>
             {% endif %}
         <input type="email" class="subscribe_input" placeholder="Email" name="email" id="email">
             {% if errors.email %}
-                    {{ errors.email }}
+                    <div class="errors">{{ errors.email }}</div>
                     {% endif %}
             <input type="password" class="subscribe_input" placeholder="Mot de passe" name="password" id="password">
             {% if errors.password %}
-            {{ errors.password }}
+            <div class="errors">{{ errors.password }}</div>
                     {% endif %}
             <input type="password" class="subscribe_input" placeholder="Confirmez mot de passe" name="passwordRepeat" id="passwordRepeat">
             {% if errors.password %}
-            {{ errors.password }}
+            <div class="errors">{{ errors.password }}</div>
                     {% endif %}
+</div>
                     <button type="submit" class="button">S'inscrire</button>
             </form>
-        </div>
+        
             
 
 
