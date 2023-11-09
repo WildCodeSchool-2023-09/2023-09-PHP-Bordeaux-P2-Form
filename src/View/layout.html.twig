@@ -6,9 +6,23 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="icon" href="/assets/images/favicon.png">
 
-		<title>
-			{% block title %}{% endblock %}
-		</title>
+    <title>{% block title %}{% endblock %}</title>
+
+    <link rel="stylesheet" href="/assets/css/style.css">
+    {% block stylesheet %}
+	<link rel="stylesheet" href="/assets/css/navbar_style.css">
+	{% endblock %}
+</head>
+
+<body>
+	{% include 'includes/navbar.html.twig' %}
+    {% block content %}{% endblock %}
+	{% block javascript %}
+		<script src='assets/js/script_navbar.js'></script>
+	{% endblock %}
+      {% include 'includes/footer.html.twig' %}
+</body>
+</html>
 
 		<link rel="stylesheet" href="/assets/css/style.css"> {% block stylesheet %}{% endblock %}
 		</head>

@@ -12,6 +12,7 @@
     --size-navbar: 72px;
     --size-footer: 50px;
 }
+
 body {
     color: var(--text-color);
     font-family: Verdana, sans-serif;
@@ -25,7 +26,12 @@ nav {
     justify-content: center;
 }
 
+.index {
+    padding-top: 90px;
+}
+
 .footer {
+    /* height: 3rem; */
     position: fixed;
     height: var(--size-footer);
     left: 0;
@@ -33,11 +39,14 @@ nav {
     width: 100%;
     background-color: var(--secondary-color);
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
+    /* box-shadow: inset 0px 0px 0px 1px var(--tertiary-color); */
 }
 
 .footer img {
     height: 3rem;
+    /* height: 47px;
+    margin: auto 0; */
 }
 
 .button {
