@@ -15,6 +15,10 @@ const changeInputs = document.getElementsByClassName("savedQuestion");
 
 /* menu for input type*/
 const typeText = document.getElementById("typeText");
+const typeRadio = document.getElementById("typeRadio");
+
+const addQuestionMenu = document.getElementById("menu-add-question");
+const buttonCloseAddMenu = document.getElementById("closeAddMenu");
 
 const questionsList = new Questions();
 let questionsNb = 0;
@@ -27,15 +31,23 @@ updateForms();
 
 typeText.addEventListener("click", () => {
     askNewQuestion();
-    displayTypeMenu();
+});
+
+typeRadio.addEventListener("click", () => {
+    askNewMultipleQuestion();
 });
 
 buttonAdd.addEventListener("click", (event) => {
+    console.log("plop");
     /* askNewQuestion(); */
     displayTypeMenu();
 });
 buttonClose.addEventListener("click", () => {
     displayTypeMenu();
+});
+
+buttonCloseAddMenu.addEventListener("click", () => {
+    displayAddQuestionMenu();
 });
 
 title.addEventListener("input", () => {

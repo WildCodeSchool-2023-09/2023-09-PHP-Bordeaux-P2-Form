@@ -7,12 +7,11 @@
 {% block stylesheet %}
 	<link rel="stylesheet" href="/assets/css/formstyle.css">
 	<link rel="stylesheet" href="/assets/css/formmenu.css">
+	<link rel="stylesheet" href="/assets/css/formAddMultiple.css">
 
 {% endblock %}
 
 {% block content %}
-
-
 	<main class='createForm'>
 		<div>
 			{% if form %}
@@ -41,6 +40,11 @@
 						<p>Ajouter une question à choix unique</p>
 					</div>
 				</div>
+				<div class='menu' id='menu-add-question'>
+				<button class='closeMenu' id='closeAddMenu'>Fermer</button>
+						<div
+							id="questions"></div>
+				</div>
 			</div>
 		</div>
 		<div id='errors'>
@@ -55,9 +59,7 @@
 		<div
 			id='savedQuestions'><!-- questions enregistrées -->
 		</div>
-		<div
-			id="questions"><!-- les questions apparaitront ici -->
-		</div>
+
 		<div>
 			<form method='post' id='savePost'>
 				<input type='text' id='formContent' name='formContent' value='' hidden>
