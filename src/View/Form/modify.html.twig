@@ -1,0 +1,81 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}
+	Mes formulaires - Créer un formulaire
+{% endblock %}
+
+{% block stylesheet %}
+	<link rel="stylesheet" href="/assets/css/formstyle.css">
+	<link rel="stylesheet" href="/assets/css/formmenu.css">
+{% endblock %}
+
+{% block content %}
+
+
+	<main class='createForm'>
+		<div>
+			{% if form %}
+				<h1 id='formTitle' contenteditable='true'>{{form.name}}</h1>
+				<form method='post'>
+					<input type='text' name='title' id='title' hidden>
+					<button name='changeTitle' class='none' type='submit'>Modifier le titre</button>
+				</form>
+			{% endif %}
+
+			<button class='button' id='addAQuestion'>Ajouter une question</button>
+			<div class="contains-menu-types">
+				<div class='menu' id="menu-types">
+					<button class='closeMenu' id='closeMenu'>Fermer</button>
+					<div class="menuInputType" id="typeText">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-window" viewbox="0 0 16 16">
+							<path d="M2.5 4a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1zm2-.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm1 .5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
+							<path d="M2 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H2zm13 2v2H1V3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1zM2 14a1 1 0 0 1-1-1V6h14v7a1 1 0 0 1-1 1H2z"/>
+						</svg>
+						<p>Ajouter une question ouverte</p>
+					</div>
+					<div class="menuInputType" id="typeRadio">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-ui-radios" viewbox="0 0 16 16">
+							<path d="M7 2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-1zM0 12a3 3 0 1 1 6 0 3 3 0 0 1-6 0zm7-1.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-1zm0-5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 8a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zM3 1a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm0 4.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+						</svg>
+						<p>Ajouter une question à choix unique</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id='errors'>
+			{% if errors %}
+				<ul>
+					{% for error in errors %}
+						<li>{{error}}</li>
+					{% endfor %}
+				</ul>
+			{% endif %}
+		</div>
+		<div
+			id='savedQuestions'><!-- questions enregistrées -->
+		</div>
+		<div
+			id="questions"><!-- les questions apparaitront ici -->
+		</div>
+		<div>
+			<form method='post' id='savePost'>
+				<input type='text' id='formContent' name='formContent' value='' hidden>
+				<button type='submit' name='draftForm' class='button not-priority'>Enregister le brouillon</button>
+				<button type='submit' name='saveForm' class='button'>Enregister le formulaire</button>
+			</form>
+		</div>
+
+	</main>
+{% endblock %}
+
+{% set dataObjects = tools %}
+{% block javascript %}
+	<script src='assets/js/Question.js'></script>
+	<script src='assets/js/Questions.js'></script>
+	<script>
+		let fromPHP = "{{ dataObjects|json_encode()|escape('js') }}";
+	</script>
+
+	<script src='assets/js/formfunctions.js'></script>
+	<script src='assets/js/formAddQuestions.js'></script>
+{% endblock %}
