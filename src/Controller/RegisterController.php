@@ -17,7 +17,6 @@ class RegisterController extends AbstractController
         $register = new RegisterManager();
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
             if (isset($_POST['username'])) {
                 $username = trim($_POST['username']);
                 $errors = array_merge($errors, $this->verifyUsername($username));
