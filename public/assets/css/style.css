@@ -1,6 +1,6 @@
 * {
     box-sizing: border-box;
-    margin: auto;
+    margin: 0;
 }
 
 :root {
@@ -17,17 +17,10 @@ body {
     color: var(--text-color);
     font-family: Verdana, sans-serif;
 }
-nav {
-    height: var(--size-navbar); /*used to test forms views*/
-    background-color: #d8d8d8; /*used to test forms views*/
-    font-size: 40px; /*used to test forms views*/
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
 
-.index {
+main {
     padding-top: 90px;
+    margin: auto;
 }
 
 .footer {
