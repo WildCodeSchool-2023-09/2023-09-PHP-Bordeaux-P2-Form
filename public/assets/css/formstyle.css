@@ -16,6 +16,8 @@ h1 {
     text-align: center;
     padding-bottom: 1rem;
     width: 80vw;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 main {
     min-height: calc(100vh - var(--size-footer) - var(--size-navbar));

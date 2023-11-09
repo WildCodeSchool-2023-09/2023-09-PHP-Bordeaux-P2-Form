@@ -9,9 +9,9 @@ class LoginController extends AbstractController
 {
     public function login()
     {
-            $errors = [];
-            $email = null;
-            $password = null;
+        $errors = [];
+        $email = null;
+        $password = null;
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (isset($_POST['email'])) {
@@ -32,12 +32,9 @@ class LoginController extends AbstractController
                 $errors['password'] = 'Mot de passe requis';
             }
 
-
-
             if (empty($errors)) {
                 $loginManager = new LoginManager();
-                $user = $loginManager->getUser($email, $password);
-
+                $user = $loginManager->getUser($email);
                 if (!empty($user)) {
                     if (password_verify($password, $user['password'])) {
                         $_SESSION['user_id'] = $user['id'];
@@ -45,14 +42,13 @@ class LoginController extends AbstractController
                         return;
                     } else {
                         $errors['password'] = 'Mot de passe incorrect';
-// this is still not displaing correctly
+                        // this is still not displaing correctly
                     }
                 } else {
                     $errors['email'] = 'Utilisateur non trouvé';
                 }
             }
         }
-
         return $this->twig->render('User/login.html.twig', [
             'errors' => $errors
         ]);
