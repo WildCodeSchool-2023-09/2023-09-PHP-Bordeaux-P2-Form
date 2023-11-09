@@ -19,21 +19,23 @@ class RegisterController extends AbstractController
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (isset($_POST['username'])) {
                 $username = trim($_POST['username']);
-                $errors['username'] = $this->verifyUsername($username);
+                $errors = array_merge($errors, $this->verifyUsername($username));
             }
             if (isset($_POST['email'])) {
                 $email = trim($_POST['email']);
-                $errors['email'] = $this->verifyEmail($email);
+                $errors = array_merge($errors, $this->verifyEmail($email));
             }
 
             if (isset($_POST['password'])) {
                 $password = trim($_POST['password']);
-                $errors['password'] = $this->verifyPassword($password);
+
+                $errors = array_merge($errors, $this->verifyPassword($password));
             }
 
+
             if (empty($errors) && $username && $password && $email) {
-                  $register->setUser($username, $email, $password);
-                 //redirect? add login method here?
+                $_SESSION['user_id'] = $register->setUser($username, $email, $password);
+                header('location: forms');
             }
         }
 
@@ -58,10 +60,11 @@ class RegisterController extends AbstractController
         $errors = [];
 
         if (empty($password)) {
-            return $errors['password'] = 'Mot de passe requis';
+            $errors['password'] = 'Mot de passe requis';
         } elseif (!$this->passwordMatch($password, $_POST['passwordRepeat'])) {
-            return $errors['email'] = "Les mots de passe ne correspondent pas";
+            $errors['password'] = "Les mots de passe ne correspondent pas";
         }
+        return $errors;
     }
 
     private function verifyEmail(string $email)
@@ -69,34 +72,34 @@ class RegisterController extends AbstractController
         $errors = [];
 
         if (empty($email)) {
-            return $errors['email'] = 'Email requis';
+            $errors['email'] = 'Email requis';
         }
         if (!$this->invalidEmail($email)) {
-            return $errors['email'] = "Email invalide";
+            $errors['email'] = "Email invalide";
         } else {
             $register = new RegisterManager();
             if ($register->isEmailTaken($email)) {
-                return $errors['email'] = "L'email existe déjà";
+                $errors['email'] = "L'email existe déjà";
             }
         }
+        return $errors;
     }
 
-    public function verifyUsername(string $username)
+    public function verifyUsername(string $username): array
     {
         $errors = [];
 
         if (empty($username)) {
-            return $errors['username'] = "Nom d'utilisateur requis";
-        }
-
-        elseif (!preg_match('/^[a-zA-Z0-9]*$/', $username)) {
-                return $errors['username'] = "Nom d'utilisateur invalide";
-            } else {
-                $register = new RegisterManager();
-                if ($register->isUsernameTaken($username)) {
-                    return $errors['username'] = "Le nom d'utilisateur existe déjà";
-                }
+            $errors['username'] = "Nom d'utilisateur requis";
+        } elseif (!preg_match('/^[a-zA-Z0-9]*$/', $username)) {
+            $errors['username'] = "Nom d'utilisateur invalide";
+        } else {
+            $register = new RegisterManager();
+            if ($register->isUsernameTaken($username)) {
+                $errors['username'] = "Le nom d'utilisateur existe déjà";
             }
         }
-    }
 
+        return $errors;
+    }
+}
