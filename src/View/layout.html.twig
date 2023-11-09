@@ -1,10 +1,10 @@
 <!doctype html>
 <html lang="fr">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="/assets/images/favicon.png">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="icon" href="/assets/images/favicon.png">
 
     <title>{% block title %}{% endblock %}</title>
 
@@ -24,4 +24,13 @@
 </body>
 </html>
 
+		<link rel="stylesheet" href="/assets/css/style.css"> {% block stylesheet %}{% endblock %}
+		</head>
 
+		<body>
+			{% include '_navbar.html.twig' %}
+			{% block content %}{% endblock %}
+			{% include 'Item/footer.html.twig' %}
+			{% block javascript %}{% endblock %}
+		</body>
+	</html>

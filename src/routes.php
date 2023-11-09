@@ -6,6 +6,9 @@
 //          2. method name
 //          3. (optional) array of query string keys to send as parameter to the method
 // e.g route '/item/edit?id=1' will execute $itemController->edit(1)
+
+use App\Controller\FormController;
+
 return [
     '' => ['HomeController', 'index',],
     'items' => ['ItemController', 'index',],
@@ -13,6 +16,7 @@ return [
     'items/show' => ['ItemController', 'show', ['id']],
     'items/add' => ['ItemController', 'add',],
     'items/delete' => ['ItemController', 'delete',],
+
     'login' => ['LoginController', 'login',],
     'logout' => ['UserController', 'logout',],
     'register' => ['RegisterController', 'register',],
@@ -21,6 +25,14 @@ return [
     'passwordMatch' => ['RegisterController', 'passwordMatch',],
     'InvalidEmail' => ['RegisterController', 'InvalidEmail',],
     'emptyInput' => ['RegisterController', 'emptyInput',],
+
+    'forms' => ['FormController', 'index'],
+    'chooseName' => ['FormController', 'chooseName'],
+    'modifyForm' => ['FormController', 'modifyForm', ['id']],
+    'error' => ['HomeController', 'error'],
+    'test' => ['FormController', 'test'],
+    'delete' => ['FormController', 'delete', ['id']],
+
 ];
 
 // add sessions here?? or in routing? check mvc correction//
