@@ -6,6 +6,7 @@
 
 {% block stylesheet %}
 	<link rel="stylesheet" href="/assets/css/formstyle.css">
+	<link rel="stylesheet" href="/assets/css/formmenu.css">
 {% endblock %}
 
 {% block content %}
@@ -22,9 +23,9 @@
 			{% endif %}
 
 			<button class='button' id='addAQuestion'>Ajouter une question</button>
-			<div class="menu-types">
-				<div id="menu-types">
-					<button id='closeMenu'>Fermer</button>
+			<div class="contains-menu-types">
+				<div class='menu' id="menu-types">
+					<button class='closeMenu' id='closeMenu'>Fermer</button>
 					<div class="menuInputType" id="typeText">
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-window" viewbox="0 0 16 16">
 							<path d="M2.5 4a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1zm2-.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm1 .5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
@@ -32,7 +33,7 @@
 						</svg>
 						<p>Ajouter une question ouverte</p>
 					</div>
-					<div class="menuInputType">
+					<div class="menuInputType" id="typeRadio">
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-ui-radios" viewbox="0 0 16 16">
 							<path d="M7 2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-1zM0 12a3 3 0 1 1 6 0 3 3 0 0 1-6 0zm7-1.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-1zm0-5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 8a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zM3 1a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm0 4.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
 						</svg>
