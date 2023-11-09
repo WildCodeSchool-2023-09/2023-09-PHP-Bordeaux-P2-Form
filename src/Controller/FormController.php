@@ -14,7 +14,13 @@ class FormController extends AbstractController
      */
     public function index(): string
     {
+        if (empty($_SESSION['user_id'])) {
+            header('location: login');
+            exit();
+        }
+
         $userId = $_SESSION['user_id'];
+
         $formManager = new FormManager();
         $forms = $formManager->selectAllByUserId($userId);
 
