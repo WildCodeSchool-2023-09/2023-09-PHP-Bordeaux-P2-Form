@@ -1,19 +1,15 @@
 * {
-    
     box-sizing: border-box;
     margin: auto;
-
-  }
+}
 
 :root {
-    --primary-color: #FFFFFF ;
-    --secondary-color: #F8F8F8;
-    --brand-color: #F7146B ;
-    --text-color: #343434 ;
-    --tertiary-color: #D8D8D8;
-
-    
-} 
+    --primary-color: #ffffff;
+    --secondary-color: #f8f8f8;
+    --brand-color: #f7146b;
+    --text-color: #343434;
+    --tertiary-color: #d8d8d8;
+}
 body {
     color: var(--text-color);
     font-family: Verdana, sans-serif;
@@ -39,15 +35,16 @@ body {
     color: var(--primary-color);
     padding: 1rem;
     border: none;
-    border-radius:0.5rem;
+    border-radius: 0.5rem;
     width: 80%;
     display: flex;
     justify-content: center;
-    font-size: 1.25rem;    
-    
+    font-size: 1.25rem;
 }
 
 ul {
     list-style: none;
-
+}
+main {
+    margin: auto;
 }

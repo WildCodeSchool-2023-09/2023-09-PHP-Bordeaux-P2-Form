@@ -1,41 +1,35 @@
     {% extends 'layout.html.twig' %}
     {% block content %}
-        {% block nav %}
-
-        <header class="mobile_nav">
-        </header> 
-        {% endblock %}
+    <main>
 
         <h1 class="subscribe_title">Créer un compte</h1>
         <div class="subscribe_box">
-        <form method="post" action=""=>
-        <input type="text" class="subscribe_input" placeholder="Nom d'utilisateur" name="username" id="username">
-           {% if errors.username %}
-                <div class="errors">{{ errors.username }}</div>
-            {% endif %}
-        <input type="email" class="subscribe_input" placeholder="Email" name="email" id="email">
-            {% if errors.email %}
-                    <div class="errors">{{ errors.email }}</div>
+            <form method="post" action=""=>
+                <input type="text" class="subscribe_input" placeholder="Nom d'utilisateur" name="username" id="username">
+                {% if errors.username %}
+                    <div class="errors">{{ errors.username }}</div>
+                {% endif %}
+                <input type="email" class="subscribe_input" placeholder="Email" name="email" id="email">
+                    {% if errors.email %}
+                        <div class="errors">{{ errors.email }}</div>
                     {% endif %}
-            <input type="password" class="subscribe_input" placeholder="Mot de passe" name="password" id="password">
-            {% if errors.password %}
-            <div class="errors">{{ errors.password }}</div>
+                <input type="password" class="subscribe_input" placeholder="Mot de passe" name="password" id="password">
+                    {% if errors.password %}
+                        <div class="errors">{{ errors.password }}</div>
                     {% endif %}
-            <input type="password" class="subscribe_input" placeholder="Confirmez mot de passe" name="passwordRepeat" id="passwordRepeat">
-            {% if errors.password %}
-            <div class="errors">{{ errors.password }}</div>
+                <input type="password" class="subscribe_input" placeholder="Confirmez mot de passe" name="passwordRepeat" id="passwordRepeat">
+                    {% if errors.password %}
+                        <div class="errors">{{ errors.password }}</div>
                     {% endif %}
-</div>
-                    <button type="submit" class="button">S'inscrire</button>
-            </form>
         
+                <button type="submit" class="button">S'inscrire</button>
+            </form>
+        </div>
             
 
 
-            <div class="connection_link">
+        <div class="connection_link">
             <a href="login">Vous avez déjà un compte ?</a>
-            </div>
-
-        {% include 'item/footer.html.twig' %}
-            
+        </div>
+    </main>
         {% endblock %}
