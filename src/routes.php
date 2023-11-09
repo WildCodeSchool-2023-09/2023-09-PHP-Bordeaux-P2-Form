@@ -16,10 +16,23 @@ return [
     'items/show' => ['ItemController', 'show', ['id']],
     'items/add' => ['ItemController', 'add',],
     'items/delete' => ['ItemController', 'delete',],
+
+    'login' => ['LoginController', 'login',],
+    'logout' => ['UserController', 'logout',],
+    'register' => ['RegisterController', 'register',],
+    'isEmailTakenCheck' => ['RegisterController', 'isEmailTakenCheck',],
+    'isUsernameTakenCheck' => ['RegisterController', 'isUsernameTakenCheck',],
+    'passwordMatch' => ['RegisterController', 'passwordMatch',],
+    'InvalidEmail' => ['RegisterController', 'InvalidEmail',],
+    'emptyInput' => ['RegisterController', 'emptyInput',],
+
     'forms' => ['FormController', 'index'],
     'chooseName' => ['FormController', 'chooseName'],
     'modifyForm' => ['FormController', 'modifyForm', ['id']],
     'error' => ['HomeController', 'error'],
     'test' => ['FormController', 'test'],
     'delete' => ['FormController', 'delete', ['id']],
+
 ];
+
+// add sessions here?? or in routing? check mvc correction//

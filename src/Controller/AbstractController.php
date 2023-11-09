@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Model\LoginManager;
+use App\Model\RegisterManager;
 use Twig\Environment;
 use Twig\Extension\DebugExtension;
 use Twig\Loader\FilesystemLoader;
@@ -12,6 +14,7 @@ use Twig\Loader\FilesystemLoader;
 abstract class AbstractController
 {
     protected Environment $twig;
+    protected array|false $user;
 
 
     public function __construct()
@@ -25,5 +28,8 @@ abstract class AbstractController
             ]
         );
         $this->twig->addExtension(new DebugExtension());
+        $loginManager = new LoginManager();
+        $this->user = isset($_SESSION['user_id']) ? $loginManager->selectOneById($_SESSION['user_id']) : false;
+        $this->twig->addGlobal('user', $this->user);
     }
 }
