@@ -9,28 +9,20 @@
     <title>{% block title %}{% endblock %}</title>
 
     <link rel="stylesheet" href="/assets/css/style.css">
-    {% block stylesheet %}
 	<link rel="stylesheet" href="/assets/css/navbar_style.css">
+    {% block stylesheet %}
+	
 	{% endblock %}
 </head>
 
 <body>
 	{% include 'includes/navbar.html.twig' %}
     {% block content %}{% endblock %}
+	{% include 'includes/footer.html.twig' %}
 	{% block javascript %}
 		<script src='assets/js/script_navbar.js'></script>
 	{% endblock %}
-      {% include 'includes/footer.html.twig' %}
+      
 </body>
 </html>
 
-		<link rel="stylesheet" href="/assets/css/style.css"> {% block stylesheet %}{% endblock %}
-		</head>
-
-		<body>
-			{% include '_navbar.html.twig' %}
-			{% block content %}{% endblock %}
-			{% include 'Item/footer.html.twig' %}
-			{% block javascript %}{% endblock %}
-		</body>
-	</html>

@@ -1,3 +1,73 @@
 @import 'connection.css';
 @import 'errors.css';
 @import 'global.css';
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+:root {
+    --primary-color: #ffffff;
+    --secondary-color: #f8f8f8;
+    --brand-color: #f7146b;
+    --text-color: #343434;
+    --tertiary-color: #d8d8d8;
+    --size-navbar: 72px;
+    --size-footer: 50px;
+}
+
+body {
+    color: var(--text-color);
+    font-family: Verdana, sans-serif;
+}
+
+main {
+    padding-top: 90px;
+    margin: auto;
+}
+
+.footer {
+    /* height: 3rem; */
+    position: fixed;
+    height: var(--size-footer);
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: var(--secondary-color);
+    display: flex;
+    justify-content: space-around;
+    /* box-shadow: inset 0px 0px 0px 1px var(--tertiary-color); */
+}
+
+.footer img {
+    height: 3rem;
+    /* height: 47px;
+    margin: auto 0; */
+}
+
+.button {
+    margin-top: 1.5rem;
+    background-color: var(--brand-color);
+    color: var(--primary-color);
+    padding: 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    font-size: 1.25rem;
+    -webkit-box-shadow: 5px 5px 15px -2px #000000;
+    box-shadow: 5px 5px 15px -2px #000000;
+    transition: box-shadow 1s;
+}
+.button:hover {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    transition: box-shadow 1s;
+}
+.button:active {
+    -webkit-box-shadow: -5px -5px 15px -2px #000000;
+    box-shadow: -5px -5px 15px -2px #000000;
+    transition: box-shadow 1s;
+}
