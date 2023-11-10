@@ -1,0 +1,11 @@
+ul.form-addPropositions {
+}
+ul.form-addPropositions input {
+    width: 50vw;
+    margin: 8px;
+    display: inline-block;
+}
+#questions > div > input {
+    width: 70vw;
+    margin: 8px;
+}
