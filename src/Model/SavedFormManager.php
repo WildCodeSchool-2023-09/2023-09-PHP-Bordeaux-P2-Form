@@ -16,15 +16,15 @@ class SavedFormManager extends AbstractManager
         JOIN tool_form tf ON f.id = tf.form_id
         JOIN tool_input ti ON tf.tool_input_id = ti.id
         LEFT JOIN choice c ON tf.id = c.tool_form_id
-        WHERE f.id = 1
+        WHERE f.id = :id
         ORDER BY tf.order_tool";
         $statement = $this->pdo->prepare($query);
-        $statement->bindValue('id', $id, \PDO::PARAM_INT);
+        $statement->bindValue(':id', $id, \PDO::PARAM_INT);
         $statement->execute();
+      //  var_dump($query);
 
-        return $statement->fetch();
+        return $statement->fetchAll();
     }
-
 
     public function getChoices(int $formId): array
     {
@@ -37,7 +37,6 @@ class SavedFormManager extends AbstractManager
         $returns = $statement->fetchAll();
         return $returns;
     }
-
 
     public function getTools(int $formId)
     {
