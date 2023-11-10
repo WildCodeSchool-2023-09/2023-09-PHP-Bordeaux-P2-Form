@@ -99,13 +99,16 @@ a {
 
 }
 
-.mobile_nav {
-    background-color: var(--secondary-color);
-    width: 100%;
-    text-decoration: none;
-    height: 5rem;
-    display: flex;
-    justify-content: space-between;
-    list-style: none;
-    
+.password-container{
+  width: 100%;
+  position: relative;
+}
+
+
+i {
+  position: absolute;
+  top: 15%;
+  right: 15%;
+  cursor: pointer;
+  color: lightgray;
 }
