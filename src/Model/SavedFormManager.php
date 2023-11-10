@@ -8,7 +8,16 @@ class SavedFormManager extends AbstractManager
 {
     public function selectOneById(int $id): array|false
     {
-        $query = "SELECT * FROM form WHERE id=:id";
+        //$query = "SELECT * FROM form WHERE id=:id";
+
+        $query = "SELECT f.name AS nom_formulaire, tf.label AS question, 
+        ti.name AS type_Question, c.tool_option AS choix
+        FROM form f
+        JOIN tool_form tf ON f.id = tf.form_id
+        JOIN tool_input ti ON tf.tool_input_id = ti.id
+        LEFT JOIN choice c ON tf.id = c.tool_form_id
+        WHERE f.id = 1
+        ORDER BY tf.order_tool";
         $statement = $this->pdo->prepare($query);
         $statement->bindValue('id', $id, \PDO::PARAM_INT);
         $statement->execute();
