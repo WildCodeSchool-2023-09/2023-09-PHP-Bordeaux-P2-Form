@@ -34,7 +34,7 @@ typeText.addEventListener("click", () => {
 });
 
 typeRadio.addEventListener("click", () => {
-    askNewMultipleQuestion();
+    askNewMultipleQuestion("radio");
 });
 
 buttonAdd.addEventListener("click", (event) => {

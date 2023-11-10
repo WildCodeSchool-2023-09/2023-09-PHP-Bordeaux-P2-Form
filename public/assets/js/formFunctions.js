@@ -11,6 +11,16 @@ function listenAddQuestionText() {
     }
 }
 
+function listenAddMultipleQuestion() {
+    const btn = document.getElementById("validateMultipleQuestion");
+    if (btn != undefined) {
+        btn.addEventListener("click", () => {
+            createMultipleFunction();
+            // a voir si create.... return ou fait rirectement
+        });
+    }
+}
+
 function listenSuppr() {
     for (var i = 0; i < buttonsSuppr.length; i += 1) {
         buttonsSuppr[i].addEventListener("click", (e) => {
@@ -36,6 +46,7 @@ function listenChange() {
 
 function updateForms() {
     questionsList.display(divSavedQuestions);
+    listenAddMultipleQuestion();
     listenAddQuestionText();
     listenSuppr();
     listenChange();
@@ -63,10 +74,9 @@ function askNewQuestion() {
     document.getElementById("question" + questionsNb).focus();
     updateForms();
 }
-function askNewMultipleQuestion() {
+function askNewMultipleQuestion(typeMultipleQuestion) {
     console.log("multiple");
     let questionsNb = questionsList.array.length + 1;
-    let nbProposition = 1;
     const divQuestions = document.getElementById("questions");
     if (divQuestions.innerHTML == "") {
         divQuestions.innerHTML +=
@@ -75,8 +85,8 @@ function askNewMultipleQuestion() {
             " ?<input type='text' id='question" +
             questionsNb +
             "'>" +
-            "<ul class='form-addPropositions' id='addPropositions'>" +
-            "<li><input type='text' class='input-addProposition'></input><button id='addProposition'>+</button><button id='supprProposition'>-</button></li>" +
+            "<ul class='form-addPropositions' id='addPropositions' typeOf='typeMultipleQuestion'>" +
+            "<li><input type='text' class='input-addProposition' id='proposition1'></input><button id='addProposition'>+</button><button id='supprProposition'>-</button></li>" +
             "</ul>" +
             "<button class='validateQuestion' id='validateMultipleQuestion" +
             questionsNb +
@@ -117,12 +127,14 @@ function listenAddProposition() {
 
 function addProposition() {
     const addPropositions = document.getElementById("addPropositions");
-    console.log(addPropositions);
+    let nbProposition = addPropositions.childElementCount;
     const lastProposition = addPropositions.appendChild(
         document.createElement("li")
     );
     lastProposition.innerHTML =
-        "<input type='text' classe='addProposition' id='addProposition'></input>";
+        "<input type='text' classe='addProposition' id='addProposition" +
+        nbProposition +
+        "'></input>";
 }
 
 function listenSupprProposition() {
@@ -141,4 +153,27 @@ function supprProposition() {
     if (addPropositions.childElementCount > 1) {
         addPropositions.removeChild(addPropositions.lastChild);
     }
+}
+
+function createProposition(propositionLi) {
+    let propositionInput = propositionLi.firstChild;
+    let propositionValue = propositionInput.value;
+    let nbProposition = propositionInput.id.slice("proposition".length);
+    return new Proposition(propositionValue, nbProposition);
+}
+
+function createMultipleFunction() {
+    const divQuestions = document.getElementById("questions");
+    // label, order, toolid = -1, type = "radio", propositions = [])
+    const labelInput = divQuestions.firstChild.firstChild;
+    const orderInput = labelInput.id.slice("question".length);
+    const divQuestionUl = divQuestions.firstChild.children[1];
+    console.log(divQuestionUl);
+    const questionMultiple = new QuestionMultiple(
+        labelInput.value,
+        orderInput,
+        -1
+    );
+
+    // return ou pas ?
 }
