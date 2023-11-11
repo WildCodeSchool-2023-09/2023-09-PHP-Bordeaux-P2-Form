@@ -128,6 +128,7 @@ div.formButtons {
     position: relative;
 }
 .form-dropdown-content {
+    display: none;
     opacity: 0;
     font-size: 1rem;
     position: absolute;
@@ -143,6 +144,7 @@ div.formButtons {
     height: 50px;
 }
 .delete:hover .form-dropdown-content {
+    display: block;
     opacity: 1;
     width: auto;
     height: auto;

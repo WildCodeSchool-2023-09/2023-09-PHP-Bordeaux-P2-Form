@@ -9,9 +9,11 @@ class QuestionMultiple extends Question {
     }
 
     displayQuestion() {
-        htmlValue =
-            "<div class='newQuestion'><div class='savedQuestion' id='savedQuestion" +
-            this.order +
+        let id = "savedQuestion" + this.order;
+        this.order;
+        let htmlValue =
+            "<div class='newQuestion'><div class='savedQuestion' id='" +
+            id +
             "' toolid='" +
             this.toolid +
             "' tooltype='" +
@@ -20,14 +22,14 @@ class QuestionMultiple extends Question {
             this.label +
             "</div><div class='formButtons'><button class='buttonSuppr' id='buttonSuppr" +
             this.order +
-            "'>-</button></div>" +
-            "<ul><button class='addProposition' id='proposition'>+</button>" +
-            "<li>" +
-            "" +
-            "</li>" +
-            "</ul></div>";
+            "'>-</button></div></div>" +
+            "<ul><button class='addProposition' id='proposition'>+</button>";
+        this.propositions.forEach((a) => {
+            let toWrite = a.displayProposition(id);
+            htmlValue += toWrite;
+        });
+
+        htmlValue += "</ul></div>";
         return htmlValue;
     }
-
-    displayPropositions() {}
 }

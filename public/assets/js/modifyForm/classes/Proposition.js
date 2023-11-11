@@ -4,7 +4,15 @@ class Proposition {
         this.order = order;
     }
 
-    displayProposition() {
-        return;
+    displayProposition(name) {
+        let htmlValue =
+            "<li id='" +
+            name +
+            "prop" +
+            this.order +
+            "'>" +
+            this.value +
+            "</li>";
+        return htmlValue;
     }
 }

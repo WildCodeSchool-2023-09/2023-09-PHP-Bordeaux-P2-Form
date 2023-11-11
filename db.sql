@@ -33,7 +33,7 @@ CREATE TABLE tool_input (
     PRIMARY KEY (id)
 ) ;
 
-INSERT INTO tool_input (name) VALUES ('text'), ('checkbox'), ('list'), ('range'), ('date');
+INSERT INTO tool_input (name) VALUES ('text'), ('checkbox'), ('radio'), ('range'), ('date');
 
 
 CREATE TABLE tool_form (
