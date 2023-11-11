@@ -1,3 +1,5 @@
+const title = document.getElementById("formTitle");
+
 const buttonAdd = document.getElementById("addAQuestion");
 const buttonClose = document.getElementById("closeMenu");
 
@@ -22,7 +24,7 @@ const questionsList = new Questions();
 let questionsNb = 0;
 
 fromPHP = JSON.parse(fromPHP);
-fromPHP = JSON.parse(fromPHP); // le deuxième est nécessaire sinon le json est mal parsé
+fromPHP = JSON.parse(fromPHP);
 
 questionsList.addFromArray(fromPHP);
 updateForms();
@@ -47,4 +49,8 @@ buttonClose.addEventListener("click", () => {
 
 buttonCloseAddMenu.addEventListener("click", () => {
     displayAddQuestionMenu();
+});
+
+title.addEventListener("input", () => {
+    document.getElementById("title").value = title.innerText;
 });

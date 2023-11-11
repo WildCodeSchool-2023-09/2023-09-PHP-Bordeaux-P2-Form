@@ -16,7 +16,7 @@
 		<div>
 			{% if form %}
 				<h1 id='formTitle' contenteditable='true'>{{form.name}}</h1>
-				<form method='post' id='formToModifyTitle'>
+				<form method='post'>
 					<input type='text' name='title' id='title' hidden>
 					<button name='changeTitle' class='none' type='submit'>Modifier le titre</button>
 				</form>
@@ -73,15 +73,14 @@
 
 {% set dataObjects = tools %}
 {% block javascript %}
-	<script src='assets/js/modifyForm/classes/Question.js'></script>
-	<script src='assets/js/modifyForm/classes/Questions.js'></script>
-	<script src='assets/js/modifyForm/classes/QuestionMultiple.js'></script>
-	<script src='assets/js/modifyForm/classes/Proposition.js'></script>
+	<script src='assets/js/Question.js'></script>
+	<script src='assets/js/Questions.js'></script>
+	<script src='assets/js/QuestionMultiple.js'></script>
+	<script src='assets/js/Proposition.js'></script>
 	<script>
 		let fromPHP = "{{ dataObjects|json_encode()|escape('js') }}";
 	</script>
 
-	<script src='assets/js/modifyForm/formModifyTitle.js'></script>
 	<script src='assets/js/formfunctions.js'></script>
 	<script src='assets/js/formAddQuestions.js'></script>
 {% endblock %}
