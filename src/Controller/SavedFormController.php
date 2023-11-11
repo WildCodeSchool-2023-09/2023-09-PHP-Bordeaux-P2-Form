@@ -14,7 +14,8 @@ class SavedFormController extends AbstractController
     {
         $savedFormManager = new SavedFormManager();
         $savedForm = $savedFormManager->selectOneById($id);
-        var_dump($savedForm);
+        //var_dump($savedForm);
+
 
         return $this->twig->render('Form/show_savedForm.html.twig', ['savedForm' => $savedForm]);
     }

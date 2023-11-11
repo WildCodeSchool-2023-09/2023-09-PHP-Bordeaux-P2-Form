@@ -145,6 +145,14 @@ LEFT JOIN choice c ON tf.id = c.tool_form_id
 WHERE f.id = 1
 ORDER BY tf.order_tool;
 
+SELECT f.name AS nom_formulaire, tf.label AS question LIMIT 1, ti.name AS type_Question, c.tool_option AS choix
+FROM form f
+JOIN tool_form tf ON f.id = tf.form_id
+JOIN tool_input ti ON tf.tool_input_id = ti.id
+LEFT JOIN choice c ON tf.id = c.tool_form_id
+WHERE f.id = 1
+ORDER BY tf.order_tool;
+
 SELECT f.name AS nom_formulaire, u.id, tf.label AS question, ti.name AS type_Question, cf.value AS reponse
 FROM completed_form cf
 JOIN response_session rs ON cf.response_session_id = rs.id
@@ -154,3 +162,5 @@ JOIN user u ON rs.user_id = u.id
 JOIN tool_input ti ON tf.tool_input_id = ti.id
 WHERE f.id = 1
 ORDER BY u.id, tf.order_tool;
+
+SELECT * FROM response_session WHERE tool_form_id IN (SELECT id FROM tool_form WHERE form_id = 1);
