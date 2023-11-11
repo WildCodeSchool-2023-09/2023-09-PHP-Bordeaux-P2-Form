@@ -55,13 +55,13 @@ class LoginController extends AbstractController
         ]);
     }
 
-    public function logout():void
+    public function logout(): void
     {
         $this->unsetsession();
         header('Location: /');
     }
 
-    public function unsetSession():void
+    public function unsetSession(): void
     {
         $_SESSION = array();
         session_destroy();
