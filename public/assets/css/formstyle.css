@@ -64,12 +64,14 @@ body > main > section > a {
     justify-content: space-between;
     align-items: center;
 }
-form {
+
+ul>form {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding-top: 1rem;
 }
+
 input {
     height: 3rem;
     font-size: 16px;

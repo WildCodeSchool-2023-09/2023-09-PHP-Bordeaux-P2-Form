@@ -4,10 +4,11 @@ namespace App\Controller;
 
 use App\Model\LoginManager;
 use App\Controller\SuccessController;
+use Symfony\Component\Config\Definition\Builder\ValidationBuilder;
 
 class LoginController extends AbstractController
 {
-    public function login()
+    public function login(): ?string
     {
         $errors = [];
         $email = null;
@@ -39,7 +40,7 @@ class LoginController extends AbstractController
                     if (password_verify($password, $user['password'])) {
                         $_SESSION['user_id'] = $user['id'];
                         header("Location: /");
-                        return;
+                        exit();
                     } else {
                         $errors['password'] = 'Mot de passe incorrect';
                         // this is still not displaing correctly
@@ -54,9 +55,16 @@ class LoginController extends AbstractController
         ]);
     }
 
-    public function logout()
+    public function logout():void
     {
-        unset($_SESSION['user_id']);
+        $this->unsetsession();
         header('Location: /');
+    }
+
+    public function unsetSession():void
+    {
+        $_SESSION = array();
+        session_destroy();
+        unset($_SESSION);
     }
 }
