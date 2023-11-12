@@ -23,16 +23,6 @@ function listenAddQuestion() {
     }
 }
 
-/* function listenAddMultipleQuestion() {
-    const btn = document.getElementById("validateMultipleQuestion");
-    if (btn != undefined) {
-        btn.addEventListener("click", () => {
-            createMultipleFunction();
-            // a voir si create.... return ou fait rirectement
-        });
-    }
-} */
-
 function listenSuppr() {
     const buttonsSuppr = document.getElementsByClassName("buttonSuppr");
     for (var i = 0; i < buttonsSuppr.length; i += 1) {
@@ -58,18 +48,6 @@ function listenChange() {
     });
 }
 
-/* function updateForms() {
-    questionsList.display(divSavedQuestions);
-    //listenAddMultipleQuestion();
-    listenAddQuestion();
-    listenSuppr();
-    listenChange();
-    listenAddProposition();
-    listenSupprProposition();
-    document.getElementById("formContent").value =
-        JSON.stringify(questionsList);
-} */
-
 function askNewQuestion() {
     questionsNb = questionsList.array.length + 1;
     const divQuestions = document.getElementById("questions");
@@ -88,6 +66,7 @@ function askNewQuestion() {
     document.getElementById("question" + questionsNb).focus();
     updateForms();
 }
+
 function askNewMultipleQuestion(typeMultipleQuestion) {
     let questionsNb = questionsList.array.length + 1;
     const divQuestions = document.getElementById("questions");

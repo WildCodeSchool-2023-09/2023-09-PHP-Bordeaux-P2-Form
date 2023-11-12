@@ -59,12 +59,12 @@ CREATE TABLE choice (
    id INT NOT NULL AUTO_INCREMENT,
    tool_form_id INT,
    tool_option VARCHAR(255),
-   order INT,
+   choice_order INT,
    FOREIGN KEY (tool_form_id) REFERENCES tool_form(id),
    PRIMARY KEY (id)
 ) ;
 
-INSERT INTO choice (tool_form_id, tool_option)
+INSERT INTO choice (tool_form_id, tool_option, choice_order)
     VALUES 
         (3, 'classique', 1),
         (3, 'hard', 2),

@@ -72,7 +72,9 @@ class DataChecker
                 $question[$key] = $value;
             } else {
                 foreach ($value as $proposition) {
+                    var_dump("PROPOSITION", $proposition);
                     $errors = array_merge($errors, $this->verifyPropositions($proposition));
+                    var_dump("ERROR", $errors);
                 }
             }
             if ($key === 'label') {
@@ -135,7 +137,7 @@ class DataChecker
         }
         if (isset($proposition['order'])) {
             $errors = array_merge($errors, $this->verifyInt(
-                $proposition['value'],
+                $proposition['order'],
                 'ordre de la proposition'
             ));
         } else {

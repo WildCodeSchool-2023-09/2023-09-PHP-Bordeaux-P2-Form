@@ -43,7 +43,7 @@ class FormController extends AbstractController
         }
         $form = $formManager->selectOneById($id);
         $tools = $toolFormManager->getTools($id);
-
+        //var_dump($tools);
         $this->verifyForm($form, $errors);
 
         // gestion du retour de formulaire
@@ -61,9 +61,9 @@ class FormController extends AbstractController
             } else {
                 if (!empty($formPost['formContent'])) {
                     $fromDataChecker = $dataChecker->decodeJson($formPost['formContent']);
-                    var_dump($fromDataChecker);
+                    //var_dump($fromDataChecker);
                     $questions = $fromDataChecker['questions'];
-                    var_dump($questions);
+                    //var_dump($questions);
                     $errors = array_merge($errors, $fromDataChecker['errors']);
 
                     if (empty($errors)) {
@@ -166,9 +166,5 @@ class FormController extends AbstractController
             $tools[$key]['type'] = $toolInputs[$tools[$key]['type']];
         }
         return $tools;
-    }
-
-    public function saveQuestion()
-    {
     }
 }

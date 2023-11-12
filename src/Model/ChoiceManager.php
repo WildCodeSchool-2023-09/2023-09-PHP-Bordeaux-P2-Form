@@ -23,8 +23,8 @@ class ChoiceManager extends AbstractManager
 
     public function add(int $toolId, array $proposition): int
     {
-        $query = "INSERT INTO " . self::TABLE . " (tool_form_id, tool_option, order)
-        VALUES (:tool_input_id, :tool_option, :order)";
+        $query = "INSERT INTO " . self::TABLE . " (tool_form_id, tool_option, choice_order)
+        VALUES (:tool_form_id, :tool_option, :order)";
 
         $statement = $this->pdo->prepare($query);
         $statement->bindValue('tool_form_id', $toolId, PDO::PARAM_INT);
@@ -43,7 +43,7 @@ class ChoiceManager extends AbstractManager
 
         $statement = $this->pdo->prepare($query);
         $statement->bindValue('id', $proposition['propositionId'], PDO::PARAM_INT);
-        $statement->bindValue('tool_option', $proposition['value'], PDO::PARAM_INT);
+        $statement->bindValue('tool_option', $proposition['value'], PDO::PARAM_STR);
         $statement->bindValue('order', $proposition['order'], PDO::PARAM_INT);
 
         $statement->execute();
@@ -70,7 +70,7 @@ class ChoiceManager extends AbstractManager
         }
 
         foreach ($propositions as $proposition) {
-            if ($proposition['propositionId'] === -1) {
+            if ($proposition['propositionId'] == -1) {
                 $this->add($toolId, $proposition);
             } else {
                 $this->update($proposition);
