@@ -61,16 +61,19 @@ class DataChecker
 
     public function verifyQuestion(array $question): ?array
     {
-        //var_dump($question);
         $errors = [];
         $label = false;
         $order = false;
         $type = false;
         $toolid = false;
         foreach ($question as $key => $value) {
-            if (is_string($value)) {
+            if (is_string($value) || (is_int($value))) {
                 $value = trim($value);
                 $question[$key] = $value;
+            } else {
+                foreach ($value as $proposition) {
+                    $errors = array_merge($errors, $this->verifyPropositions($proposition));
+                }
             }
             if ($key === 'label') {
                 $label = true;
@@ -119,9 +122,34 @@ class DataChecker
         return $result;
     }
 
-    public function verifyPropositions($question)
+    public function verifyPropositions($proposition)
     {
-        //todo
-        return $question;
+        $errors = [];
+        if (isset($proposition['value'])) {
+            $errors = array_merge($errors, $this->verifyString(
+                $proposition['value'],
+                'valeur de la proposition'
+            ));
+        } else {
+            $errors[] = 'La valeur de la proposition n\'existe pas';
+        }
+        if (isset($proposition['order'])) {
+            $errors = array_merge($errors, $this->verifyInt(
+                $proposition['value'],
+                'ordre de la proposition'
+            ));
+        } else {
+            $errors[] = 'L\'ordre de la proposition n\'existe pas';
+        }
+        if (isset($proposition['propositionId'])) {
+            $errors = array_merge($errors, $this->verifyInt(
+                $proposition['propositionId'],
+                'id de la proposition'
+            ));
+        } else {
+            $errors[] = 'L\'id de la proposition n\'existe pas';
+        }
+
+        return $errors;
     }
 }

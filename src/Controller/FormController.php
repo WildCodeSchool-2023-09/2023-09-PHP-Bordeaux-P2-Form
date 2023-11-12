@@ -61,15 +61,10 @@ class FormController extends AbstractController
             } else {
                 if (!empty($formPost['formContent'])) {
                     $fromDataChecker = $dataChecker->decodeJson($formPost['formContent']);
-                    //var_dump($fromDataChecker);
+                    var_dump($fromDataChecker);
                     $questions = $fromDataChecker['questions'];
-                    //var_dump($questions);
+                    var_dump($questions);
                     $errors = array_merge($errors, $fromDataChecker['errors']);
-                    if (!empty($questions['propositions'])) {
-                        $dataChecker->verifyPropositions($questions);
-                        // TODO : continue
-                    }
-
 
                     if (empty($errors)) {
                         $questions = $this->changeNameAsIdInputTools($questions);
@@ -171,5 +166,9 @@ class FormController extends AbstractController
             $tools[$key]['type'] = $toolInputs[$tools[$key]['type']];
         }
         return $tools;
+    }
+
+    public function saveQuestion()
+    {
     }
 }

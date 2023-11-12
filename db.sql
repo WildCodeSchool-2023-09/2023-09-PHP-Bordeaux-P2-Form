@@ -59,22 +59,23 @@ CREATE TABLE choice (
    id INT NOT NULL AUTO_INCREMENT,
    tool_form_id INT,
    tool_option VARCHAR(255),
+   order INT,
    FOREIGN KEY (tool_form_id) REFERENCES tool_form(id),
    PRIMARY KEY (id)
 ) ;
 
 INSERT INTO choice (tool_form_id, tool_option)
     VALUES 
-        (3, 'classique'),
-        (3, 'hard'),
-        (3, 'pop'),
-        (3, 'rock'),
-        (3, 'rap'),
-        (4, 'classique'),
-        (4, 'hard'),
-        (4, 'pop'),
-        (4, 'rock'),
-        (4, 'rap');
+        (3, 'classique', 1),
+        (3, 'hard', 2),
+        (3, 'pop', 3),
+        (3, 'rock', 4),
+        (3, 'rap', 5),
+        (4, 'classique', 1),
+        (4, 'hard', 2),
+        (4, 'pop', 3),
+        (4, 'rock', 4),
+        (4, 'rap', 5);
 
 CREATE TABLE response_session (
     id INT NOT NULL AUTO_INCREMENT,
