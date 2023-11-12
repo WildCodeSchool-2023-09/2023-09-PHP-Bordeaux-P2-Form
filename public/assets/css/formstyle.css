@@ -22,13 +22,7 @@ h1 {
     margin-top: 1rem;
     margin-bottom: 1rem;
 }
-main {
-    min-height: calc(100vh - var(--size-footer) - var(--size-navbar));
-    padding-bottom: 1rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+
 main > div {
     width: 100%;
     margin: 0;
@@ -68,7 +62,7 @@ body > main > section > a {
     align-items: center;
 }
 
-ul>form {
+ul > form {
     display: flex;
     flex-direction: column;
     align-items: center;

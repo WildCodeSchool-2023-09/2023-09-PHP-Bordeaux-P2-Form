@@ -1,20 +1,18 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-
+  <main class="index">
     <h1>WildForms</h1>
     <h2>Créer et partager des formulaires en ligne</h2>
-       {% if user %}
-            🥳
-            <p>
-                You are connected as <strong>{{ user.username }}</strong>!
-            </p>
-        {% else %}
-            <a href="/login">Se connecter</a>
-            ou <a href="/register">Créer un compte</a>.
-        {% endif %}
+    <div>
+      {% if user %}
+        🥳<p>
+          You are connected as <strong>{{ user.username }}</strong>!
+        </p>
+      {% else %}
+        <a href="/login">Se connecter</a>
+        ou <a href="/register">Créer un compte</a>.
+      {% endif %}
     </div>
-
-   
-   
+  </main>
 {% endblock %}

@@ -1,11 +1,6 @@
-@import 'connection.css';
-@import 'errors.css';
-@import 'global.css';
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-}
+@import "connection.css";
+@import "errors.css";
+@import "global.css";
 
 :root {
     --primary-color: #ffffff;
@@ -22,14 +17,8 @@ body {
     font-family: Verdana, sans-serif;
 }
 
-main {
-    padding-top: 90px;
-    margin: auto;
-}
-
 .footer {
     height: 3rem;
-    position: fixed;
     height: var(--size-footer);
     left: 0;
     bottom: 0;

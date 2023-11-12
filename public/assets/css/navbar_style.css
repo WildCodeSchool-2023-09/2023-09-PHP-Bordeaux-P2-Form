@@ -82,21 +82,25 @@ nav * {
 }
 
 .logout_button {
+    position: absolute;
     display: none;
     background-color: var(--brand-color);
     border-radius: 8px;
     color: var(--primary-color);
 }
 
-.user_connected:hover {
+/* .user_connected:hover {
     padding-top: 22px;
-}
+} */
 
 .user_connected:hover .logout_button {
     display: block;
+    left: -34px;
+    width: 4rem;
 }
 
 .dropdown_content {
+    position: relative;
     margin: auto;
 }
 

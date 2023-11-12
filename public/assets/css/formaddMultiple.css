@@ -22,3 +22,6 @@ ul.form-addPropositions input {
     width: 70vw;
     margin: 8px;
 }
+#savedQuestions ul {
+    text-align: start;
+}
