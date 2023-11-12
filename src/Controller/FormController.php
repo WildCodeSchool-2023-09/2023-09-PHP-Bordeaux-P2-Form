@@ -51,7 +51,6 @@ class FormController extends AbstractController
                 $tools[$key]['propositions'] = $propositions;
             }
         }
-        var_dump($tools);
         $this->verifyForm($form, $errors);
 
         // gestion du retour de formulaire
@@ -69,16 +68,14 @@ class FormController extends AbstractController
             } else {
                 if (!empty($formPost['formContent'])) {
                     $fromDataChecker = $dataChecker->decodeJson($formPost['formContent']);
-                    //var_dump($fromDataChecker);
                     $questions = $fromDataChecker['questions'];
-                    //var_dump($questions);
                     $errors = array_merge($errors, $fromDataChecker['errors']);
 
                     if (empty($errors)) {
                         $questions = $this->changeNameAsIdInputTools($questions);
                         $toolFormManager->addUpdateDelete($id, $questions);
-                        //header('location: forms');
-                        //exit();
+                        header('location: forms');
+                        exit();
                     }
                 } else {
                     $errors[] = 'Il faut au moins une question pour pouvoir enregistrer le formulaire.';
@@ -169,7 +166,6 @@ class FormController extends AbstractController
     {
         $toolInputManager = new ToolInputManager();
         $toolInputs = $toolInputManager->getNameId();
-        //var_dump($tools);
         foreach (array_keys($tools) as $key) {
             $tools[$key]['type'] = $toolInputs[$tools[$key]['type']];
         }

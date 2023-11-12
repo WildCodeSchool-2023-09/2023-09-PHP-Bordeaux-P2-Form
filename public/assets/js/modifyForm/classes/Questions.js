@@ -17,7 +17,6 @@ class Questions {
     }
 
     modify(nb, newLabel) {
-        console.log("modify");
         for (let i = 0; i < this.array.length; i++) {
             if (this.array[i].order == nb) {
                 this.array[i].label = newLabel;
