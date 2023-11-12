@@ -39,12 +39,12 @@ class ChoiceManager extends AbstractManager
     public function update(array $proposition): void
     {
         $query = "UPDATE " . self::TABLE .
-            " SET order = :order, tool_option = :tool_option WHERE id=:id";
+            " SET choice_order = :choice_order, tool_option = :tool_option WHERE id=:id";
 
         $statement = $this->pdo->prepare($query);
         $statement->bindValue('id', $proposition['propositionId'], PDO::PARAM_INT);
         $statement->bindValue('tool_option', $proposition['value'], PDO::PARAM_STR);
-        $statement->bindValue('order', $proposition['order'], PDO::PARAM_INT);
+        $statement->bindValue('choice_order', $proposition['order'], PDO::PARAM_INT);
 
         $statement->execute();
     }
