@@ -127,7 +127,8 @@ nav * {
         background: var(--secondary-color);
         align-items: center;
         position: relative;
-        padding-left: 10px;
+        margin-left: 20px;
+        padding-left: 0;
     }
 
     .hamburger span {
