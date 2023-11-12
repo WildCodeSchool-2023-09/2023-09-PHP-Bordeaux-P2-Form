@@ -9,7 +9,6 @@
     <title>{% block title %}{% endblock %}</title>
 
     <link rel="stylesheet" href="/assets/css/style.css">
-    <link rel="stylesheet" href="/assets/css/global.css">
 	<link rel="stylesheet" href="/assets/css/navbar_style.css">
     {% block stylesheet %}
 	
@@ -18,9 +17,7 @@
 
 <body>
 	{% include 'includes/navbar.html.twig' %}
-	<main>
     {% block content %}{% endblock %}
-	</main>
 	{% include 'includes/footer.html.twig' %}
 	{% block javascript %}
 		

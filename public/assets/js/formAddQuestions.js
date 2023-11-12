@@ -1,33 +1,17 @@
-const title = document.getElementById("formTitle");
+const buttonDisplayTypeMenu = document.getElementById("displayTypeMenu");
+const buttonCloseTypeMenu = document.getElementById("closeTypeMenu");
 
-const buttonAdd = document.getElementById("addAQuestion");
-const buttonClose = document.getElementById("closeMenu");
+buttonDisplayTypeMenu.addEventListener("click", (event) => {
+    /* askNewQuestion(); */
+    displayTypeMenu();
+});
 
-const divQuestions = document.getElementById("questions");
-const divSavedQuestions = document.getElementById("savedQuestions");
+buttonCloseTypeMenu.addEventListener("click", () => {
+    displayTypeMenu();
+});
 
-const validateQuestionsCollection =
-    document.getElementsByClassName("validateQuestion");
-const buttonsSuppr = document.getElementsByClassName("buttonSuppr");
-const buttonsUp = document.getElementsByClassName("buttonUp");
-const buttonsDown = document.getElementsByClassName("buttonDown");
-const changeInputs = document.getElementsByClassName("savedQuestion");
-
-/* menu for input type*/
 const typeText = document.getElementById("typeText");
 const typeRadio = document.getElementById("typeRadio");
-
-const addQuestionMenu = document.getElementById("menu-add-question");
-const buttonCloseAddMenu = document.getElementById("closeAddMenu");
-
-const questionsList = new Questions();
-let questionsNb = 0;
-
-fromPHP = JSON.parse(fromPHP);
-fromPHP = JSON.parse(fromPHP);
-
-questionsList.addFromArray(fromPHP);
-updateForms();
 
 typeText.addEventListener("click", () => {
     askNewQuestion();
@@ -37,19 +21,19 @@ typeRadio.addEventListener("click", () => {
     askNewMultipleQuestion("radio");
 });
 
-buttonAdd.addEventListener("click", (event) => {
-    console.log("plop");
-    /* askNewQuestion(); */
-    displayTypeMenu();
-});
-buttonClose.addEventListener("click", () => {
-    displayTypeMenu();
-});
+//a valider
+const divQuestions = document.getElementById("questions");
+
+const buttonsUp = document.getElementsByClassName("buttonUp");
+const buttonsDown = document.getElementsByClassName("buttonDown");
+
+/* menu for input type*/
+
+const addQuestionMenu = document.getElementById("menu-add-question");
+const buttonCloseAddMenu = document.getElementById("closeAddMenu");
+
+let questionsNb = 0;
 
 buttonCloseAddMenu.addEventListener("click", () => {
-    displayAddQuestionMenu();
-});
-
-title.addEventListener("input", () => {
-    document.getElementById("title").value = title.innerText;
+    closeAddQuestionMenu();
 });

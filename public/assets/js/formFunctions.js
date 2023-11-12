@@ -1,27 +1,30 @@
-function listenAddQuestionText() {
+function listenAddQuestion() {
+    const validateQuestionsCollection =
+        document.getElementsByClassName("validateQuestion");
     for (var i = 0; i < validateQuestionsCollection.length; i += 1) {
         validateQuestionsCollection[i].addEventListener("click", (e) => {
-            let nb = e.target.id.slice("validateQuestion".length);
-            let label = document.getElementById("question" + nb).value;
-            questionsList.add(new Question(label, nb));
-            e.target.parentElement.remove();
-            displayAddQuestionMenu();
+            if (e.target.classList.contains("unique") /*has class unique */) {
+                let nb = e.target.id.slice("validateQuestion".length);
+                let label = document.getElementById("question" + nb).value;
+                questionsList.add(new Question(label, nb));
+                e.target.parentElement.remove();
+            } else if (
+                e.target.classList.contains("multiple") /*has class multiple */
+            ) {
+                // todo
+
+                questionsList.add(createMultipleQuestion());
+            } else {
+                //errors
+            }
+            closeAddQuestionMenu();
             updateForms();
         });
     }
 }
 
-function listenAddMultipleQuestion() {
-    const btn = document.getElementById("validateMultipleQuestion");
-    if (btn != undefined) {
-        btn.addEventListener("click", () => {
-            createMultipleFunction();
-            // a voir si create.... return ou fait rirectement
-        });
-    }
-}
-
 function listenSuppr() {
+    const buttonsSuppr = document.getElementsByClassName("buttonSuppr");
     for (var i = 0; i < buttonsSuppr.length; i += 1) {
         buttonsSuppr[i].addEventListener("click", (e) => {
             let nb = e.target.id.slice("supprButton".length);
@@ -34,6 +37,7 @@ function listenSuppr() {
 }
 
 function listenChange() {
+    const changeInputs = document.getElementsByClassName("savedQuestion");
     Array.from(changeInputs).forEach((element) => {
         element.addEventListener("blur", (e) => {
             let nb = e.target.id.slice("savedQuestion".length);
@@ -42,18 +46,6 @@ function listenChange() {
             updateForms();
         });
     });
-}
-
-function updateForms() {
-    questionsList.display(divSavedQuestions);
-    listenAddMultipleQuestion();
-    listenAddQuestionText();
-    listenSuppr();
-    listenChange();
-    listenAddProposition();
-    listenSupprProposition();
-    document.getElementById("formContent").value =
-        JSON.stringify(questionsList);
 }
 
 function askNewQuestion() {
@@ -65,7 +57,7 @@ function askNewQuestion() {
             questionsNb +
             " ?<input type='text' id='question" +
             questionsNb +
-            "'><button class='validateQuestion' id='validateQuestion" +
+            "'><button class='validateQuestion unique' id='validateQuestion" +
             questionsNb +
             "'>+</button></div>";
     }
@@ -74,21 +66,25 @@ function askNewQuestion() {
     document.getElementById("question" + questionsNb).focus();
     updateForms();
 }
+
 function askNewMultipleQuestion(typeMultipleQuestion) {
-    console.log("multiple");
     let questionsNb = questionsList.array.length + 1;
     const divQuestions = document.getElementById("questions");
     if (divQuestions.innerHTML == "") {
         divQuestions.innerHTML +=
-            "<div>Quel est le titre de votre question multiple numéro " +
+            "<div><label for='question" +
             questionsNb +
-            " ?<input type='text' id='question" +
+            "'>Quel est le titre de votre question multiple numéro " +
+            questionsNb +
+            " ?</label><input type='text' id='question" +
             questionsNb +
             "'>" +
-            "<ul class='form-addPropositions' id='addPropositions' typeOf='typeMultipleQuestion'>" +
-            "<li><input type='text' class='input-addProposition' id='proposition1'></input><button id='addProposition'>+</button><button id='supprProposition'>-</button></li>" +
+            "<ul class='form-addPropositions' id='addPropositions' type='" +
+            typeMultipleQuestion +
+            "'>" +
+            "<li><input type='text' class='input-addProposition' id='addProposition1'></input><button id='addProposition'>+</button><button id='supprProposition'>-</button></li>" +
             "</ul>" +
-            "<button class='validateQuestion' id='validateMultipleQuestion" +
+            "<button class='validateQuestion multiple' id='validateQuestion" +
             questionsNb +
             "'>+</button></div>";
     }
@@ -101,14 +97,13 @@ function askNewMultipleQuestion(typeMultipleQuestion) {
 
 function displayTypeMenu() {
     const menu = document.getElementById("menu-types");
-    console.log("show");
     menu.style.display === "grid"
         ? (menu.style.display = "none")
         : (menu.style.display = "grid");
 }
 function displayAddQuestionMenu() {
     const menu = document.getElementById("menu-add-question");
-    console.log("show add question");
+
     menu.style.display === "grid"
         ? (menu.style.display = "none")
         : (menu.style.display = "grid");
@@ -116,9 +111,8 @@ function displayAddQuestionMenu() {
 
 function listenAddProposition() {
     const btn = document.getElementById("addProposition");
-    console.log("listenAddProposition");
+
     if (btn != undefined) {
-        console.log("not undefined");
         btn.addEventListener("click", () => {
             addProposition();
         });
@@ -127,7 +121,7 @@ function listenAddProposition() {
 
 function addProposition() {
     const addPropositions = document.getElementById("addPropositions");
-    let nbProposition = addPropositions.childElementCount;
+    let nbProposition = addPropositions.childElementCount + 1;
     const lastProposition = addPropositions.appendChild(
         document.createElement("li")
     );
@@ -141,7 +135,6 @@ function listenSupprProposition() {
     const btn = document.getElementById("supprProposition");
     if (btn != undefined) {
         btn.addEventListener("click", () => {
-            console.log("suppr");
             supprProposition();
         });
     }
@@ -149,7 +142,7 @@ function listenSupprProposition() {
 
 function supprProposition() {
     const addPropositions = document.getElementById("addPropositions");
-    console.log(addPropositions.childElementCount);
+
     if (addPropositions.childElementCount > 1) {
         addPropositions.removeChild(addPropositions.lastChild);
     }
@@ -162,18 +155,38 @@ function createProposition(propositionLi) {
     return new Proposition(propositionValue, nbProposition);
 }
 
-function createMultipleFunction() {
+function createMultipleQuestion() {
+    //anciennement createMultipleFunction
     const divQuestions = document.getElementById("questions");
     // label, order, toolid = -1, type = "radio", propositions = [])
-    const labelInput = divQuestions.firstChild.firstChild;
+    const labelInput = divQuestions.firstChild.children[1];
+
     const orderInput = labelInput.id.slice("question".length);
-    const divQuestionUl = divQuestions.firstChild.children[1];
-    console.log(divQuestionUl);
+    const divQuestionUl = divQuestions.firstChild.children[2];
+    const typeQuestion = divQuestionUl.type;
+
     const questionMultiple = new QuestionMultiple(
         labelInput.value,
         orderInput,
-        -1
+        -1,
+        typeQuestion
     );
 
-    // return ou pas ?
+    Array.from(divQuestionUl.children).forEach((a) => {
+        let prop = new Proposition(
+            a.firstChild.value,
+            a.firstChild.id.slice("addProposition".length)
+        );
+        questionMultiple.addProposition(prop);
+    });
+
+    return questionMultiple;
+}
+
+function closeAddQuestionMenu() {
+    const element = document.getElementById("questions");
+    while (element.firstChild) {
+        element.removeChild(element.firstChild);
+    }
+    displayAddQuestionMenu();
 }
