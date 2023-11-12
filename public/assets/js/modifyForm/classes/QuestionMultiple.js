@@ -8,6 +8,17 @@ class QuestionMultiple extends Question {
         this.propositions.push(proposition);
     }
 
+    addPropositionsFromArray(propositionsArray) {
+        propositionsArray.forEach((proposition) => {
+            let newProposition = new Proposition(
+                proposition.tool_option,
+                proposition.choice_order,
+                proposition.id
+            );
+            this.addProposition(newProposition);
+        });
+    }
+
     displayQuestion() {
         let id = "savedQuestion" + this.order;
         this.order;

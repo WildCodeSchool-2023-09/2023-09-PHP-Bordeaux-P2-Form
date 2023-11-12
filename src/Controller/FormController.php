@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Model\ChoiceManager;
 use App\Model\DataChecker;
 use App\Model\FormManager;
 use App\Model\ToolFormManager;
@@ -35,6 +36,7 @@ class FormController extends AbstractController
         $formManager = new FormManager();
         $dataChecker = new DataChecker();
         $toolFormManager = new ToolFormManager();
+        $choiceManager = new ChoiceManager();
 
         // erreurs structurelles
         if (!is_numeric($id)) {
@@ -43,7 +45,13 @@ class FormController extends AbstractController
         }
         $form = $formManager->selectOneById($id);
         $tools = $toolFormManager->getTools($id);
-        //var_dump($tools);
+        foreach ($tools as $key => $tool) {
+            $propositions = $choiceManager->getChoices($tool['id']);
+            if (!empty($propositions)) {
+                $tools[$key]['propositions'] = $propositions;
+            }
+        }
+        var_dump($tools);
         $this->verifyForm($form, $errors);
 
         // gestion du retour de formulaire
