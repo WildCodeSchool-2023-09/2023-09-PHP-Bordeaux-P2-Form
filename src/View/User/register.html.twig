@@ -23,7 +23,7 @@
                     {% endif %}
 <div class="password-container">
                 <input type="password" class="subscribe_input" placeholder="Confirmez mot de passe" name="passwordRepeat" id="passwordRepeat">
-<i class="bi bi-eye-slash" id="togglePassword"></i>
+<i class="bi bi-eye-slash" id="toggleRepeatPassword"></i>
 </div>
                     {% if errors.password %}
                         <div class="errors">{{ errors.password }}</div>
@@ -44,15 +44,27 @@
   const togglePassword = document.querySelector("#togglePassword");
         const password = document.querySelector("#password");
         
-
         togglePassword.addEventListener("click", function () {
           
             const type = password.getAttribute("type") === "password" ? "text" : "password";
             password.setAttribute("type", type);
             
-            
+
             this.classList.toggle("bi-eye");
         });
+
+const toggleRepeatPassword = document.querySelector("#toggleRepeatPassword");
+        const passwordRepeat = document.querySelector("#passwordRepeat");
+        
+        toggleRepeatPassword.addEventListener("click", function () {
+          
+            const type = passwordRepeat.getAttribute("type") === "password" ? "text" : "password";
+            passwordRepeat.setAttribute("type", type);
+            
+
+            this.classList.toggle("bi-eye");
+        });
+ 
  
         
 </script>
