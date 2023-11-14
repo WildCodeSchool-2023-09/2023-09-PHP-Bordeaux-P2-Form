@@ -11,7 +11,7 @@ class DataChecker
         $questions = $fromJSON['array'];
 
         foreach ($questions as $question) {
-            $errors = array_merge($errors, $this->verifyQuestion($question));
+            $errors += $this->verifyQuestion($question);
             if (empty($errors)) {
                 foreach ($question as $key => $value) {
                     if (is_string($value)) {
@@ -72,26 +72,23 @@ class DataChecker
                 $question[$key] = $value;
             } else {
                 foreach ($value as $proposition) {
-                    $errors = array_merge($errors, $this->verifyPropositions($proposition));
+                    $errors += $this->verifyPropositions($proposition);
                 }
             }
             if ($key === 'label') {
                 $label = true;
-                $result = $this->verifyString($value, 'label');
-                $errors = $this->mergeArrays($errors, $result);
+                $errors += $this->verifyString($value, 'label');
             }
             if ($key === 'type') {
                 $type = true;
-                $result = $this->verifyType($value);
-                $errors = $this->mergeArrays($errors, $result);
+                $errors += $this->verifyType($value);
             }
             if ($key === 'toolid' || $key === 'order') {
                 $$key = true;
-                $result = $this->verifyInt($value, 'toolid');
-                $errors = $this->mergeArrays($errors, $result);
+                $errors += $this->verifyInt($value, 'toolid');
             }
         }
-        $errors = $this->mergeArrays($errors, $this->verifyQuestionKeys($label, $order, $type, $toolid));
+        $errors += $this->verifyQuestionKeys($label, $order, $type, $toolid);
 
         return $errors;
     }
@@ -105,49 +102,32 @@ class DataChecker
         return $errors;
     }
 
-    /**
-     * Merge arrays. If an argument is null, ignore it
-     *
-     * @param array|null ...$arrays
-     * @return array
-     */
-    public function mergeArrays(?array ...$arrays): array
-    {
-        $result = [];
-        foreach ($arrays as $array) {
-            if ($array !== null) {
-                $result = array_merge($result, $array);
-            }
-        }
-        return $result;
-    }
-
     public function verifyPropositions($proposition)
     {
         $errors = [];
         if (isset($proposition['value'])) {
-            $errors = array_merge($errors, $this->verifyString(
+            $errors += $this->verifyString(
                 $proposition['value'],
                 'valeur de la proposition'
-            ));
+            );
         } else {
-            $errors[] = 'La valeur de la proposition n\'existe pas';
+            $errors['value'] = 'La valeur de la proposition n\'existe pas';
         }
         if (isset($proposition['order'])) {
-            $errors = array_merge($errors, $this->verifyInt(
+            $errors += $this->verifyInt(
                 $proposition['order'],
                 'ordre de la proposition'
-            ));
+            );
         } else {
-            $errors[] = 'L\'ordre de la proposition n\'existe pas';
+            $errors['order'] = 'L\'ordre de la proposition n\'existe pas';
         }
         if (isset($proposition['propositionId'])) {
-            $errors = array_merge($errors, $this->verifyInt(
+            $errors += $this->verifyInt(
                 $proposition['propositionId'],
                 'id de la proposition'
-            ));
+            );
         } else {
-            $errors[] = 'L\'id de la proposition n\'existe pas';
+            $errors['propositionId'] = 'L\'id de la proposition n\'existe pas';
         }
 
         return $errors;
