@@ -108,14 +108,14 @@ INSERT INTO completed_form
         (3, 'classique'),
         (4, 'classique'),
         (4, 'hard'),
-        (1, 'Chavez'),
-        (2, 'Hugo'),
-        (3, 'classique'),
-        (4, 'classique'),
-        (4, 'hard'),
-        (4, 'pop'),
-        (4, 'rock'),
-        (4, 'rap');
+        (5, 'Chavez'),
+        (6, 'Hugo'),
+        (7, 'classique'),
+        (8, 'classique'),
+        (8, 'hard'),
+        (8, 'pop'),
+        (8, 'rock'),
+        (8, 'rap');
 
 
 
