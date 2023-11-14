@@ -19,17 +19,17 @@ class RegisterController extends AbstractController
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (isset($_POST['username'])) {
                 $username = trim($_POST['username']);
-                $errors = array_merge($errors, $this->verifyUsername($username));
+                $errors += $this->verifyUsername($username);
             }
             if (isset($_POST['email'])) {
                 $email = trim($_POST['email']);
-                $errors = array_merge($errors, $this->verifyEmail($email));
+                $errors += $this->verifyEmail($email);
             }
 
             if (isset($_POST['password'])) {
                 $password = trim($_POST['password']);
 
-                $errors = array_merge($errors, $this->verifyPassword($password));
+                $errors = $this->verifyPassword($password);
             }
 
 
