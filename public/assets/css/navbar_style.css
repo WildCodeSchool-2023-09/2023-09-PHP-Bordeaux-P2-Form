@@ -3,7 +3,7 @@
 }
 
 nav {
-    position: fixed;
+    position: relative;
     height: 72px;
     width: 100%;
     display: flex;
@@ -181,6 +181,8 @@ nav * {
 
     .open {
         transform: translate(0%);
+        position: absolute;
+        z-index: 100;
     }
 
     .nav_authentication {
