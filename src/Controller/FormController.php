@@ -59,7 +59,7 @@ class FormController extends AbstractController
 
             if (isset($formPost['changeTitle'])) {
                 $title = $formPost['title'];
-                $errors = $dataChecker->mergeArrays($errors, $dataChecker->verifyString($title, 'titre'));
+                $errors += $dataChecker->verifyString($title, 'titre');
 
                 if (empty($errors)) {
                     $formManager->updateTitle($id, $title);
@@ -69,7 +69,7 @@ class FormController extends AbstractController
                 if (!empty($formPost['formContent'])) {
                     $fromDataChecker = $dataChecker->decodeJson($formPost['formContent']);
                     $questions = $fromDataChecker['questions'];
-                    $errors = array_merge($errors, $fromDataChecker['errors']);
+                    $errors += $fromDataChecker['errors'];
 
                     if (empty($errors)) {
                         $questions = $this->changeNameAsIdInputTools($questions);
