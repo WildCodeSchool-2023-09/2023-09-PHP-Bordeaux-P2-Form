@@ -95,6 +95,39 @@ function askNewMultipleQuestion(typeMultipleQuestion) {
     updateForms();
 }
 
+function askNewRangeQuestion() {
+    let questionsNb = questionsList.array.length + 1;
+    const divQuestions = document.getElementById("questions");
+    if (divQuestions.innerHTML == "") {
+        divQuestions.innerHTML +=
+            "<div><label for='question" +
+            questionsNb +
+            "'>Quel est le titre de votre question range numéro " +
+            questionsNb +
+            " ?</label><input type='text' id='question" +
+            questionsNb +
+            "'>" +
+            "<ul class='form-addPropositions' id='addPropositions' type='" +
+            typeMultipleQuestion +
+            "'>" +
+            "<label for='addProposition1'>Minimum</label>" +
+            "<li><input type='number' class='input-addProposition' id='addProposition1'></input></li>" +
+            "<label for='addProposition2'>Maximum</label>" +
+            "<li><input type='number' class='input-addProposition' id='addProposition2'></input></li>" +
+            "<label for='addProposition3'>Pas (granularité)</label>" +
+            "<li><input type='number' class='input-addProposition' id='addProposition3'></input></li>" +
+            "</ul>" +
+            "<button class='validateQuestion multiple' id='validateQuestion" +
+            questionsNb +
+            "'>+</button></div>";
+    }
+
+    displayTypeMenu();
+    displayAddQuestionMenu();
+    document.getElementById("question" + questionsNb).focus();
+    updateForms();
+}
+
 function displayTypeMenu() {
     const menu = document.getElementById("menu-types");
     menu.style.display === "grid"
