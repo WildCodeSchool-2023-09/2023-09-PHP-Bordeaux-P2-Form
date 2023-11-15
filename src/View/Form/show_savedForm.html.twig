@@ -18,52 +18,10 @@
 
  
 {% block title %}
-  Mon Formulaire : {{ savedForm.nom_formulaire }}
+ <h1>{{formName.name}}</h1>
 {% endblock %}
 
 <div class="question"> 
-<form method='post' action="" >
-{% for question in savedForm %}
-    <li> {{question.question}}</li>
 
-          {##}
-			  {#{% for question in savedForm %}#}
-                        {% if question.type_Question == 'checkbox' %}
-                                    <fieldset>
-                                        <legend>{{question.question}}</legend>
-                                             <div>
-                                                  {% for choix in question.choix %}
-                                                  <input type="checkbox" name="{{ question.nom_formulaire }}" id="{{ choix.choix }}" value="{{ choix.choix }}" />
-                                                        <label for="{{ choix.choix }}"> {{ choix.choix }} </label>
-                                                  {% endfor %}
-                                                            </div>
-                                   </fieldset>
-                         {% elseif question.type_Question == 'list' %}
-                                   <fieldset>
-                                        <legend>{{ question.question }}</legend>
-                                             <div>
-                                             <select name="{{ question.nom_formulaire }}" id="{{ question.choix }}">
-                                                  {% for choix in question.choix %}
-                                                  <option value="{{ choix.choix }}">{{ choix.choix }}</option>
-                                                  {% endfor %}
-                                              </select>
-                                             </div>
-                                    </fieldset>
-                        {% elseif question.type_Question == 'range' %}
-                              <p>{{ question.question }}</p>
-                              <div>
-                                   <input type="range" id="{{ question.choix }}" name="{{ question.choix }}" min="0" max="10" />
-                                   <label for="{{ question.choix }}">Evaluation</label>
-                                   </div>
-                         {% else %}
-
-                         <label for="{{ question.question }}"></label>
-			          <input  name="{{ question.nom_formulaire }}" type="text" id="{{ question.question }}">
-                         {% endif %}
-          {% endfor %}
-	</div>	
-</div>
-     <button type="submit">Envoyer</button>
-</form>			
 {% endblock %}
 
