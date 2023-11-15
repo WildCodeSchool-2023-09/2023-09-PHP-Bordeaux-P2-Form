@@ -9,10 +9,15 @@ class ResponsesController extends AbstractController
 {
     public function responses()
     {
-         $userId = 2;
+        $formTitle = null;
+        $username = 'username1';
         $responsesManager = new ResponsesManager();
-        $responses = $responsesManager->getResponses($userId);
+        $responses = $responsesManager->getResponses($username);
 
-        return $this->twig->render('Form/responses.html.twig', ['responses' => $responses]);
+        if (!empty($responses)) {
+            $formTitle = $responses[0];
+        }
+
+        return $this->twig->render('Form/responses.html.twig', ['responses' => $responses, 'formTitle' =>  $formTitle]);
     }
 }

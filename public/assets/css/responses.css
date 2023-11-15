@@ -1,3 +1,34 @@
 .question {
 color: var(--brand-color);
 }
+
+.responses_title {
+
+width: 80%;
+    margin: auto;
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    font-size: 1.25rem;
+
+}
+
+.form_title {
+
+width: 80%;
+    margin: auto;
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    font-size: 1rem;
+
+}
+
+.title_label {
+color: var(--brand-color);
+}
+
+li.even,
+li.odd {
+    margin-bottom: 1rem;
+}

@@ -9,15 +9,18 @@ class ResponsesManager extends AbstractManager
     public const TABLE = 'completed_form';
 
 
-    public function getResponses($userId)
+    public function getResponses($username)
     {
-        $query = "SELECT label, value, user_id
+        $query = "SELECT username, name, label, value, response_session.user_id
         FROM completed_form
         JOIN response_session ON response_session.id = completed_form.response_session_id
         JOIN tool_form ON response_session.tool_form_id = tool_form.id
-        WHERE user_id = :user_id;";
+        JOIN form ON tool_form.form_id = form.id   
+        JOIN user ON form.user_id = user.id
+        WHERE username = :username
+        ORDER BY response_session.user_id";
         $statement = $this->pdo->prepare($query);
-        $statement->bindValue(':user_id', $userId, \PDO::PARAM_STR);
+        $statement->bindValue(':username', $username, \PDO::PARAM_STR);
         $statement->execute();
         $responses = $statement->fetchAll();
 
