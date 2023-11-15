@@ -24,11 +24,6 @@ width: 80%;
 
 }
 
-.title_label {
+th {
 color: var(--brand-color);
-}
-
-li.even,
-li.odd {
-    margin-bottom: 1rem;
 }
