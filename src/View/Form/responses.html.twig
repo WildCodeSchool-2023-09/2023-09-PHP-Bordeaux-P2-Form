@@ -1,19 +1,20 @@
 {% extends 'layout.html.twig' %}
 {% block content %}
 <main>
-<h1>Réponses</h1>
-<p>individuel</p>
- 
+<h1 class="responses_title">Réponses</h1>
+ <h2 class="form_title"> Titre du formulaire: {{formTitle.name}}</h2>
 <div class="connection_box">
   <ul>
 
-                {% for response in responses %} 
-                <li>
+             {% for response in responses %} 
+             
+                <li class="{{ cycle(['even', 'odd'], loop.index) }}">
                       <p class="question">Question:  {{response.label}} </p>
                        <p>Répondant: {{response.user_id}} Réponse:  {{response.value}} </p>
                     </a>
                 </li>
-                {% endfor %}
+                {% endfor %} 
+
 </div>
     
 				
