@@ -1,11 +1,20 @@
 {% extends 'layout.html.twig' %}
 {% block content %}
 <main>
-<h1>Responses</h1>
-  
-               {{response.userId}} 
-                {{response.label}} 
-                {{response.value}} 
+<h1>Réponses</h1>
+<p>individuel</p>
+ 
+<div class="connection_box">
+  <ul>
+
+                {% for response in responses %} 
+                <li>
+                      <p class="question">Question:  {{response.label}} </p>
+                       <p>Répondant: {{response.user_id}} Réponse:  {{response.value}} </p>
+                    </a>
+                </li>
+                {% endfor %}
+</div>
     
 				
 
