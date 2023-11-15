@@ -9,7 +9,9 @@ questionsList.addFromArray(fromPHP);
 updateForms();
 
 function updateForms() {
+    console.log(questionsList);
     questionsList.display(divSavedQuestions);
+    console.log(questionsList);
     //listenAddMultipleQuestion();
     listenAddQuestion();
     listenSuppr();

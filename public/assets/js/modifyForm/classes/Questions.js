@@ -54,8 +54,18 @@ class Questions {
 
     addFromArray(fromPHP) {
         fromPHP.forEach((obj) => {
+            console.log(obj);
             let newQuestion;
-            if (obj.propositions != undefined) {
+            console.log("obj.tool_input_id");
+            if (obj.propositions != undefined && obj.tool_input_id == "range") {
+                newQuestion = new QuestionRange(
+                    obj.label,
+                    obj.order_tool,
+                    obj.id,
+                    obj.tool_input_id
+                );
+                newQuestion.addPropositionsFromArray(obj.propositions);
+            } else if (obj.propositions != undefined) {
                 newQuestion = new QuestionMultiple(
                     obj.label,
                     obj.order_tool,
