@@ -1,6 +1,7 @@
 @import "connection.css";
 @import "errors.css";
 @import "global.css";
+@import "responses.css";
 
 :root {
     --primary-color: #ffffff;
