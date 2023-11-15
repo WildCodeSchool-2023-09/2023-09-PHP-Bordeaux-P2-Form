@@ -20,7 +20,7 @@ class SavedFormController extends AbstractController
         foreach ($savedForm as $key => $question) {
             if ($question ['question_type'] != "text") {
                 $savedForm[$key]['choice'] = $savedFormManager->selectChoice($question['id']);
-                //var_dump($savedForm[$key]['choice']);
+                var_dump($savedForm[$key]['choice']);
             }
         }
         //var_dump($savedForm);

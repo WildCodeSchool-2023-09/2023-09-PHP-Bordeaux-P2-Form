@@ -23,5 +23,28 @@
 
 <div class="question"> 
 
+     <form method='post' action="" >
+         {% for question in savedForm %}
+               {% if question.question_type == 'checkbox' %}
+                    <fieldset>
+                         <legend>{{question.Question}}</legend>
+                         {% for choice in question.choice %}
+                         <div>
+                       
+                              <input type="checkbox" id="{{choice.tool_option}}" name="{{choice.tool_option}}" />
+                              <label for="{{choice.tool_option}}">{{choice.tool_option}}</label>
+                              
+                         </div>
+                         {% endfor %}
+
+                      
+                    </fieldset>
+               {% endif %}
+               
+          {% endfor %}
+
+
+</form>
+
 {% endblock %}
 
