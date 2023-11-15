@@ -4,18 +4,20 @@
 <h1 class="responses_title">Réponses</h1>
  <h2 class="form_title"> Titre du formulaire: {{formTitle.name}}</h2>
 <div class="connection_box">
-  <ul>
 
-             {% for response in responses %} 
-             
-                <li class="{{ cycle(['even', 'odd'], loop.index) }}">
-                      <p class="question">Question:  {{response.label}} </p>
-                       <p>Répondant: {{response.user_id}} Réponse:  {{response.value}} </p>
-                    </a>
-                </li>
-                {% endfor %} 
+<table>
+    <tr>
+        <th>Participant</th><th>Question</th><th>Réponse</th>
+    </tr>
+    {% for response in responses %} 
+    <tr>
+        <td>{{response.user_id}}</td><td>{{response.label}}</td><td>{{response.value}}</td>
+    <tr>
+      {% endfor %} 
+</table>
 
 </div>
+
     
 				
 
