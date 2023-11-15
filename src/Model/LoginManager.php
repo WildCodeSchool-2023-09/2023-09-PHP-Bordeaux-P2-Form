@@ -6,7 +6,7 @@ class LoginManager extends AbstractManager
 {
     public const TABLE = 'user';
 
-    public function getUser($email, $password)
+    public function getUser($email)
     {
         $query = "SELECT * FROM " . self::TABLE . " WHERE email = :email;";
         $statement = $this->pdo->prepare($query);
@@ -14,10 +14,6 @@ class LoginManager extends AbstractManager
         $statement->execute();
         $user = $statement->fetch();
 
-        if ($user && password_verify($password, $user['password'])) {
-            return $user;
-        }
-
-        return false;
+        return $user;
     }
 }

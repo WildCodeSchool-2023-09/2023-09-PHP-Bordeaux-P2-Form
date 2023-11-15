@@ -9,6 +9,9 @@
     --brand-color: #f7146b;
     --text-color: #343434;
     --tertiary-color: #d8d8d8;
+    --size-navbar: 72px;
+    --size-footer: 50px;
+    --padding_top-main: 90px;
 }
 body {
     color: var(--text-color);
@@ -16,9 +19,6 @@ body {
 }
 
 .footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
     width: 100%;
     background-color: var(--secondary-color);
     display: flex;
@@ -46,5 +46,12 @@ ul {
     list-style: none;
 }
 main {
+    padding-top: 90px;
     margin: auto;
+    min-height: calc(100vh - calc(var(--size-footer)));
+    padding-bottom: 1rem;
+}
+main.index {
+    padding-left: 10vw;
+    padding-right: 10vw;
 }

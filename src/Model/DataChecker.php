@@ -11,10 +11,12 @@ class DataChecker
         $questions = $fromJSON['array'];
 
         foreach ($questions as $question) {
-            $result = $this->verifyQuestion($question);
-            if ($result === null) {
+            $errors += $this->verifyQuestion($question);
+            if (empty($errors)) {
                 foreach ($question as $key => $value) {
-                    $question[$key] = trim($value);
+                    if (is_string($value)) {
+                        $question[$key] = trim($value);
+                    }
                 }
             }
         }
@@ -30,9 +32,6 @@ class DataChecker
         } elseif (!is_numeric($value)) {
             $errors[] = 'Le ' . $verified . ' n\'est pas numérique';
         }
-        if (empty($errors)) {
-            return null;
-        }
         return $errors;
     }
 
@@ -44,9 +43,6 @@ class DataChecker
         } elseif (strlen($value) > 255) {
             $errors[] = 'Le ' . $verified . ' ne doit pas faire plus de 255 caractères';
         }
-        if (empty($errors)) {
-            return null;
-        }
         return $errors;
     }
 
@@ -54,20 +50,11 @@ class DataChecker
     {
         $errors = [];
         $toolInputManager = new ToolInputManager();
-        $inputs = $toolInputManager->selectNames();
-        $inputsCleaned = [];
-        foreach ($inputs as $value) {
-            foreach ($value as $val) {
-                $inputsCleaned[] = $val;
-            }
-        }
+        $inputs = $toolInputManager->getNameId();
         if (empty($value)) {
             $errors[] = 'Un type ne peut pas être vide';
-        } elseif (!in_array($value, $inputsCleaned)) {
+        } elseif (!isset($inputs[$value])) {
             $errors[] = 'Le type d\'input est inconnu';
-        }
-        if (empty($errors)) {
-            return null;
         }
         return $errors;
     }
@@ -79,30 +66,30 @@ class DataChecker
         $order = false;
         $type = false;
         $toolid = false;
-        $question = array_map('trim', $question);
         foreach ($question as $key => $value) {
+            if (is_string($value) || (is_int($value))) {
+                $value = trim($value);
+                $question[$key] = $value;
+            } else {
+                foreach ($value as $proposition) {
+                    $errors += $this->verifyPropositions($proposition);
+                }
+            }
             if ($key === 'label') {
                 $label = true;
-                $result = $this->verifyString($value, 'label');
-                $errors = $this->mergeArrays($errors, $result);
+                $errors += $this->verifyString($value, 'label');
             }
             if ($key === 'type') {
                 $type = true;
-                $result = $this->verifyType($value);
-                $errors = $this->mergeArrays($errors, $result);
+                $errors += $this->verifyType($value);
             }
             if ($key === 'toolid' || $key === 'order') {
                 $$key = true;
-                $result = $this->verifyInt($value, 'toolid');
-                $errors = $this->mergeArrays($errors, $result);
+                $errors += $this->verifyInt($value, 'toolid');
             }
         }
-        $errors = $this->mergeArrays($errors, $this->verifyQuestionKeys($label, $order, $type, $toolid));
+        $errors += $this->verifyQuestionKeys($label, $order, $type, $toolid);
 
-
-        if (empty($errors)) {
-            return null;
-        }
         return $errors;
     }
 
@@ -112,36 +99,37 @@ class DataChecker
         if (!($label || $order || $type || $toolid)) {
             $errors[] = "Une erreur est survenue.";
         }
-        if (empty($errors)) {
-            return null;
-        }
         return $errors;
     }
 
-    /**
-     * Merge arrays. If an argument is null, ignore it
-     *
-     * @param array|null ...$arrays
-     * @return array
-     */
-    public function mergeArrays(?array ...$arrays): array
+    public function verifyPropositions($proposition)
     {
-        $result = [];
-        foreach ($arrays as $array) {
-            if ($array !== null) {
-                $result = array_merge($result, $array);
-            }
+        $errors = [];
+        if (isset($proposition['value'])) {
+            $errors += $this->verifyString(
+                $proposition['value'],
+                'valeur de la proposition'
+            );
+        } else {
+            $errors['value'] = 'La valeur de la proposition n\'existe pas';
         }
-        return $result;
+        if (isset($proposition['order'])) {
+            $errors += $this->verifyInt(
+                $proposition['order'],
+                'ordre de la proposition'
+            );
+        } else {
+            $errors['order'] = 'L\'ordre de la proposition n\'existe pas';
+        }
+        if (isset($proposition['propositionId'])) {
+            $errors += $this->verifyInt(
+                $proposition['propositionId'],
+                'id de la proposition'
+            );
+        } else {
+            $errors['propositionId'] = 'L\'id de la proposition n\'existe pas';
+        }
+
+        return $errors;
     }
 }
-
-/*
-git commit -m 'add features :
-add a question
-remove a question
-change title on modify page
-remove a form from brouillons (erase a draft)
-save all this features in db
-css and js for all this features'
-*/

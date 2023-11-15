@@ -3,7 +3,7 @@
 }
 
 nav {
-    position: fixed;
+    position: relative;
     height: 72px;
     width: 100%;
     display: flex;
@@ -21,6 +21,7 @@ nav * {
     display: flex;
     align-items: center;
     margin-right: auto;
+    padding: 10px;
 }
 
 .nav_icon img {
@@ -62,36 +63,49 @@ nav * {
     transform: scaleX(1);
 }
 
+.nav_authentication {
+    padding-right: 10px;
+}
+
 .nav_authentication a {
     margin-left: auto;
 }
 
-.sign_btns button {
+.user_connected {
+    width: 60px;
+    display: flex;
+    flex-direction: column;
+}
+
+.user_connected img {
+    margin: auto;
+}
+
+.logout_button {
+    position: absolute;
     display: none;
-    font-size: 16px;
-    min-width: 90px;
-    padding: 5px;
-    margin: 0 5px;
-    border-radius: 5px;
-    cursor: pointer;
-    border: none;
-}
-
-.sign_btns button:nth-child(1) {
-    border: none;
-    background: var(--primary-color);
-    color: var(--brand-color);
-}
-
-.sign_btns button:nth-child(2) {
-    border: none;
-    background: var(--brand-color);
+    background-color: var(--brand-color);
+    border-radius: 8px;
     color: var(--primary-color);
+}
+
+/* .user_connected:hover {
+    padding-top: 22px;
+} */
+
+.user_connected:hover .logout_button {
+    display: block;
+    left: -34px;
+    width: 4rem;
+}
+
+.dropdown_content {
+    position: relative;
+    margin: auto;
 }
 
 @media (max-width: 600px) {
     nav {
-        padding: 10px 20px;
         justify-content: space-around;
     }
 
@@ -113,6 +127,8 @@ nav * {
         background: var(--secondary-color);
         align-items: center;
         position: relative;
+        margin-left: 20px;
+        padding-left: 0;
     }
 
     .hamburger span {
@@ -165,6 +181,8 @@ nav * {
 
     .open {
         transform: translate(0%);
+        position: absolute;
+        z-index: 100;
     }
 
     .nav_authentication {
@@ -175,10 +193,6 @@ nav * {
     .navlinks_container a {
         font-size: 16px;
         margin: 8px 0;
-    }
-
-    .sign_btns {
-        display: none;
     }
 
     .sign_user {

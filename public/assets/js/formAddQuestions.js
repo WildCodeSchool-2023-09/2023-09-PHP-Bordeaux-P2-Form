@@ -1,43 +1,47 @@
-const title = document.getElementById("formTitle");
+const buttonDisplayTypeMenu = document.getElementById("displayTypeMenu");
+const buttonCloseTypeMenu = document.getElementById("closeTypeMenu");
 
-const buttonAdd = document.getElementById("addAQuestion");
-const buttonClose = document.getElementById("closeMenu");
-
-const divQuestions = document.getElementById("questions");
-const divSavedQuestions = document.getElementById("savedQuestions");
-
-const validateQuestionsCollection =
-    document.getElementsByClassName("validateQuestion");
-const buttonsSuppr = document.getElementsByClassName("buttonSuppr");
-const buttonsUp = document.getElementsByClassName("buttonUp");
-const buttonsDown = document.getElementsByClassName("buttonDown");
-const changeInputs = document.getElementsByClassName("savedQuestion");
-
-/* menu for input type*/
-const typeText = document.getElementById("typeText");
-
-const questionsList = new Questions();
-let questionsNb = 0;
-
-fromPHP = JSON.parse(fromPHP);
-fromPHP = JSON.parse(fromPHP);
-
-questionsList.addFromArray(fromPHP);
-updateForms();
-
-typeText.addEventListener("click", () => {
-    askNewQuestion();
-    displayTypeMenu();
-});
-
-buttonAdd.addEventListener("click", (event) => {
+buttonDisplayTypeMenu.addEventListener("click", (event) => {
     /* askNewQuestion(); */
     displayTypeMenu();
 });
-buttonClose.addEventListener("click", () => {
+
+buttonCloseTypeMenu.addEventListener("click", () => {
     displayTypeMenu();
 });
 
-title.addEventListener("input", () => {
-    document.getElementById("title").value = title.innerText;
+const typeText = document.getElementById("typeText");
+const typeRadio = document.getElementById("typeRadio");
+const typeCheckbox = document.getElementById("typeCheckbox");
+const typeRange = document.getElementById("typeRange");
+
+typeText.addEventListener("click", () => {
+    askNewQuestion();
+});
+
+typeRadio.addEventListener("click", () => {
+    askNewMultipleQuestion("radio");
+});
+typeCheckbox.addEventListener("click", () => {
+    askNewMultipleQuestion("checkbox");
+});
+typeRange.addEventListener("click", () => {
+    askNewRangeQuestion();
+});
+
+//a valider
+const divQuestions = document.getElementById("questions");
+
+const buttonsUp = document.getElementsByClassName("buttonUp");
+const buttonsDown = document.getElementsByClassName("buttonDown");
+
+/* menu for input type*/
+
+const addQuestionMenu = document.getElementById("menu-add-question");
+const buttonCloseAddMenu = document.getElementById("closeAddMenu");
+
+let questionsNb = 0;
+
+buttonCloseAddMenu.addEventListener("click", () => {
+    closeAddQuestionMenu();
 });

@@ -17,12 +17,16 @@
     </div>
 
     <div class="nav_authentication">
-    
-      <a href="#" class="sign_user" aria-label="Page d'enregistrement"><img src="/assets/images/utilisateur.png" alt="icone utilisateur"></a>
-      <div class="sign_btns">
-        <button type="button">Se connecter</button>
-        <button type="button">S'inscrire</button>
-      </div>
+    {% if user %}
+    <div class="user_connected dropdown">
+      <img src="assets/images/user_pink.png" alt="icone utilisateur connecté">
+      <form action='logout' method='post' class="dropdown_content">
+        <button type="submit" class="logout_button" >Log out</button>
+      </form>
+    </div>
+    {% else %}
+      <a href="login" class="sign_user" aria-label="Page d'enregistrement"><img src="/assets/images/utilisateur.png" alt="icone utilisateur"></a>
+    {% endif %}
     </div>
 </nav>
 {% endblock %}

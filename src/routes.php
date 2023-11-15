@@ -18,7 +18,7 @@ return [
     'items/delete' => ['ItemController', 'delete',],
 
     'login' => ['LoginController', 'login',],
-    'logout' => ['UserController', 'logout',],
+    'logout' => ['LoginController', 'logout',],
     'register' => ['RegisterController', 'register',],
     'isEmailTakenCheck' => ['RegisterController', 'isEmailTakenCheck',],
     'isUsernameTakenCheck' => ['RegisterController', 'isUsernameTakenCheck',],

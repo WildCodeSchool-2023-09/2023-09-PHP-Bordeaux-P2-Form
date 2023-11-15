@@ -14,7 +14,10 @@ CREATE TABLE user (
     PRIMARY KEY (id)
 ) ;
 
-INSERT INTO user (email, password, username) VALUES('user1@gmail.com', '', 'username1');
+INSERT INTO user (email, password, username) VALUES(
+    'user1@gmail.com', '', 'username1'),
+    ('unknownUser1', '', 'unknownUser1'),
+    ('unknownUser2', '', 'unknownUser3');
 
 CREATE TABLE form (
     id INT NOT NULL AUTO_INCREMENT,
@@ -33,7 +36,7 @@ CREATE TABLE tool_input (
     PRIMARY KEY (id)
 ) ;
 
-INSERT INTO tool_input (name) VALUES ('text'), ('checkbox'), ('list'), ('range'), ('date');
+INSERT INTO tool_input (name) VALUES ('text'), ('checkbox'), ('radio'), ('range'), ('date');
 
 
 CREATE TABLE tool_form (
@@ -59,22 +62,23 @@ CREATE TABLE choice (
    id INT NOT NULL AUTO_INCREMENT,
    tool_form_id INT,
    tool_option VARCHAR(255),
+   choice_order INT,
    FOREIGN KEY (tool_form_id) REFERENCES tool_form(id),
    PRIMARY KEY (id)
 ) ;
 
-INSERT INTO choice (tool_form_id, tool_option)
+INSERT INTO choice (tool_form_id, tool_option, choice_order)
     VALUES 
-        (3, 'classique'),
-        (3, 'hard'),
-        (3, 'pop'),
-        (3, 'rock'),
-        (3, 'rap'),
-        (4, 'classique'),
-        (4, 'hard'),
-        (4, 'pop'),
-        (4, 'rock'),
-        (4, 'rap');
+        (3, 'classique', 1),
+        (3, 'hard', 2),
+        (3, 'pop', 3),
+        (3, 'rock', 4),
+        (3, 'rap', 5),
+        (4, 'classique', 1),
+        (4, 'hard', 2),
+        (4, 'pop', 3),
+        (4, 'rock', 4),
+        (4, 'rap', 5);
 
 CREATE TABLE response_session (
     id INT NOT NULL AUTO_INCREMENT,
@@ -86,7 +90,7 @@ CREATE TABLE response_session (
 ) ;
 
 INSERT INTO response_session
-    (tool_form_id) VALUES (1), (2), (3), (4), (1), (2), (3), (4);
+    (tool_form_id, user_id) VALUES (1, 2), (2, 2), (3, 2), (4, 2), (1, 3), (2, 3), (3, 3), (4, 3);
 
 CREATE TABLE completed_form (
     id INT NOT NULL AUTO_INCREMENT,
@@ -104,15 +108,36 @@ INSERT INTO completed_form
         (3, 'classique'),
         (4, 'classique'),
         (4, 'hard'),
-        (1, 'Chavez'),
-        (2, 'Hugo'),
-        (3, 'classique'),
-        (4, 'classique'),
-        (4, 'hard'),
-        (4, 'pop'),
-        (4, 'rock'),
-        (4, 'rap');
+        (5, 'Chavez'),
+        (6, 'Hugo'),
+        (7, 'classique'),
+        (8, 'classique'),
+        (8, 'hard'),
+        (8, 'pop'),
+        (8, 'rock'),
+        (8, 'rap');
 
+
+
+DELIMITER //
+DROP PROCEDURE IF EXISTS create_new_user;
+
+CREATE PROCEDURE create_new_user(OUT last_id INT)
+BEGIN
+    DECLARE myname CHAR(100);
+    DECLARE email CHAR(100);
+    SET @last_id = 0;
+    SELECT id INTO @last_id FROM user ORDER BY id DESC LIMIT 1;
+    SET @myname = CONCAT('unknown', CAST(@last_id as CHAR));
+    SET @email = @myname;
+    
+    PREPARE stmt FROM 'INSERT INTO user (email, password, username) VALUES( ?, "", ?)';
+    EXECUTE stmt USING @myname, @email;
+    DEALLOCATE PREPARE stmt;  
+    SELECT id INTO @last_id FROM user ORDER BY id DESC LIMIT 1;
+    set last_id = @last_id;
+END //
+DELIMITER ;
 
 SELECT * FROM tool_form 
 JOIN form ON tool_form.form_id = form.id;
@@ -128,39 +153,11 @@ SELECT count(completed_form.value), completed_form.value
     JOIN tool_form ON tool_form.id = response_session.tool_form_id
     WHERE tool_form.label = 'votre style de musique préféré'
     GROUP BY completed_form.value;
+ 
 
-SELECT completed_form.value, tool_form.label
-FROM completed_form
-JOIN response_session ON response_session.id = completed_form.response_session_id
-JOIN tool_form ON response_session.tool_form_id = tool_form.id
-GROUP BY tool_form.label;
 
 SELECT label from tool_form where form_id = 1;
 
-SELECT f.name AS nom_formulaire, tf.label AS question, ti.name AS type_Question, c.tool_option AS choix
-FROM form f
-JOIN tool_form tf ON f.id = tf.form_id
-JOIN tool_input ti ON tf.tool_input_id = ti.id
-LEFT JOIN choice c ON tf.id = c.tool_form_id
-WHERE f.id = 1
-ORDER BY tf.order_tool;
+SELECT  user_id, COUNT(user_id) FROM response_session GROUP BY user_id;
 
-SELECT f.name AS nom_formulaire, tf.label AS question LIMIT 1, ti.name AS type_Question, c.tool_option AS choix
-FROM form f
-JOIN tool_form tf ON f.id = tf.form_id
-JOIN tool_input ti ON tf.tool_input_id = ti.id
-LEFT JOIN choice c ON tf.id = c.tool_form_id
-WHERE f.id = 1
-ORDER BY tf.order_tool;
-
-SELECT f.name AS nom_formulaire, u.id, tf.label AS question, ti.name AS type_Question, cf.value AS reponse
-FROM completed_form cf
-JOIN response_session rs ON cf.response_session_id = rs.id
-JOIN tool_form tf ON rs.tool_form_id = tf.id
-JOIN form f ON tf.form_id = f.id
-JOIN user u ON rs.user_id = u.id
-JOIN tool_input ti ON tf.tool_input_id = ti.id
-WHERE f.id = 1
-ORDER BY u.id, tf.order_tool;
-
-SELECT * FROM response_session WHERE tool_form_id IN (SELECT id FROM tool_form WHERE form_id = 1);
+SELECT  COUNT(DISTINCT user_id) as nb_completed_forms FROM response_session; 
