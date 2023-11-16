@@ -11,9 +11,11 @@ function listenAddQuestion() {
             } else if (
                 e.target.classList.contains("multiple") /*has class multiple */
             ) {
-                // todo
-
                 questionsList.add(createMultipleQuestion());
+            } else if (
+                e.target.classList.contains("range") /*has class range */
+            ) {
+                questionsList.add(createRangeQuestion());
             } else {
                 //errors
             }
@@ -107,9 +109,7 @@ function askNewRangeQuestion() {
             " ?</label><input type='text' id='question" +
             questionsNb +
             "'>" +
-            "<ul class='form-addPropositions' id='addPropositions' type='" +
-            typeMultipleQuestion +
-            "'>" +
+            "<ul class='form-addPropositions' id='addPropositions' type='range'>" +
             "<label for='addProposition1'>Minimum</label>" +
             "<li><input type='number' class='input-addProposition' id='addProposition1'></input></li>" +
             "<label for='addProposition2'>Maximum</label>" +
@@ -117,7 +117,7 @@ function askNewRangeQuestion() {
             "<label for='addProposition3'>Pas (granularité)</label>" +
             "<li><input type='number' class='input-addProposition' id='addProposition3'></input></li>" +
             "</ul>" +
-            "<button class='validateQuestion multiple' id='validateQuestion" +
+            "<button class='validateQuestion range' id='validateQuestion" +
             questionsNb +
             "'>+</button></div>";
     }
@@ -214,6 +214,33 @@ function createMultipleQuestion() {
     });
 
     return questionMultiple;
+}
+function createRangeQuestion() {
+    //anciennement createMultipleFunction
+    const divQuestions = document.getElementById("questions");
+    // label, order, toolid = -1, type = "radio", propositions = [])
+    const labelInput = divQuestions.firstChild.children[1];
+
+    const orderInput = labelInput.id.slice("question".length);
+    const divQuestionUl = divQuestions.firstChild.children[2];
+    const typeQuestion = divQuestionUl.type;
+
+    const questionRange = new QuestionRange(
+        labelInput.value,
+        orderInput,
+        -1,
+        typeQuestion
+    );
+
+    Array.from(divQuestionUl.getElementsByTagName("li")).forEach((a) => {
+        let prop = new Proposition(
+            a.firstChild.value,
+            a.firstChild.id.slice("addProposition".length)
+        );
+        questionRange.addProposition(prop);
+    });
+
+    return questionRange;
 }
 
 function closeAddQuestionMenu() {

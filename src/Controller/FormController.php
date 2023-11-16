@@ -57,6 +57,7 @@ class FormController extends AbstractController
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $formPost = array_map('trim', $_POST);
 
+            // changement du titre
             if (isset($formPost['changeTitle'])) {
                 $title = $formPost['title'];
                 $errors += $dataChecker->verifyString($title, 'titre');
@@ -66,10 +67,12 @@ class FormController extends AbstractController
                     $form['name'] = $title;
                 }
             } else {
+                // changement des questions
                 if (!empty($formPost['formContent'])) {
                     $fromDataChecker = $dataChecker->decodeJson($formPost['formContent']);
                     $questions = $fromDataChecker['questions'];
                     $errors += $fromDataChecker['errors'];
+
 
                     if (empty($errors)) {
                         $questions = $this->changeNameAsIdInputTools($questions);

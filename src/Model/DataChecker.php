@@ -21,6 +21,7 @@ class DataChecker
             }
         }
 
+
         return ['questions' => $questions, 'errors' => $errors];
     }
 
@@ -88,6 +89,7 @@ class DataChecker
                 $errors += $this->verifyInt($value, 'toolid');
             }
         }
+
         $errors += $this->verifyQuestionKeys($label, $order, $type, $toolid);
 
         return $errors;
@@ -128,6 +130,45 @@ class DataChecker
             );
         } else {
             $errors['propositionId'] = 'L\'id de la proposition n\'existe pas';
+        }
+
+        return $errors;
+    }
+
+    public function verifyRange($question)
+    {
+        $errors = [];
+        $parameters = ['min', 'max', 'step'];
+        var_dump($question);
+        foreach ($parameters as $parameter) {
+            if (!isset($question[$parameter])) {
+                $errors[$parameter . 'Range'] = 'la valeur ' . $parameter . ' n\'existe pas.';
+            } elseif (!is_numeric($question[$parameter])) {
+                $errors[$parameter . 'Range'] = 'la valeur ' . $parameter . ' n\'est pas numérique.';
+            }
+        }
+        if (empty($errors)) {
+            if ($question['step'] == 0) { // simple equality
+                $errors['step'] = 'le step ne peut pas être égal à 0';
+            }
+        }
+        if (empty($errors)) {
+            $errors += $this->verifyRangeParameters($question);
+        }
+
+        return $errors;
+    }
+
+    public function verifyRangeParameters(array $question): array
+    {
+        $errors = [];
+
+        if ($question['min'] > $question['max'] && $question['step'] > 0) {
+            $errors['step'] = 'le min ne peut pas être supérieur au max si le step est positif';
+        } else {
+            if ($question['min'] < $question['max'] && $question['step'] < 0) {
+                $errors['step'] = 'le min ne peut pas être inférieur au max si le step est négatif';
+            }
         }
 
         return $errors;

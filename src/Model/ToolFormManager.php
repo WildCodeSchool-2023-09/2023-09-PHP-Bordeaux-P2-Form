@@ -80,6 +80,10 @@ class ToolFormManager extends AbstractManager
                 $choiceManager = new ChoiceManager();
                 $choiceManager->addUpdateDelete($toolId, $question['propositions']);
             }
+            if (isset($question['range'])) {
+                $choiceManager = new ChoiceManager();
+                $choiceManager->addUpdateDelete($toolId, $question['range']);
+            }
         }
     }
 }

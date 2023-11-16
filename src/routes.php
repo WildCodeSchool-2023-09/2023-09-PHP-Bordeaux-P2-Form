@@ -32,7 +32,11 @@ return [
     'error' => ['HomeController', 'error'],
     'test' => ['FormController', 'test'],
     'delete' => ['FormController', 'delete', ['id']],
+
     'saved' => ['SavedFormController', 'show', ['id']],
 ];
 
-// add sessions here?? or in routing? check mvc correction//
+
+    'responses' => ['ResponsesController', 'responses',],
+
+];

@@ -1,28 +1,49 @@
-class QuestionRange extends Question {
-    constructor(
-        label,
-        order,
-        toolid = -1,
-        type = "range",
-        min = 1,
-        max = 5,
-        step = 1
-    ) {
-        super(label, order, toolid, type);
-        this.min = min;
-        this.max = max;
-        this.step = step;
+class QuestionRange extends QuestionMultiple {
+    constructor(label, order, toolid = -1, type = "range", propositions = []) {
+        super(label, order, toolid, type, propositions);
     }
 
-    displayRange() {
-        htmlRange =
+    displayQuestion() {
+        let id = "savedQuestion" + this.order;
+        let selfHtml =
+            "<div class='newQuestion'><div class='savedQuestion range' id='savedQuestion" +
+            this.order +
+            "' toolid='" +
+            this.toolid +
+            "' tooltype='" +
+            this.type +
+            "' contenteditable='true'>" +
+            this.label +
+            "</div><div class='formButtons'><button class='buttonSuppr' id='buttonSuppr" +
+            this.order +
+            "'>-</button></div></div>";
+        selfHtml += this.displayRange(id);
+
+        return selfHtml;
+    }
+
+    displayRange(id) {
+        let htmlRange =
             "<div><ul>" +
-            "<li>Minimum :" +
-            this.min +
-            "</li><li>Maximum : " +
-            this.max +
-            "</li><li>Ganularité : " +
-            this.step +
+            "<li id='" +
+            id +
+            "prop" +
+            this.order +
+            "'>Minimum :" +
+            this.propositions[0].value +
+            "</li><li id='" +
+            id +
+            "prop" +
+            this.order +
+            "'>Maximum : " +
+            this.propositions[1].value +
+            "</li><li id='" +
+            id +
+            "prop" +
+            this.order +
+            "'>Ganularité : " +
+            this.propositions[2].value +
             "</li></ul></div>";
+        return htmlRange;
     }
 }
