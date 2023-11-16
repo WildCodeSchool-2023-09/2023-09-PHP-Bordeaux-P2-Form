@@ -83,10 +83,20 @@ input {
 }
 
 button.validateQuestion {
-    width: 2rem;
-    height: 2rem;
-    border-radius: 50%;
-    background-color: chartreuse;
+    width: 10rem;
+    height: 3rem;
+    border-radius: 1rem;
+    background-color: var(--primary-color);
+    margin-top: 1rem;
+    font-size: 2rem;
+}
+button.validateQuestion:hover {
+    background-color: var(--secondary-color);
+    background-image: linear-gradient(
+        var(--tertiary-color),
+        var(--secondary-color),
+        var(--tertiary-color)
+    );
 }
 button.supprQuestion {
     width: 2rem;
