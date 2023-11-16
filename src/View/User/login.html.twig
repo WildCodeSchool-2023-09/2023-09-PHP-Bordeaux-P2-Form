@@ -6,12 +6,12 @@
 
     <div class="connection_box">
     <form method="post" form action="">
-    <input type="email" class="connection_input" id="email" name="email" placeholder="Email">
+    <input type="email" class="connection_input" id="email" name="email" placeholder="Email" minlength='1' maxlength='255' required>
 {% if errors.email %}
                 <div class="errors">{{ errors.email }}</div>
             {% endif %}
 <div class="password-container">
-    <input type="password" class="connection_input" id="password" name="password" placeholder="Mot de passe">
+    <input type="password" class="connection_input" id="password" name="password" placeholder="Mot de passe" minlength='1' maxlength='255' required>
 <i class="bi bi-eye-slash" id="togglePassword"></i>
 </div>
 {% if errors.password %}

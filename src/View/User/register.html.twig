@@ -6,23 +6,23 @@
         <h1 class="subscribe_title">Créer un compte</h1>
         <div class="subscribe_box">
             <form method="post" action=""=>
-                <input type="text" class="subscribe_input" placeholder="Nom d'utilisateur" name="username" id="username">
+                <input type="text" class="subscribe_input" placeholder="Nom d'utilisateur" name="username" id="username" minlength='1' maxlength='255' required>
                 {% if errors.username %}
                     <div class="errors">{{ errors.username }}</div>
                 {% endif %}
-                <input type="email" class="subscribe_input" placeholder="Email" name="email" id="email">
+                <input type="email" class="subscribe_input" placeholder="Email" name="email" id="email" minlength='1' maxlength='255' required>
                     {% if errors.email %}
                         <div class="errors">{{ errors.email }}</div>
                     {% endif %}
 <div class="password-container">
-                <input type="password" class="subscribe_input" placeholder="Mot de passe" name="password" id="password">
+                <input type="password" class="subscribe_input" placeholder="Mot de passe" name="password" id="password" minlength='1' maxlength='255' required>
 <i class="bi bi-eye-slash" id="togglePassword"></i>
 </div>
                     {% if errors.password %}
                         <div class="errors">{{ errors.password }}</div>
                     {% endif %}
 <div class="password-container">
-                <input type="password" class="subscribe_input" placeholder="Confirmez mot de passe" name="passwordRepeat" id="passwordRepeat">
+                <input type="password" class="subscribe_input" placeholder="Confirmez mot de passe" name="passwordRepeat" id="passwordRepeat" minlength='1' maxlength='255' required>
 <i class="bi bi-eye-slash" id="toggleRepeatPassword"></i>
 </div>
                     {% if errors.password %}

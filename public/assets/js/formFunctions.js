@@ -59,7 +59,7 @@ function askNewQuestion() {
             questionsNb +
             " ?<input type='text' id='question" +
             questionsNb +
-            "'><button class='validateQuestion unique' id='validateQuestion" +
+            "' ><button class='validateQuestion unique' id='validateQuestion" +
             questionsNb +
             "'>+</button></div>";
     }
@@ -108,14 +108,14 @@ function askNewRangeQuestion() {
             questionsNb +
             " ?</label><input type='text' id='question" +
             questionsNb +
-            "'>" +
+            "'minlength='1' maxlength='255' required>" +
             "<ul class='form-addPropositions' id='addPropositions' type='range'>" +
             "<label for='addProposition1'>Minimum</label>" +
-            "<li><input type='number' class='input-addProposition' id='addProposition1'></input></li>" +
+            "<li><input type='number' class='input-addProposition' id='addProposition1' minlength='1' maxlength='255' required></li>" +
             "<label for='addProposition2'>Maximum</label>" +
-            "<li><input type='number' class='input-addProposition' id='addProposition2'></input></li>" +
+            "<li><input type='number' class='input-addProposition' id='addProposition2' minlength='1' maxlength='255' required></li>" +
             "<label for='addProposition3'>Pas (granularité)</label>" +
-            "<li><input type='number' class='input-addProposition' id='addProposition3'></input></li>" +
+            "<li><input type='number' class='input-addProposition' id='addProposition3' minlength='1' maxlength='255' required></li>" +
             "</ul>" +
             "<button class='validateQuestion range' id='validateQuestion" +
             questionsNb +
@@ -161,7 +161,7 @@ function addProposition() {
     lastProposition.innerHTML =
         "<input type='text' classe='addProposition' id='addProposition" +
         nbProposition +
-        "'></input>";
+        "' minlength='1' maxlength='255' required>";
 }
 
 function listenSupprProposition() {
