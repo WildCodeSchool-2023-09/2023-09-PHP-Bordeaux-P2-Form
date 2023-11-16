@@ -56,7 +56,8 @@ INSERT INTO tool_form
     (1, 1, 1, 'votre nom'),
     (1, 1, 2, 'votre prénom'),
     (1, 3, 3, 'votre style de musique préféré'),
-    (1, 2, 4, 'les styles de musique que vous écoutez');
+    (1, 2, 4, 'les styles de musique que vous écoutez'),
+    (1, 4, 5, 'Notez Chopin de 1 à 100');
 
 CREATE TABLE choice (
    id INT NOT NULL AUTO_INCREMENT,
@@ -78,7 +79,10 @@ INSERT INTO choice (tool_form_id, tool_option, choice_order)
         (4, 'hard', 2),
         (4, 'pop', 3),
         (4, 'rock', 4),
-        (4, 'rap', 5);
+        (4, 'rap', 5),
+        (5, '1', 1),
+        (5, '100', 2),
+        (5, '1', 3);
 
 CREATE TABLE response_session (
     id INT NOT NULL AUTO_INCREMENT,
@@ -90,7 +94,7 @@ CREATE TABLE response_session (
 ) ;
 
 INSERT INTO response_session
-    (tool_form_id, user_id) VALUES (1, 2), (2, 2), (3, 2), (4, 2), (1, 3), (2, 3), (3, 3), (4, 3);
+    (tool_form_id, user_id) VALUES (1, 2), (2, 2), (3, 2), (4, 2), (5, 2), (1, 3), (2, 3), (3, 3), (4, 3), (5, 3);
 
 CREATE TABLE completed_form (
     id INT NOT NULL AUTO_INCREMENT,
@@ -108,14 +112,16 @@ INSERT INTO completed_form
         (3, 'classique'),
         (4, 'classique'),
         (4, 'hard'),
-        (5, 'Chavez'),
-        (6, 'Hugo'),
-        (7, 'classique'),
+        (5, '99'),
+        (6, 'Chavez'),
+        (7, 'Hugo'),
         (8, 'classique'),
-        (8, 'hard'),
-        (8, 'pop'),
-        (8, 'rock'),
-        (8, 'rap');
+        (9, 'classique'),
+        (9, 'hard'),
+        (9, 'pop'),
+        (9, 'rock'),
+        (9, 'rap'),
+        (10, '50');
 
 
 

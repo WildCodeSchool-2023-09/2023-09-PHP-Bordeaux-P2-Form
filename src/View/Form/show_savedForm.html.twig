@@ -3,48 +3,84 @@
 
 
 {% block stylesheet %}
-<style>
-     
-   .main-saved-form {
-      padding-top: 80px;
-     }
-</style>
+
+     <link rel="stylesheet" href="/assets/css/draftForm.css">
+
 {% endblock %}
 
 {% block content %}
 
+{#<pre>
+{{ dump(savedForm)}}
+</pre>
+#}
 
-<div class="main-saved-form">
-
- 
 {% block title %}
  <h1>{{formName.name}}</h1>
 {% endblock %}
 
-<div class="question"> 
+{#<div class="main-saved-form">#}
+
 
      <form method='post' action="" >
          {% for question in savedForm %}
+
                {% if question.question_type == 'checkbox' %}
-                    <fieldset>
-                         <legend>{{question.Question}}</legend>
+                <div class="checkbox"> 
+                         <fieldset>
+                          <legend class="style">{{question.Question}}</legend>
                          {% for choice in question.choice %}
-                         <div>
-                       
-                              <input type="checkbox" id="{{choice.tool_option}}" name="{{choice.tool_option}}" />
-                              <label for="{{choice.tool_option}}">{{choice.tool_option}}</label>
-                              
-                         </div>
+                              <div>
+                                   <input type="checkbox" id="{{choice.tool_option}}" name="{{question.question_name}}" />
+                                   <label for="{{choice.tool_option}}">{{choice.tool_option}}</label>
+                                   
+                              </div>
                          {% endfor %}
 
-                      
-                    </fieldset>
-               {% endif %}
+                         </fieldset>
+                    </div>
+                    
+                    
                
+               {% elseif question.question_type == 'radio' %}
+               
+               <div class="radio"> 
+                    <fieldset> 
+                          <legend>{{question.Question}}</legend>
+                         {% for choice in question.choice %}
+
+                         <div>
+                         <input type="radio" id="{{choice.tool_option}}" name="{{question.question_name}}" value="{{choice.tool_option}}" />
+                         <label for="{{choice.tool_option}}">{{choice.tool_option}}</label>
+                         </div>
+                         {% endfor %}
+                    </fieldset>
+               </div>
+
+               {% elseif question.question_type == 'range' %}
+               <div class="range"> 
+                    <p >{{question.Question}}</p>
+                  
+                         <div>
+                         <input type="range" id="{{choice.tool_option}}" name="{{question.question_name}}" min="{{choice.0.tool_option}}" max="{{choice.0.tool_option}}" value="{{choice.0.tool_option}}" step="{{choice.0.tool_option}}" />
+                         <label for="{{choice.tool_option}}">Note</label>
+                         </div>
+               </div>          
+
+               {% else %} 
+
+                <div class="text"> 
+                    <label class="style" for="{{ question.Question }}">{{question.Question}}</label>
+                    <input  name="{{ question.Question }}" type="text" id="{{ question.Question }}">
+               {% endif %}
+               </div> 
           {% endfor %}
 
-
+          <div>
+               <button class="cta" method='post' type="submit">Envoyer</button>
+          </div>
 </form>
+</div>       
 
 {% endblock %}
 
