@@ -33,6 +33,9 @@ return [
     'test' => ['FormController', 'test'],
     'delete' => ['FormController', 'delete', ['id']],
 
+    'saved' => ['SavedFormController', 'show', ['id']],
+];
+
 
     'responses' => ['ResponsesController', 'responses',],
 
