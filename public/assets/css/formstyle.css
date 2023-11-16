@@ -2,6 +2,9 @@ body > main > section {
     width: 80vw;
     font-size: 16px;
 }
+#formToModifyTitle {
+    visibility: hidden;
+}
 section {
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
@@ -19,13 +22,7 @@ h1 {
     margin-top: 1rem;
     margin-bottom: 1rem;
 }
-main {
-    min-height: calc(100vh - var(--size-footer) - var(--size-navbar));
-    padding-bottom: 1rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+
 main > div {
     width: 100%;
     margin: 0;
@@ -64,12 +61,14 @@ body > main > section > a {
     justify-content: space-between;
     align-items: center;
 }
-form {
+
+ul > form {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding-top: 1rem;
 }
+
 input {
     height: 3rem;
     font-size: 16px;
@@ -127,6 +126,7 @@ div.formButtons {
     position: relative;
 }
 .form-dropdown-content {
+    display: none;
     opacity: 0;
     font-size: 1rem;
     position: absolute;
@@ -142,6 +142,7 @@ div.formButtons {
     height: 50px;
 }
 .delete:hover .form-dropdown-content {
+    display: block;
     opacity: 1;
     width: auto;
     height: auto;

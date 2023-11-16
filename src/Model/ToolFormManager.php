@@ -19,7 +19,7 @@ class ToolFormManager extends AbstractManager
         return $statement->fetchAll();
     }
 
-    public function add(int $formId, array $tool): void
+    public function add(int $formId, array $tool): int
     {
         $query = "INSERT INTO " . self::TABLE . " (form_id, tool_input_id, order_tool, label)
         VALUES (:form_id, :tool_input_id, :order_tool, :label)";
@@ -31,9 +31,10 @@ class ToolFormManager extends AbstractManager
         $statement->bindValue('label', $tool['label'], PDO::PARAM_STR);
 
         $statement->execute();
+        return (int)$this->pdo->lastInsertId();
     }
 
-    public function update(array $tool): void
+    public function update(array $tool): int
     {
         $query = "UPDATE " . self::TABLE .
             " SET tool_input_id = :tool_input_id, order_tool = :order_tool, label = :label WHERE id=:id";
@@ -45,7 +46,9 @@ class ToolFormManager extends AbstractManager
         $statement->bindValue('label', $tool['label'], PDO::PARAM_STR);
 
         $statement->execute();
+        return $tool['toolid'];
     }
+
 
     public function compareBeforeDelete(int $formId, array $questions): array
     {
@@ -61,7 +64,7 @@ class ToolFormManager extends AbstractManager
         return array_diff($toDelete, $notToDelete);
     }
 
-    public function addUpdateDelete(int $formId, array $questions)
+    public function addUpdateDelete(int $formId, array $questions): void
     {
         foreach ($this->compareBeforeDelete($formId, $questions) as $deleteId) {
             $this->delete($deleteId);
@@ -69,9 +72,17 @@ class ToolFormManager extends AbstractManager
 
         foreach ($questions as $question) {
             if ($question['toolid'] === -1) {
-                $this->add($formId, $question);
+                $toolId = $this->add($formId, $question);
             } else {
-                $this->update($question);
+                $toolId = $this->update($question);
+            }
+            if (isset($question['propositions'])) {
+                $choiceManager = new ChoiceManager();
+                $choiceManager->addUpdateDelete($toolId, $question['propositions']);
+            }
+            if (isset($question['range'])) {
+                $choiceManager = new ChoiceManager();
+                $choiceManager->addUpdateDelete($toolId, $question['range']);
             }
         }
     }

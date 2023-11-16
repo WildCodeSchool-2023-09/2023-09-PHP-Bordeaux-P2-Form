@@ -17,7 +17,6 @@ class Questions {
     }
 
     modify(nb, newLabel) {
-        console.log("modify");
         for (let i = 0; i < this.array.length; i++) {
             if (this.array[i].order == nb) {
                 this.array[i].label = newLabel;
@@ -55,14 +54,34 @@ class Questions {
 
     addFromArray(fromPHP) {
         fromPHP.forEach((obj) => {
-            this.add(
-                new Question(
+            console.log(obj);
+            let newQuestion;
+            console.log("obj.tool_input_id");
+            if (obj.propositions != undefined && obj.tool_input_id == "range") {
+                newQuestion = new QuestionRange(
                     obj.label,
                     obj.order_tool,
                     obj.id,
                     obj.tool_input_id
-                )
-            );
+                );
+                newQuestion.addPropositionsFromArray(obj.propositions);
+            } else if (obj.propositions != undefined) {
+                newQuestion = new QuestionMultiple(
+                    obj.label,
+                    obj.order_tool,
+                    obj.id,
+                    obj.tool_input_id
+                );
+                newQuestion.addPropositionsFromArray(obj.propositions);
+            } else {
+                newQuestion = new Question(
+                    obj.label,
+                    obj.order_tool,
+                    obj.id,
+                    obj.tool_input_id
+                );
+            }
+            this.add(newQuestion);
         });
     }
 }

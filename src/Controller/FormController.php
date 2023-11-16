@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Model\ChoiceManager;
 use App\Model\DataChecker;
 use App\Model\FormManager;
 use App\Model\ToolFormManager;
@@ -35,6 +36,7 @@ class FormController extends AbstractController
         $formManager = new FormManager();
         $dataChecker = new DataChecker();
         $toolFormManager = new ToolFormManager();
+        $choiceManager = new ChoiceManager();
 
         // erreurs structurelles
         if (!is_numeric($id)) {
@@ -43,27 +45,34 @@ class FormController extends AbstractController
         }
         $form = $formManager->selectOneById($id);
         $tools = $toolFormManager->getTools($id);
-
+        foreach ($tools as $key => $tool) {
+            $propositions = $choiceManager->getChoices($tool['id']);
+            if (!empty($propositions)) {
+                $tools[$key]['propositions'] = $propositions;
+            }
+        }
         $this->verifyForm($form, $errors);
 
         // gestion du retour de formulaire
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $formPost = array_map('trim', $_POST);
 
+            // changement du titre
             if (isset($formPost['changeTitle'])) {
                 $title = $formPost['title'];
-                $errors = $dataChecker->mergeArrays($errors, $dataChecker->verifyString($title, 'titre'));
+                $errors += $dataChecker->verifyString($title, 'titre');
 
                 if (empty($errors)) {
                     $formManager->updateTitle($id, $title);
                     $form['name'] = $title;
                 }
             } else {
+                // changement des questions
                 if (!empty($formPost['formContent'])) {
                     $fromDataChecker = $dataChecker->decodeJson($formPost['formContent']);
-
                     $questions = $fromDataChecker['questions'];
-                    $errors = array_merge($errors, $fromDataChecker['errors']);
+                    $errors += $fromDataChecker['errors'];
+
 
                     if (empty($errors)) {
                         $questions = $this->changeNameAsIdInputTools($questions);
@@ -160,7 +169,6 @@ class FormController extends AbstractController
     {
         $toolInputManager = new ToolInputManager();
         $toolInputs = $toolInputManager->getNameId();
-        var_dump($tools);
         foreach (array_keys($tools) as $key) {
             $tools[$key]['type'] = $toolInputs[$tools[$key]['type']];
         }

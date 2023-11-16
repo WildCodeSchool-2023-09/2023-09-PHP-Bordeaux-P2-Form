@@ -1,11 +1,7 @@
-@import 'connection.css';
-@import 'errors.css';
-@import 'global.css';
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-}
+@import "connection.css";
+@import "errors.css";
+@import "global.css";
+@import "responses.css";
 
 :root {
     --primary-color: #ffffff;
@@ -22,14 +18,8 @@ body {
     font-family: Verdana, sans-serif;
 }
 
-main {
-    padding-top: 90px;
-    margin: auto;
-}
-
 .footer {
-    /* height: 3rem; */
-    position: fixed;
+    height: 3rem;
     height: var(--size-footer);
     left: 0;
     bottom: 0;
@@ -37,13 +27,13 @@ main {
     background-color: var(--secondary-color);
     display: flex;
     justify-content: space-around;
-    /* box-shadow: inset 0px 0px 0px 1px var(--tertiary-color); */
+    box-shadow: inset 0px 0px 0px 1px var(--tertiary-color);
 }
 
 .footer img {
     height: 3rem;
-    /* height: 47px;
-    margin: auto 0; */
+    height: 47px;
+    margin: auto;
 }
 
 .button {
