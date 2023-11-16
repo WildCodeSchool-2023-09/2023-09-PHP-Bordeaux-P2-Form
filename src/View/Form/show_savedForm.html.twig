@@ -10,10 +10,10 @@
 
 {% block content %}
 
-{#<pre>
+{# <pre>
 {{ dump(savedForm)}}
-</pre>
-#}
+</pre> #}
+
 
 {% block title %}
  <h1>{{formName.name}}</h1>
@@ -22,7 +22,7 @@
 {#<div class="main-saved-form">#}
 
 
-     <form method='post' action="" >
+     <form method='post' action="responseToForm" >
          {% for question in savedForm %}
 
                {% if question.question_type == 'checkbox' %}
@@ -31,7 +31,7 @@
                           <legend class="style">{{question.Question}}</legend>
                          {% for choice in question.choice %}
                               <div>
-                                   <input type="checkbox" id="{{choice.tool_option}}" name="{{question.question_name}}" />
+                                   <input type="checkbox" id="{{choice.tool_option}}" name="{{question.id}}_{{choice.tool_option}}" />
                                    <label for="{{choice.tool_option}}">{{choice.tool_option}}</label>
                                    
                               </div>
@@ -50,7 +50,7 @@
                          {% for choice in question.choice %}
 
                          <div>
-                         <input type="radio" id="{{choice.tool_option}}" name="{{question.question_name}}" value="{{choice.tool_option}}" />
+                         <input type="radio" id="{{choice.tool_option}}" name="{{question.id}}_{{question.question_name}}" value="{{choice.tool_option}}" />
                          <label for="{{choice.tool_option}}">{{choice.tool_option}}</label>
                          </div>
                          {% endfor %}
@@ -62,7 +62,7 @@
                     <p >{{question.Question}}</p>
                   
                          <div>
-                         <input type="range" id="{{choice.tool_option}}" name="{{question.question_name}}" min="{{choice.0.tool_option}}" max="{{choice.0.tool_option}}" value="{{choice.0.tool_option}}" step="{{choice.0.tool_option}}" />
+                         <input type="range" id="{{choice.tool_option}}" name="{{question.id}}_{{question.question_name}}" min="{{choice.0.tool_option}}" max="{{choice.0.tool_option}}" value="{{choice.0.tool_option}}" step="{{choice.0.tool_option}}" />
                          <label for="{{choice.tool_option}}">Note</label>
                          </div>
                </div>          
@@ -71,13 +71,13 @@
 
                 <div class="text"> 
                     <label class="style" for="{{ question.Question }}">{{question.Question}}</label>
-                    <input  name="{{ question.Question }}" type="text" id="{{ question.Question }}">
+                    <input  name="{{question.id}}_{{ question.Question }}" type="text" id="{{ question.Question }}">
                {% endif %}
                </div> 
           {% endfor %}
 
           <div>
-               <button class="cta" method='post' type="submit">Envoyer</button>
+               <button class="cta" type="submit">Envoyer</button>
           </div>
 </form>
 </div>       

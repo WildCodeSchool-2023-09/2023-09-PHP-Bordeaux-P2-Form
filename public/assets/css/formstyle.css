@@ -10,7 +10,7 @@ section {
     margin-bottom: 0.5rem;
 }
 section > a > button.button {
-    width: 100%;
+    width: 80%;
 }
 h1 {
     background-color: var(--secondary-color);

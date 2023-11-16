@@ -33,10 +33,8 @@ return [
     'test' => ['FormController', 'test'],
     'delete' => ['FormController', 'delete', ['id']],
 
-    'saved' => ['SavedFormController', 'show', ['id']],
-
-
-
+    'saved' => ['SavedFormController', 'show', ['id']], // affichage formulaire
     'responses' => ['ResponsesController', 'responses',],
+    'responseToForm' => ['SaveResponseController', 'saveForm'],
 
 ];
