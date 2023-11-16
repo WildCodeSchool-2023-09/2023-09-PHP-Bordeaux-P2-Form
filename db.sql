@@ -17,7 +17,7 @@ CREATE TABLE user (
 INSERT INTO user (email, password, username) VALUES(
     'user1@gmail.com', '', 'username1'),
     ('unknownUser1', '', 'unknownUser1'),
-    ('unknownUser2', '', 'unknownUser3');
+    ('unknownUser2', '', 'unknownUser2');
 
 CREATE TABLE form (
     id INT NOT NULL AUTO_INCREMENT,
