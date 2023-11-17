@@ -21,8 +21,9 @@ class SaveResponseController extends AbstractController
             $user = $respSessionManager->createUnknownUser();
         }
         $responders = $responseManager->getResponders($formId);
-        var_dump($responders);
-        var_dump('plp');
+
+        $responders = array_map(fn ($arr) => $arr['user_id'], $responders);
+
         if (in_array($user, $responders)) {
             header('location: /alreadyAnswered');
             exit();

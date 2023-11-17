@@ -45,7 +45,7 @@ class ResponsesManager extends AbstractManager
 
     public function getResponders($formId)
     {
-        $query = "SELECT DISTINCT response_session.user_id as responders
+        $query = "SELECT DISTINCT response_session.user_id
         FROM response_session
         JOIN tool_form ON response_session.tool_form_id = tool_form.id
         JOIN form ON form.id = tool_form.form_id
