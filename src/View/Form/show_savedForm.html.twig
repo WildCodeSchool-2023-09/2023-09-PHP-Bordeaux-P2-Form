@@ -18,7 +18,7 @@
 {% block title %}
  <h1>{{formName.name}}</h1>
 {% endblock %}
-{{dump(choice)}}
+
 {#<div class="main-saved-form">#}
 
 
@@ -60,9 +60,8 @@
                {% elseif question.question_type == 'range' %}
                <div class="range"> 
                     <p >{{question.Question}}</p>
-                  
                          <div>
-                         <input type="range" id="{{choice.tool_option}}" name="{{question.id}}_{{question.question_name}}" min="{{choice.0.tool_option}}" max="{{choice.0.tool_option}}" value="{{choice.0.tool_option}}" step="{{choice.0.tool_option}}" />
+                         <input type="range" id="{{choice.tool_option}}" name="{{question.id}}_{{question.question_name}}" min="{{question.choice.0.tool_option}}" max="{{question.choice.1.tool_option}}" step="{{question.choice.2.tool_option}}" />
                          <label for="{{choice.tool_option}}">Note</label>
                          </div>
                </div>          

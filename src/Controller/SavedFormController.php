@@ -34,7 +34,6 @@ class SavedFormController extends AbstractController
             $savedForm[$key]['question_name'] = $this->transformSentence($savedForm[$key]['Question']);
         }
 
-
         return $this->twig->render('Form/show_savedForm.html.twig', [
             'savedForm' => $savedForm,
             'formName' => $formName,
