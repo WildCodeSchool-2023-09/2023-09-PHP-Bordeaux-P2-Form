@@ -39,7 +39,7 @@ class ResponsesManager extends AbstractManager
         $statement->bindValue(':id', $formId, \PDO::PARAM_INT);
         $statement->execute();
         $response = $statement->fetch();
-        var_dump($response, $formId);
+
         return $response;
     }
 
