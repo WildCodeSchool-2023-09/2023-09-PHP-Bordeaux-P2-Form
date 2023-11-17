@@ -1,0 +1,85 @@
+{% extends 'layout.html.twig' %}
+
+
+
+{% block stylesheet %}
+
+     <link rel="stylesheet" href="/assets/css/draftForm.css">
+
+{% endblock %}
+
+{% block content %}
+
+{# <pre>
+{{ dump(savedForm)}}
+</pre> #}
+
+
+{% block title %}
+ <h1>{{formName.name}}</h1>
+{% endblock %}
+
+{#<div class="main-saved-form">#}
+
+
+     <form method='post' action="responseToForm?id={{formName.id}}" >
+         {% for question in savedForm %}
+
+               {% if question.question_type == 'checkbox' %}
+                <div class="checkbox"> 
+                         <fieldset>
+                          <legend class="style">{{question.Question}}</legend>
+                         {% for choice in question.choice %}
+                              <div>
+                                   <input type="checkbox" id="{{choice.tool_option}}" name="{{question.id}}_{{choice.tool_option}}" />
+                                   <label for="{{choice.tool_option}}">{{choice.tool_option}}</label>
+                                   
+                              </div>
+                         {% endfor %}
+
+                         </fieldset>
+                    </div>
+                    
+                    
+               
+               {% elseif question.question_type == 'radio' %}
+               
+               <div class="radio"> 
+                    <fieldset> 
+                          <legend>{{question.Question}}</legend>
+                         {% for choice in question.choice %}
+
+                         <div>
+                         <input type="radio" id="{{choice.tool_option}}" name="{{question.id}}_{{question.question_name}}" value="{{choice.tool_option}}" />
+                         <label for="{{choice.tool_option}}">{{choice.tool_option}}</label>
+                         </div>
+                         {% endfor %}
+                    </fieldset>
+               </div>
+
+               {% elseif question.question_type == 'range' %}
+               <div class="range"> 
+                    <p >{{question.Question}}</p>
+                         <div>
+                         <input type="range" id="{{question.choice.tool_option}}" name="{{question.id}}_{{question.question_name}}" min="{{question.choice.0.tool_option}}" max="{{question.choice.1.tool_option}}" step="{{question.choice.2.tool_option}}" />
+                         <label for="{{question.choice.tool_option}}">Note</label>
+                         </div>
+               </div>          
+
+               {% else %} 
+
+                <div class="text"> 
+                    <label class="style" for="{{ question.Question }}">{{question.Question}}</label>
+                    <input  name="{{question.id}}_{{ question.Question }}" type="text" id="{{ question.Question }}">
+               {% endif %}
+               </div> 
+          {% endfor %}
+
+          <div>
+               <button class="cta" type="submit">Envoyer</button>
+          </div>
+</form>
+</div>       
+
+{% endblock %}
+

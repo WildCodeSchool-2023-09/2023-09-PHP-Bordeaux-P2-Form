@@ -46,12 +46,15 @@ ul {
     list-style: none;
 }
 main {
-    padding-top: 90px;
+    /* padding-top: 90px; */
     margin: auto;
-    min-height: calc(100vh - calc(var(--size-footer)));
-    padding-bottom: 1rem;
+    min-height: calc(100vh - calc(var(--size-footer) + var(--size-navbar)));
+    /* padding-bottom: 1rem; */
 }
 main.index {
     padding-left: 10vw;
     padding-right: 10vw;
+}
+main > h1 {
+    padding-top: 2rem;
 }
