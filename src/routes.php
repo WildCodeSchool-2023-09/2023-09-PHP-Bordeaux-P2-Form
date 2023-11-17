@@ -35,7 +35,7 @@ return [
 
     'saved' => ['SavedFormController', 'show', ['id']], // affichage formulaire
     'responses' => ['ResponsesController', 'responses',],
-    'responseToForm' => ['SaveResponseController', 'saveForm'],
+    'responseToForm' => ['SaveResponseController', 'saveForm', ['id']],
     'thanks' => ['SaveResponseController', 'thanks'],
-
+    'alreadyAnswered' => ['SaveResponseController', 'already'],
 ];

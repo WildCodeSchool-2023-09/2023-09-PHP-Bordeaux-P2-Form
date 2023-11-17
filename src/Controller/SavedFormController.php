@@ -22,6 +22,7 @@ class SavedFormController extends AbstractController
         $savedFormManager = new SavedFormManager();
 
         $formName = $savedFormManager->selectFormNameById($id);
+        $formName['id'] = $id;
         //var_dump($formName);
 
         $savedForm = $savedFormManager->selectQuestion($id);
@@ -36,7 +37,7 @@ class SavedFormController extends AbstractController
 
         return $this->twig->render('Form/show_savedForm.html.twig', [
             'savedForm' => $savedForm,
-            'formName' => $formName
+            'formName' => $formName,
         ]);
     }
 

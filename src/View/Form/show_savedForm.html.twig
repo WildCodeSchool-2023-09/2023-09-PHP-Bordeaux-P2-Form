@@ -18,11 +18,11 @@
 {% block title %}
  <h1>{{formName.name}}</h1>
 {% endblock %}
-
+{{dump(formName)}}
 {#<div class="main-saved-form">#}
 
 
-     <form method='post' action="responseToForm" >
+     <form method='post' action="responseToForm?id={{formName.id}}" >
          {% for question in savedForm %}
 
                {% if question.question_type == 'checkbox' %}
