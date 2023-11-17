@@ -30,6 +30,7 @@
     flex-direction: column;
     justify-content: center;
 }
+#menu-add-question > button.closeMenu,
 #menu-types > button.closeMenu {
     position: absolute;
     right: 2px;
