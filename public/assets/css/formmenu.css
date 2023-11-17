@@ -59,22 +59,20 @@
 #menu-add-question {
     display: none;
 }
-#question > div {
+#questions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#questions > div {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
-/* #question > div * {
-    padding: 0;
-    margin: 0;
-} */
-/* #questions > div > label {
-    width: 80vw;
-    display: inline-block;
-} */
-#question > input,
-#question > label {
+
+#questions > input,
+#questions > label {
     display: block;
 }
 ul.form-addPropositions input {

@@ -83,10 +83,20 @@ input {
 }
 
 button.validateQuestion {
-    width: 2rem;
-    height: 2rem;
-    border-radius: 50%;
-    background-color: chartreuse;
+    width: 10rem;
+    height: 3rem;
+    border-radius: 1rem;
+    background-color: var(--primary-color);
+    margin-top: 1rem;
+    font-size: 2rem;
+}
+button.validateQuestion:hover {
+    background-color: var(--secondary-color);
+    background-image: linear-gradient(
+        var(--tertiary-color),
+        var(--secondary-color),
+        var(--tertiary-color)
+    );
 }
 button.supprQuestion {
     width: 2rem;
@@ -120,14 +130,15 @@ div.formButtons {
 .formLink > a {
     text-decoration: none;
 }
-.delete {
+.delete,
+.dashboard,
+.index-form-layout {
     display: inline-block;
     text-decoration: none;
     position: relative;
 }
 .form-dropdown-content {
     display: none;
-    opacity: 0;
     font-size: 1rem;
     position: absolute;
     z-index: 1;
@@ -137,16 +148,25 @@ div.formButtons {
     padding: 5px;
     box-shadow: 5px 5px 10px 5px var(--tertiary-color);
     transition: all 0.5s ease;
-    right: 0;
-    width: 50px;
-    height: 50px;
+    left: -2.5rem;
 }
 .delete:hover .form-dropdown-content {
     display: block;
-    opacity: 1;
     width: auto;
     height: auto;
 }
+
+.index-form-layout > a > svg,
+.dashboard > a > svg {
+    height: 1rem;
+    width: 1rem;
+    color: black;
+}
+.index-form-layout:hover .form-dropdown-content,
+.dashboard:hover .form-dropdown-content {
+    display: block;
+}
+
 button.none {
     background-color: var(--primary-color);
     float: right;
