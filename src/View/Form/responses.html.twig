@@ -1,20 +1,64 @@
 {% extends 'layout.html.twig' %}
 {% block content %}
 <main>
-<h1 class="responses_title">Réponses</h1>
- <h2 class="form_title"> Titre du formulaire: {{formTitle.name}}</h2>
-<div class="connection_box">
 
+<ul>
+       <li>     <a href="responses">Summary</a></li>
+       <li>     <a href="individual">Individual</a></li>
+<li><h1 class="responses_title">Réponses</h1></li>
+</div>
+ <h2 class="form_title"> Titre du formulaire: {{formTitle.name}} </h2>
+<div class="responsesBox">
+{#
 <table>
     <tr>
         <th>Participant</th><th>Question</th><th>Réponse</th>
     </tr>
-    {% for response in responses %} 
+    {% for collatedResponses.label in collatedResponses %} 
+       {% for collatedResponses.value in collatedResponses %}
     <tr>
-        <td>{{response.user_id}}</td><td>{{response.label}}</td><td>{{response.value}}</td>
+        <td>{{collatedResponses.label}}</td><td>{{collated.label}}</td><td>{{response.value}}</td>
+ {% endfor %} 
+{% endfor %} 
+
+    </tr>
+    
+</table> 
+
+#}
+<div class="questionBox">
+{% for question, responses in groupedResponses %}
+    <p class="question">{{ question }}</p>
+    {% for response in responses %}
+        <p class="response">{{ response }}</p>
+    {% endfor %}
+{% endfor %}
+</div>
+
+
+
+
+
+
+
+
+{#
+<table>
     <tr>
-      {% endfor %} 
-</table>
+        <th>Question No.</th><th>Question</th><th>Réponse</th>
+    </tr>
+    {% for collatedResponse in collatedResponses %} 
+    <tr>
+        <td>{{collatedResponse.order_tool}}</td><td>{{collatedResponse.label}}</td>
+    </tr>
+    <tr>
+        <td>{{collatedResponse.value}}</td>
+ {% endfor %} 
+#}
+
+
+
+
 
 </div>
 

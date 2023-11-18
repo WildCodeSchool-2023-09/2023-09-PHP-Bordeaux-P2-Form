@@ -30,10 +30,10 @@ class ResponsesManager extends AbstractManager
     public function getNbResponders($formId)
     {
         $query = "SELECT COUNT(DISTINCT response_session.user_id) as nb_responses
-                    FROM response_session
-                    JOIN tool_form ON response_session.tool_form_id = tool_form.id
-                    JOIN form ON form.id = tool_form.form_id
-                    WHERE form.id = :id";
+        FROM response_session
+        JOIN tool_form ON response_session.tool_form_id = tool_form.id
+        JOIN form ON form.id = tool_form.form_id
+        WHERE form.id = :id";
 
         $statement = $this->pdo->prepare($query);
         $statement->bindValue(':id', $formId, \PDO::PARAM_INT);
@@ -56,5 +56,23 @@ class ResponsesManager extends AbstractManager
         $statement->execute();
         $response = $statement->fetchAll();
         return $response;
+    }
+
+
+    public function collatedResponses($formId)
+    {
+        $query = "SELECT completed_form.value, tool_form.label 
+    FROM completed_form
+    JOIN response_session ON completed_form.response_session_id = response_session.id
+    JOIN tool_form ON tool_form.id = response_session.tool_form_id
+    JOIN form ON form.id = tool_form.form_id
+    WHERE form_id = :id";
+
+        $statement = $this->pdo->prepare($query);
+        $statement->bindValue(':id', $formId, \PDO::PARAM_INT);
+        $statement->execute();
+        $collatedResponses = $statement->fetchAll(\PDO::FETCH_ASSOC); // Use FETCH_ASSOC to get an associative array
+
+        return $collatedResponses;
     }
 }

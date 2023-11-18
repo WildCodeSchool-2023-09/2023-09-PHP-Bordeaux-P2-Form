@@ -1,16 +1,45 @@
 .question {
 color: var(--brand-color);
+background-color: var(--primary-color);
+display: flex;
+flex-direction: column;
+margin: 0;
+margin-left: 1rem;
+margin-right: 1rem;
+width: 80%
+}
+
+.response {
+color: var(--text-color);
+border-style: solid;
+border-width: 1px;
+border-radius:0.5rem;
+margin-top: 1rem;
+margin-bottom: 1rem; 
+margin-left: 1rem;
+margin-right: 1rem;
+height: 2rem;
+width: 80%
 }
 
 .responses_title {
 
 width: 80%;
-    margin: auto;
-    margin-top: 1rem;
-    display: flex;
-    justify-content: center;
-    font-size: 1.25rem;
+margin: auto;
+margin-top: 1rem;
+display: flex;
+justify-content: center;
+font-size: 1.25rem;
 
+}
+
+.responsesBox {
+margin-top: 1.5rem;
+border-radius:0.5rem;
+padding: 1rem;
+margin-left: 50px;
+margin-right: 50px;
+background-color: var(--secondary-color);
 }
 
 .form_title {
@@ -27,3 +56,24 @@ width: 80%;
 th {
 color: var(--brand-color);
 }
+
+ ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  display: inline;
+  color: var(--brand-color);
+    
+}
+
+.questionBox {
+  
+  background-color: var(--primary-color);
+  
+  
+    
+}
+
