@@ -14,6 +14,7 @@ class ResponsesController extends AbstractController
         $responsesManager = new ResponsesManager();
         $responses = $responsesManager->getResponses($username);
 
+
         if (!empty($responses)) {
             $formTitle = $responses[0];
         }
@@ -24,9 +25,14 @@ class ResponsesController extends AbstractController
 
 
 
-        return $this->twig->render('Form/responses.html.twig', ['responses' => $responses, 'formTitle' =>  $formTitle,
-        'collated' => $collated, 'groupedResponses' => $groupedResponses]);
+        return $this->twig->render(
+            'Responses/summary.html.twig',
+            ['responses' => $responses, 'formTitle' =>  $formTitle,
+            'collated' => $collated,
+            'groupedResponses' => $groupedResponses]
+        );
     }
+/* to do - route the collatedResponses variable to responses/individual page */
 
 
     public function collateResponses()

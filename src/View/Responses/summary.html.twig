@@ -1,0 +1,24 @@
+{% extends 'layout.html.twig' %}
+{% block content %}
+<main>
+
+<ul>
+       <li><a href="responses">Summary</a></li>
+       <li><a href="individual">Individual</a></li>
+    <li>Réponses</li>
+</ul>
+
+ <h2 class="form_title"> Titre du formulaire: {{formTitle.name}} </h2>
+
+<div class="questionBox">
+{% for question, responses in groupedResponses %}
+    <p class="question">{{ question }}</p>
+    {% for response in responses %}
+        <p class="response">{{ response }}</p>
+    {% endfor %}
+{% endfor %}
+
+</div>
+ </main> 
+
+{% endblock %}
