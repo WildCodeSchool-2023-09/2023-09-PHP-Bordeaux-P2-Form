@@ -1,0 +1,70 @@
+.formulaire_design {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+  
+.form_color {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 15px;
+}
+  
+.form_color label {
+    flex: 1;
+}
+  
+.form_color input[type="color"],
+.form_color input[type="range"], {
+    margin-left: 10px;
+}
+  
+.form_color:last-child {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.arial {
+    font-family: 'arial';
+}
+.brush {
+    font-family: 'Brush Script MT';
+}
+.comic {
+    font-family: 'Comic Sans';
+}
+.baskerville {
+    font-family: 'Baskerville';
+}
+.garamond {
+    font-family: 'Garamond';
+}
+.georgia {
+    font-family: 'Georgia';
+}
+.helvetica {
+    font-family: 'Helvetica';
+}
+.impact {
+    font-family: 'Impact';
+}
+.palatino {
+    font-family: 'Palatino';
+}
+.tahoma {
+    font-family: 'Tahoma';
+}
+.times {
+    font-family: 'Times New Roman';
+}
+.trebuchet {
+    font-family: 'Trebuchet';
+}
+.verdana {
+    font-family: 'Verdana';
+}
+
+  

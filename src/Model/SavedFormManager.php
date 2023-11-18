@@ -101,4 +101,15 @@ class SavedFormManager extends AbstractManager
         $query = "SELECT * FROM tool_input";
         return $this->pdo->query($query)->fetchAll();
     }
+
+    // public function addStyle($id)
+    // {
+    //     $query = "UPDATE form
+    //         SET background = :background,
+    //             police = :police,
+    //             police_color = :police_color,
+    //             police_size = :police_size,
+    //             style
+    //             "
+    // }
 }

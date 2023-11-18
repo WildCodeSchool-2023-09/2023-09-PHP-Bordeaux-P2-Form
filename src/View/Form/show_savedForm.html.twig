@@ -5,11 +5,12 @@
 {% block stylesheet %}
 
      <link rel="stylesheet" href="/assets/css/draftForm.css">
+     <link rel="stylesheet" href="/assets/css/styleformulaire.css">
 
 {% endblock %}
 
 {% block content %}
-
+{% include 'includes/styleForm.html.twig' %}
 {# <pre>
 {{ dump(savedForm)}}
 </pre> #}
@@ -82,4 +83,34 @@
 </div>       
 
 {% endblock %}
+{% block javascript %}
+     {# <script src="/assets/js/script_design_formulaires.js"></script> #}
+<script>
+    var ExempleManager = {
+      updateExemple: function(text) {
+        var exempleDiv = document.getElementById('exempleDiv');
+        exempleDiv.innerHTML += '<p>' + text + '</p>';
+      }
+    };
 
+    document.getElementById('background').addEventListener('input', function() {
+      FormManager.changeColor('backgroundDiv', 'background');
+      ExempleManager.updateExemple('Fond de couleur modifié');
+    });
+
+    document.getElementById('police_color').addEventListener('input', function() {
+      FormManager.changeColor('textColorDiv', 'color');
+      ExempleManager.updateExemple('Couleur de police modifiée');
+    });
+
+    document.getElementById('police_size').addEventListener('input', function() {
+      FormManager.changeTextSize();
+      ExempleManager.updateExemple('Taille de police modifiée');
+    });
+
+    document.getElementById('police_style').addEventListener('change', function() {
+      FormManager.changeFontStyle();
+      ExempleManager.updateExemple('Style de police modifié');
+    });
+  </script>
+{% endblock %}

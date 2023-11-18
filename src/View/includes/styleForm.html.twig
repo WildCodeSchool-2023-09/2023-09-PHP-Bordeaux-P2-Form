@@ -1,0 +1,41 @@
+<div class="formulaire_design">
+  <form action="saved" method="post">
+    <div class="form_color" id="backgroundDiv">
+      <label for="background">Choisissez votre couleur de fond</label>
+      <input type="color" name="background" id="background">
+    </div>
+
+    <div class="form_color" id="textColorDiv">
+      <label for="police_color">Choisissez votre couleur de police</label>
+      <input type="color" name="police_color" id="police_color">
+    </div>
+
+    <div class="form_color" id="fontSizeDiv">
+      <label for="police_size">Choisissez la taille de votre police</label>
+      <input type="range" id="police_size" name="police_size" min="16" max="44" value="16" step="2">
+      <span id="selected_size">16</span>
+    </div>
+
+    <div class="form_color" id="fontStyleDiv">
+      <label for="police_style">Choisissez le style de police</label>
+      <select name="police_style" id="police_style">
+                    <option value="arial" class="arial"> Arial </option>
+                    <option value="brush" class="brush"> Brush Script MT </option>
+                    <option value="comic" class="comic"> Comic Sans </option>
+                    <option value="baskerville" class="baskerville"> Baskerville </option>
+                    <option value="garamond" class="garamond"> Garamond </option>
+                    <option value="georgia" class="georgia"> Georgia </option>
+                    <option value="helvetica" class="helvetica"> Helvetica </option>
+                    <option value="impact" class="impact"> Impact </option>
+                    <option value="palatino" class="palatino"> Palatino </option>
+                    <option value="tahoma" class="tahoma"> Tahoma </option>
+                    <option value="times" class="times"> Times New Roman</option>
+                    <option value="trebuchet" class="trebuchet"> Trebuchet</option>
+                    <option value="verdana" class="verdana"> Verdana </option>
+                </select>
+            </div>
+            <div>
+                <button type="submit">Styliser</button>
+            </div>
+        </form>
+    </div>

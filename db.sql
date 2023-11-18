@@ -24,11 +24,16 @@ CREATE TABLE form (
     user_id INT, 
     name VARCHAR(100),
     state BOOL,
+    background VARCHAR(10),
+    police VARCHAR(30),
+    police_color VARCHAR(10),
+    police_size INT,
+    style BOOL,
     FOREIGN KEY (user_id) REFERENCES user(id),
     PRIMARY KEY (id)
 ) ;
 
-INSERT INTO form (user_id, name, state) VALUES ('1', 'formtestmusique', '1');
+INSERT INTO form (user_id, name, state, background, police, police_color, police_size, style) VALUES ('1', 'formtestmusique', '1', '#F0E68C', 'trebuchet', '#A52A2A', '22', '1');
 
 CREATE TABLE tool_input (
     id INT NOT NULL AUTO_INCREMENT,
