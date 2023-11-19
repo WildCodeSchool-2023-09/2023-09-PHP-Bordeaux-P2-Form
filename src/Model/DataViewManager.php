@@ -50,9 +50,10 @@ class DataViewManager
     public function prepareCharts($data)
     {
         foreach ($data['questions'] as $key => $question) {
-            if (!empty($question['question_type'] && $question['question_type'] == 'radio')) {
+            /* if (!empty($question['question_type'] && $question['question_type'] == 'radio')) {
                 $data['questions'][$key]['dataPoints'] = $this->preparePieChart($question['choices']);
-            }
+            } */
+            $data['questions'][$key]['dataPoints'] = $this->preparePieChart($question['choices']);
         }
 
         return $data;
@@ -62,7 +63,8 @@ class DataViewManager
     {
         $dataPoints = [];
         foreach ($datas as $key => $data) {
-            $dataPoints[] = ['label' => $key, 'y' => $data];
+            $dataPoints['labels'][] = $key;
+            $dataPoints['data'][] = $data;
         }
         //$dataPoints = json_encode($dataPoints, JSON_NUMERIC_CHECK);
         return $dataPoints;

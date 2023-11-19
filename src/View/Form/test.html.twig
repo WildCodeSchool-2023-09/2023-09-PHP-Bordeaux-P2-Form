@@ -1,37 +1,79 @@
 {% extends 'layout.html.twig' %}
 
+	
+    {% block stylesheet %}
+      <link rel="stylesheet" href="/assets/css/charts.css">
+	  {% endblock %}
+
 {% block content %}
-{# j'ai mis le script en haut, c'est pas bien, je sais.
-Signé : Nico
-#}
-<script src='assets/js/charts.js'>
-let fromPHP;
-let idDiv;
-let type;
-let label;
-let dataPoints;
-</script>
   <h1>{{ array.title }}</h1>
   <p>Nombre de participants : {{ array.nb_responses }}</p>
   {% for question in array.questions %}
-    {% if question.question_type == 'radio' %}
-      <script>
-        fromPHP = "{{question.dataPoints|json_encode()|escape('js')}}";
-        idDiv = 'chartContainer{{question.id}}';
-        type = 'pie';
-        label = '{{question.label}}';
-        dataPoints = JSON.parse(fromPHP);
-		chartForm(idDiv, type, label, dataPoints);
-        
-		label = "raté mouarf";
 
-      </script>
-      <div id="chartContainer{{ question.id }}" style="height: 370px; width: 100%;"></div>
+    {% if question.question_type == 'radio' %}
+        <h2>{{question.label}}</h2>
+      <div class="chart-container">
+        <canvas id='chart{{question.id}}'>
+        </canvas>
+      </div>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+        <script>
+          const ctx{{question.id}} = document.getElementById('chart{{question.id}}');
+          new Chart(ctx{{question.id}}, {
+            type: 'pie',
+            data: {
+              label: '{{question.label}}',
+              labels: Array.from(JSON.parse("{{question.dataPoints.labels|json_encode()|escape('js')}}")),
+              datasets: [{
+                label: '',
+                data: Array.from(JSON.parse("{{question.dataPoints.data|json_encode()|escape('js')}}")),
+                borderWidth: 1
+              }]
+            },
+
+          });
+        </script>
+    {% endif %}
+
+    {% if question.question_type == 'checkbox' %}
+        <h2>{{question.label}}</h2>
+      <div class="chart-container">
+        <canvas id='chart{{question.id}}'>
+        </canvas>
+      </div>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+        <script>
+          const ctx{{question.id}} = document.getElementById('chart{{question.id}}');
+          new Chart(ctx{{question.id}}, {
+            type: 'bar',
+            data: {
+              label: '{{question.label}}',
+              labels: Array.from(JSON.parse("{{question.dataPoints.labels|json_encode()|escape('js')}}")),
+              datasets: [{
+                label: '',
+                data: Array.from(JSON.parse("{{question.dataPoints.data|json_encode()|escape('js')}}")),
+                borderWidth: 1
+              }]
+            },
+            options: {
+              aspectRatio : 1,
+              scales: {
+                y: {
+                  beginAtZero: true
+                }
+              }
+            }
+          });
+          ctx{{question.id}}.style.height = '300px';
+          ctx{{question.id}}.style.width = '300px';
+        </script>
     {% endif %}
   {% endfor %}
 {% endblock %}
 
 {% block javascript %}
-  <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
-  <script src='assets/js/charts.js'></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 {% endblock %}
