@@ -102,14 +102,20 @@ class SavedFormManager extends AbstractManager
         return $this->pdo->query($query)->fetchAll();
     }
 
-    // public function addStyle($id)
-    // {
-    //     $query = "UPDATE form
-    //         SET background = :background,
-    //             police = :police,
-    //             police_color = :police_color,
-    //             police_size = :police_size,
-    //             style
-    //             "
-    // }
+    public function updateStyle(string $formid, array $array): void
+    {
+        $query = "UPDATE form
+            SET background = :background,
+                police = :police,
+                police_color = :police_color,
+                police_size = :police_size,
+                WHERE id = :id";
+        $statement = $this->pdo->prepare($query);
+        $statement->bindValue(':background', $array['background'], \PDO::PARAM_STR);
+        $statement->bindValue(':police', $array['police'], \PDO::PARAM_STR);
+        $statement->bindValue(':police_color', $array['police_color'], \PDO::PARAM_STR);
+        $statement->bindValue(':police_size', $array['police_size'], \PDO::PARAM_STR);
+        $statement->bindValue(':id', $formid, \PDO::PARAM_INT);
+        $statement->execute();
+    }
 }

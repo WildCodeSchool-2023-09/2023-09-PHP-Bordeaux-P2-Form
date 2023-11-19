@@ -27,7 +27,7 @@ CREATE TABLE form (
     background VARCHAR(10),
     police VARCHAR(30),
     police_color VARCHAR(10),
-    police_size INT,
+    police_size VARCHAR(10),
     style BOOL,
     FOREIGN KEY (user_id) REFERENCES user(id),
     PRIMARY KEY (id)
