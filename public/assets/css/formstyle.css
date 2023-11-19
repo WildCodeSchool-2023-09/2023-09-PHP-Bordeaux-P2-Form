@@ -130,9 +130,7 @@ div.formButtons {
 .formLink > a {
     text-decoration: none;
 }
-.delete,
-.dashboard,
-.index-form-layout {
+.drop-parent {
     display: inline-block;
     text-decoration: none;
     position: relative;
@@ -150,7 +148,7 @@ div.formButtons {
     transition: all 0.5s ease;
     left: -2.5rem;
 }
-.delete:hover .form-dropdown-content {
+.drop-parent:hover .form-dropdown-content {
     display: block;
     width: auto;
     height: auto;
@@ -161,10 +159,6 @@ div.formButtons {
     height: 1rem;
     width: 1rem;
     color: black;
-}
-.index-form-layout:hover .form-dropdown-content,
-.dashboard:hover .form-dropdown-content {
-    display: block;
 }
 
 button.none {

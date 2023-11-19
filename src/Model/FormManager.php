@@ -70,4 +70,13 @@ class FormManager extends AbstractManager
 
         return $statement->execute();
     }
+
+    public function validForm(int $formId): bool
+    {
+        $query = "UPDATE " . self::TABLE . " SET state=1 WHERE id=:id";
+        $statement = $this->pdo->prepare($query);
+        $statement->bindValue('id', $formId, PDO::PARAM_INT);
+
+        return $statement->execute();
+    }
 }

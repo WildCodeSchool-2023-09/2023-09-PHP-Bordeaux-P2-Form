@@ -32,6 +32,7 @@ return [
     'error' => ['HomeController', 'error'],
     'test' => ['TestController', 'test'],
     'delete' => ['FormController', 'delete', ['id']],
+    'validForm' => ['FormController', 'validForm', ['id']],
 
     'saved' => ['SavedFormController', 'show', ['id']], // affichage formulaire
     'responses' => ['ResponsesController', 'responses',],
