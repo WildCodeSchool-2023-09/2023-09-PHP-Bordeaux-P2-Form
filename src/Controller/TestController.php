@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Model\CSVManager;
+use App\Model\DataViewManager;
 
 class TestController extends AbstractController
 {
@@ -11,11 +12,10 @@ class TestController extends AbstractController
      */
     public function test(): string
     {
-        $csvManager = new CSVManager();
+        $dataManager = new DataViewManager();
 
-        $array = $csvManager->getData(5);
+        $array = $dataManager->getData(7);
 
-        $csvManager->createCSVFile(1);
         return $this->twig->render('Form/test.html.twig', ['array' => $array]);
     }
 }
