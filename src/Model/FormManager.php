@@ -79,4 +79,10 @@ class FormManager extends AbstractManager
 
         return $statement->execute();
     }
+
+    public function getAllFinished()
+    {
+        $query = 'SELECT * FROM ' . self::TABLE . ' WHERE state=1';
+        return $this->pdo->query($query)->fetchAll();
+    }
 }

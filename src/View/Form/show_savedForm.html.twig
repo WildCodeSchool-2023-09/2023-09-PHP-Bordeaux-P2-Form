@@ -1,5 +1,8 @@
 {% extends 'layout.html.twig' %}
 
+{% block title %}
+     {{formName.name}}
+{% endblock %}
 
 
 {% block stylesheet %}
@@ -15,9 +18,9 @@
 </pre> #}
 
 
-{% block title %}
-     {{formName.name}}
-{% endblock %}
+
+     <h1>{{formName.name}}</h1>
+
 
 {#<div class="main-saved-form">#}
 
