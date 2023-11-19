@@ -14,7 +14,7 @@ class TestController extends AbstractController
     {
         $dataManager = new DataViewManager();
 
-        $array = $dataManager->getData(7);
+        $array = $dataManager->getData(2);
 
         return $this->twig->render('Form/test.html.twig', ['array' => $array]);
     }

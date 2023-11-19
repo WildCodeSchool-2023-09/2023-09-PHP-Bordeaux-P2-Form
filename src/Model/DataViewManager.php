@@ -2,6 +2,8 @@
 
 namespace App\Model;
 
+use Symfony\Component\Console\Question\Question;
+
 class DataViewManager
 {
     public function getData(int $formId)
@@ -17,11 +19,11 @@ class DataViewManager
         $data['nb_responses'] = $responsesManager->getNbResponders($formId)['nb_responses'];
         $questions = $questionsManager->getQuestions($formId);
         foreach ($questions as $key => $question) {
-            $data[$key]['question'] = $question;
+            $data['questions'][$key] = $question;
             if ($question['question_type'] != 'text') {
                 $choices = array_map(fn ($arr) => $arr['tool_option'], $choiceManager->getChoices($question['id']));
                 foreach ($choices as $choice) {
-                    $data[$key]['question']['choices'][$choice] = 0;
+                    $data['questions'][$key]['choices'][$choice] = 0;
                 }
                 //$data[$key]['question']['choices'] = array_map(fn ($arr) => $arr['tool_option'],
                 //                                      $choiceManager->getChoices($question['id']));
@@ -29,21 +31,40 @@ class DataViewManager
 
             //var_dump($question['id']);
             $responses = $compFormManager->getResponsesForQuestion($question['id']);
-            var_dump($responses);
+            //var_dump($responses);
             //$data[$key]['question']['responses'] = $compFormManager->getResponsesForQuestion($question['id']);
             foreach ($responses as $response) {
-                $data[$key]['question']['choices'][$response['value']] = $response['nb'];
+                $data['questions'][$key]['choices'][$response['value']] = $response['nb'];
             }
             //$test = array_map(fn ($value) => [$value['value'] => $value['nb']], $responses);
             //var_dump($test);
         }
 
+        $data = $this->prepareCharts($data);
         echo '<pre>';
         print_r($data);
         echo '</pre>';
+        return $data;
     }
 
-    /* public function mergeData($toolInputId)
+    public function prepareCharts($data)
     {
-    } */
+        foreach ($data['questions'] as $key => $question) {
+            if (!empty($question['question_type'] && $question['question_type'] == 'radio')) {
+                $data['questions'][$key]['dataPoints'] = $this->preparePieChart($question['choices']);
+            }
+        }
+
+        return $data;
+    }
+
+    public function preparePieChart(array $datas)
+    {
+        $dataPoints = [];
+        foreach ($datas as $key => $data) {
+            $dataPoints[] = ['label' => $key, 'y' => $data];
+        }
+        //$dataPoints = json_encode($dataPoints, JSON_NUMERIC_CHECK);
+        return $dataPoints;
+    }
 }
