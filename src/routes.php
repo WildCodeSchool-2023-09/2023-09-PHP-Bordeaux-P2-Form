@@ -39,5 +39,7 @@ return [
     'responseToForm' => ['SaveResponseController', 'saveForm', ['id']],
     'thanks' => ['SaveResponseController', 'thanks'],
     'alreadyAnswered' => ['SaveResponseController', 'already'],
+    'errors' => ['SaveResponseController', 'errors'],
+    'verifyResponses' => ['SaveResponseController', 'verifyResponses']
     'charts' => ['DataViewController', 'index', ['id']],
 ];
