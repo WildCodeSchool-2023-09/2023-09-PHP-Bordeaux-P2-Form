@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Model\ChoiceManager;
 use App\Model\DataChecker;
 use App\Model\FormManager;
+use App\Model\ResponsesManager;
 use App\Model\ToolFormManager;
 use App\Model\ToolInputManager;
 
@@ -24,6 +25,11 @@ class FormController extends AbstractController
 
         $formManager = new FormManager();
         $forms = $formManager->selectAllByUserId($userId);
+        $responsesManager = new ResponsesManager();
+
+        foreach ($forms as $key => $form) {
+            $forms[$key]['nb_responses'] = $responsesManager->getNbResponders($form['id'])['nb_responses'];
+        }
 
         return $this->twig->render('Form/index.html.twig', ['forms' => $forms]);
     }

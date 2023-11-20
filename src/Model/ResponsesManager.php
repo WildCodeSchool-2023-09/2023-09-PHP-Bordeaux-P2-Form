@@ -26,4 +26,35 @@ class ResponsesManager extends AbstractManager
 
         return $responses;
     }
+
+    public function getNbResponders($formId)
+    {
+        $query = "SELECT COUNT(DISTINCT response_session.user_id) as nb_responses
+                    FROM response_session
+                    JOIN tool_form ON response_session.tool_form_id = tool_form.id
+                    JOIN form ON form.id = tool_form.form_id
+                    WHERE form.id = :id";
+
+        $statement = $this->pdo->prepare($query);
+        $statement->bindValue(':id', $formId, \PDO::PARAM_INT);
+        $statement->execute();
+        $response = $statement->fetch();
+
+        return $response;
+    }
+
+    public function getResponders($formId)
+    {
+        $query = "SELECT DISTINCT response_session.user_id
+        FROM response_session
+        JOIN tool_form ON response_session.tool_form_id = tool_form.id
+        JOIN form ON form.id = tool_form.form_id
+        WHERE form.id = :id";
+
+        $statement = $this->pdo->prepare($query);
+        $statement->bindValue(':id', $formId, \PDO::PARAM_INT);
+        $statement->execute();
+        $response = $statement->fetchAll();
+        return $response;
+    }
 }

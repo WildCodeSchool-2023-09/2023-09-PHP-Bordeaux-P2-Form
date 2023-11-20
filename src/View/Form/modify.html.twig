@@ -17,7 +17,7 @@
 			{% if form %}
 				<h1 id='formTitle' contenteditable='true'>{{form.name}}</h1>
 				<form method='post' id='formToModifyTitle'>
-					<input type='text' name='title' id='title' hidden>
+					<input type='text' name='title' id='title' hidden minlength='1' maxlength='255' required>
 					<button name='changeTitle' class='none' type='submit'>Modifier le titre</button>
 				</form>
 			{% endif %}
@@ -74,7 +74,7 @@
 
 		<div>
 			<form method='post' id='savePost'>
-				<input type='text' id='formContent' name='formContent' value='' hidden>
+				<input type='text' id='formContent' name='formContent' value='' hidden minlength='1' maxlength='255' required>
 				<button type='submit' name='saveForm' class='button'>Enregister le formulaire</button>
 			</form>
 		</div>
