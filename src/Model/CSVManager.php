@@ -38,12 +38,4 @@ class CSVManager
         $responses = $respManager->getResponsesForCSV($formId);
         return $responses;
     }
-
-    public function getDataForView($formId): array
-    {
-        $data = [];
-        $data = [$formId]; // line just for grumphp, the method will be implement later or erase
-
-        return $data;
-    }
 }
