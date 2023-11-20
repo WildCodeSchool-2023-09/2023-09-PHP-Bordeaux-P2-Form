@@ -16,9 +16,7 @@ class ChoiceManager extends AbstractManager
         $statement->bindValue('tool_form_id', $toolFormId, PDO::PARAM_INT);
         $statement->execute();
 
-        $returns = $statement->fetchAll();
-
-        return $returns;
+        return $statement->fetchAll();
     }
 
     public function add(int $toolId, array $proposition): int

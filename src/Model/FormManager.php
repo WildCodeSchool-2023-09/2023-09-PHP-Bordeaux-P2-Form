@@ -37,16 +37,13 @@ class FormManager extends AbstractManager
 
     public function selectAllByUserId(int $userId): array
     {
-
         $query = "SELECT * FROM " . self::TABLE . " WHERE user_id = :user_id";
 
         $statement = $this->pdo->prepare($query);
         $statement->bindValue('user_id', $userId, PDO::PARAM_INT);
         $statement->execute();
 
-        $returns = $statement->fetchAll();
-
-        return $returns;
+        return $statement->fetchAll();
     }
 
     public function createForm(string $formName): int
