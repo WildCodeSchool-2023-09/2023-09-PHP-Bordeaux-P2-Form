@@ -80,8 +80,7 @@ class SavedFormManager extends AbstractManager
         $statement->bindValue('tool_form_id', $formId, PDO::PARAM_INT);
         $statement->execute();
 
-        $returns = $statement->fetchAll();
-        return $returns;
+        return $statement->fetchAll();
     }
 
     public function getTools(int $formId)

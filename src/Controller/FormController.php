@@ -185,4 +185,30 @@ class FormController extends AbstractController
         }
         return $tools;
     }
+
+    public function validForm(int $formId): void
+    {
+        //check if user is connected
+        if (isset($_SESSION['user_id'])) {
+            $userId = $_SESSION['user_id'];
+            //check if form exists and is link to user
+            $formManager = new FormManager();
+            $forms = array_map(fn ($arr) => $arr['id'], $formManager->selectAllByUserId($userId));
+            if (in_array($formId, $forms)) {
+                //valid form
+                $formManager->validForm($formId);
+                //redirect to myForms
+                header('location: forms');
+                exit();
+            }
+        }
+        //redirect to home page
+        $this->exit();
+    }
+
+    public function exit(): void
+    {
+        header('location: /');
+        exit();
+    }
 }

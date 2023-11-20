@@ -14,5 +14,10 @@
         ou <a href="/register">Créer un compte</a>.
       {% endif %}
     </div>
+    <h2>Répondre à des questionnaires</h2>
+    {% for form in forms %}
+      <h3>{{ form.name }}</h3>
+      <a href="saved?id={{ form.id }}">lien vers le formulaire</a>
+    {% endfor %}
   </main>
 {% endblock %}

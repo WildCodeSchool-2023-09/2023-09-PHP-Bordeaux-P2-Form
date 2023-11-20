@@ -32,10 +32,12 @@ return [
     'error' => ['HomeController', 'error'],
     'test' => ['TestController', 'test'],
     'delete' => ['FormController', 'delete', ['id']],
+    'validForm' => ['FormController', 'validForm', ['id']],
 
     'saved' => ['SavedFormController', 'show', ['id']], // affichage formulaire
     'responses' => ['ResponsesController', 'responses',],
     'responseToForm' => ['SaveResponseController', 'saveForm', ['id']],
     'thanks' => ['SaveResponseController', 'thanks'],
     'alreadyAnswered' => ['SaveResponseController', 'already'],
+    'charts' => ['DataViewController', 'index', ['id']],
 ];
