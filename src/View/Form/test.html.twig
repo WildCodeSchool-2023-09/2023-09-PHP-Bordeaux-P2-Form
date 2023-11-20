@@ -10,6 +10,14 @@
   <p>Nombre de participants : {{ array.nb_responses }}</p>
   {% for question in array.questions %}
 
+  {% if question.question_type == 'text' %}
+        <h2>{{question.label}}</h2>
+      {% for answer, nbr in question.choices %}
+        <p class="response">{{ answer }}</p>
+    {% endfor %}
+
+    {% endif %}
+
     {% if question.question_type == 'radio' %}
         <h2>{{question.label}}</h2>
       <div class="chart-container">
