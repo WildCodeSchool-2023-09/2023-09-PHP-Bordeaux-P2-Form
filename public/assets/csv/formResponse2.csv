@@ -1,37 +1,50 @@
 user_id;question;response
 4;Votre nom;Nico
-4;Notez Chopin de 1 à 100;83
 4;Les styles de musique que vous écoutez;Hard
-4;Les styles de musique que vous écoutez;Classique
+4;Notez Chopin de 1 à 100;83
 4;Votre style de musique préféré;Hard
+4;Les styles de musique que vous écoutez;Classique
 5;Votre nom;Bob
 5;Votre style de musique préféré;Rap
 5;Notez Chopin de 1 à 100;15
 5;Les styles de musique que vous écoutez;Rap
 6;Votre nom;Alien
+6;Notez Chopin de 1 à 100;82
 6;Votre style de musique préféré;Hard
 6;Les styles de musique que vous écoutez;Classique
 6;Les styles de musique que vous écoutez;Hard
-6;Notez Chopin de 1 à 100;82
 7;Votre nom;JF
+7;Notez Chopin de 1 à 100;100
 7;Votre style de musique préféré;Classique
 7;Les styles de musique que vous écoutez;Classique
-7;Notez Chopin de 1 à 100;100
 8;Votre nom;Sabrin
+8;Notez Chopin de 1 à 100;86
 8;Votre style de musique préféré;Classique
 8;Les styles de musique que vous écoutez;Classique
-8;Notez Chopin de 1 à 100;86
 9;Votre nom;Tadamm
 9;Votre style de musique préféré;Classique
-9;Les styles de musique que vous écoutez;Hard
 9;Les styles de musique que vous écoutez;Classique
+9;Les styles de musique que vous écoutez;Hard
 9;Notez Chopin de 1 à 100;51
-10;Votre nom;Akhenaton
 10;Votre style de musique préféré;Rap
 10;Les styles de musique que vous écoutez;Rap
 10;Les styles de musique que vous écoutez;Classique
+10;Votre nom;Akhenaton
 10;Notez Chopin de 1 à 100;84
-11;Votre nom;Momo
-11;Les styles de musique que vous écoutez;Rap
 11;Votre style de musique préféré;Rap
+11;Les styles de musique que vous écoutez;Rap
+11;Votre nom;Momo
 11;Notez Chopin de 1 à 100;1
+12;Votre style de musique préféré;Classique
+12;Les styles de musique que vous écoutez;Classique
+12;Votre nom;sabrina
+12;Notez Chopin de 1 à 100;100
+13;Les styles de musique que vous écoutez;Hard
+13;Votre nom;Nico
+13;Les styles de musique que vous écoutez;Classique
+13;Votre style de musique préféré;Hard
+13;Notez Chopin de 1 à 100;100
+14;Votre style de musique préféré;Rap
+14;Les styles de musique que vous écoutez;Rap
+14;Votre nom;Lucas
+14;Notez Chopin de 1 à 100;1

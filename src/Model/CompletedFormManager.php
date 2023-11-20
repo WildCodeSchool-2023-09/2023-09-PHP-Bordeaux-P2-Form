@@ -32,9 +32,7 @@ class CompletedFormManager extends AbstractManager
         $statement->bindValue('id', $formId, PDO::PARAM_INT);
         $statement->execute();
 
-        $returns = $statement->fetchAll();
-
-        return $returns;
+        return $statement->fetchAll();
     }
 
     public function getResponsesForQuestion(int $toolFormId): array
@@ -48,8 +46,6 @@ class CompletedFormManager extends AbstractManager
         $statement->bindValue('id', $toolFormId, PDO::PARAM_INT);
         $statement->execute();
 
-        $returns = $statement->fetchAll();
-
-        return $returns;
+        return $statement->fetchAll();
     }
 }

@@ -40,11 +40,7 @@ class DataViewManager
             //var_dump($test);
         }
 
-        $data = $this->prepareCharts($data);
-        /*         echo '<pre>';
-        print_r($data);
-        echo '</pre>'; */
-        return $data;
+        return $this->prepareCharts($data);
     }
 
     public function prepareCharts($data)
@@ -60,7 +56,9 @@ class DataViewManager
                 $data['questions'][$key]['average'] = $this->calcAverage($question['choices']);
             }
         }
-
+        echo '<pre>';
+        print_r($data);
+        echo '<pre>';
         return $data;
     }
 
@@ -71,7 +69,13 @@ class DataViewManager
             $dataPoints['labels'][] = $key;
             $dataPoints['data'][] = $data;
         }
-        //$dataPoints = json_encode($dataPoints, JSON_NUMERIC_CHECK);
+        // $callback = function ($key, $value) {
+        //     $result['labels'][] = $key;
+        //     $result['values'][] = $value;
+        //     return $result;
+        // };
+        // $dataPoints = array_map($callback, array_keys($datas), $datas);
+
         return $dataPoints;
     }
 
@@ -82,9 +86,17 @@ class DataViewManager
         $choices = $savedFormManager->selectChoice($question['id']);
         [$min, $max, $step] = array_map(fn ($arr) => $arr['tool_option'], $choices);
         $map = array_fill_keys(range($min, $max, $step), 0);
+
+
         foreach ($question['choices'] as $key => $value) {
             $map[$key] = $value;
         }
+        // $callback = function ($key, $value) {
+        //     $result['labels'][] = $key;
+        //     $result['values'][] = $value;
+        // };
+        // $result = array_map($callback, array_keys($question['choices']), $question['choices']);
+
         foreach ($map as $x => $y) {
             $result['labels'][] = $x;
             $result['values'][] = $y;
