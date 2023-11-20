@@ -30,7 +30,7 @@ return [
     'chooseName' => ['FormController', 'chooseName'],
     'modifyForm' => ['FormController', 'modifyForm', ['id']],
     'error' => ['HomeController', 'error'],
-    'test' => ['FormController', 'test'],
+    'test' => ['TestController', 'test'],
     'delete' => ['FormController', 'delete', ['id']],
 
     'saved' => ['SavedFormController', 'show', ['id']], // affichage formulaire

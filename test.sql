@@ -16,14 +16,14 @@ SELECT * FROM response_session
 JOIN completed_form ON response_session.id = completed_form.response_session_id
 WHERE user_id = 3; */
 
-select completed_form.value, tool_form.label from completed_form
+select response_session.user_id, tool_form.label as question, completed_form.value as response from completed_form
 join response_session on completed_form.response_session_id = response_session.id
 join tool_form on tool_form.id = response_session.tool_form_id
 join form on form.id=tool_form.form_id
 where form_id = 1;
 
-SELECT COUNT(DISTINCT response_session.user_id) as nb_responses
+/* SELECT COUNT(DISTINCT response_session.user_id) as nb_responses
 FROM response_session
 JOIN tool_form ON response_session.tool_form_id = tool_form.id
 JOIN form ON form.id = tool_form.form_id
-WHERE form.id = 7;
+WHERE form.id = 7; */

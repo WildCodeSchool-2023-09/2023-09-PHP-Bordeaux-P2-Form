@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Model\ChoiceManager;
+use App\Model\CSVManager;
 use App\Model\DataChecker;
 use App\Model\FormManager;
 use App\Model\ResponsesManager;
@@ -26,9 +27,13 @@ class FormController extends AbstractController
         $formManager = new FormManager();
         $forms = $formManager->selectAllByUserId($userId);
         $responsesManager = new ResponsesManager();
+        $csvManager = new CSVManager();
 
         foreach ($forms as $key => $form) {
             $forms[$key]['nb_responses'] = $responsesManager->getNbResponders($form['id'])['nb_responses'];
+            if ($form['state']) {
+                $csvManager->createCSVFile($form['id']);
+            }
         }
 
         return $this->twig->render('Form/index.html.twig', ['forms' => $forms]);
