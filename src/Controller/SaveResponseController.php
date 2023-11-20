@@ -49,7 +49,7 @@ class SaveResponseController extends AbstractController
 
                 if ($formResponse === 'on') {
                     unset($responseArray[0]);
-                    $response = implode('_', $responseArray);
+                    $response = implode(' ', $responseArray);
                 } else {
                     $response = $formResponse;
                     $sessionId = $respSessionManager->insert($toolFormId, $user);

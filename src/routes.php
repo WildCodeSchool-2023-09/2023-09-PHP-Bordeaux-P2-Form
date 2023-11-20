@@ -32,6 +32,7 @@ return [
     'error' => ['HomeController', 'error'],
     'test' => ['TestController', 'test'],
     'delete' => ['FormController', 'delete', ['id']],
+    'validForm' => ['FormController', 'validForm', ['id']],
 
     'saved' => ['SavedFormController', 'show', ['id']], // affichage formulaire
     'responses' => ['ResponsesController', 'responses',],
@@ -40,4 +41,5 @@ return [
     'alreadyAnswered' => ['SaveResponseController', 'already'],
     'errors' => ['SaveResponseController', 'errors'],
     'verifyResponses' => ['SaveResponseController', 'verifyResponses']
+    'charts' => ['DataViewController', 'index', ['id']],
 ];

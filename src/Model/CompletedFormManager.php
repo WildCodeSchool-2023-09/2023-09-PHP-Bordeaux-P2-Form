@@ -19,7 +19,7 @@ class CompletedFormManager extends AbstractManager
         return (int)$this->pdo->lastInsertId();
     }
 
-    public function getResponses($formId): array
+    public function getResponsesForCSV($formId): array
     {
         $query = "SELECT response_session.user_id, tool_form.label AS question, completed_form.value AS response
                     FROM completed_form
@@ -32,8 +32,20 @@ class CompletedFormManager extends AbstractManager
         $statement->bindValue('id', $formId, PDO::PARAM_INT);
         $statement->execute();
 
-        $returns = $statement->fetchAll();
+        return $statement->fetchAll();
+    }
 
-        return $returns;
+    public function getResponsesForQuestion(int $toolFormId): array
+    {
+        $query = "SELECT count(completed_form.id) as nb, completed_form.value FROM completed_form
+                    JOIN response_session ON response_session.id = completed_form.response_session_id
+                    JOIN tool_form ON tool_form.id = response_session.tool_form_id
+                    WHERE tool_form.id = :id
+                    GROUP BY completed_form.value";
+        $statement = $this->pdo->prepare($query);
+        $statement->bindValue('id', $toolFormId, PDO::PARAM_INT);
+        $statement->execute();
+
+        return $statement->fetchAll();
     }
 }

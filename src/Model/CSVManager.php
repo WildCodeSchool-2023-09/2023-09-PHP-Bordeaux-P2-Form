@@ -6,13 +6,13 @@ class CSVManager
 {
     private const CSVDIR = 'assets/csv/';
 
-    public function createCSVFile(int $formId)
+    public function createCSVFile(int $formId): void
     {
         $fileName = $this->createCSVName($formId);
 
         $fileToWrite = fopen($fileName, "w");
 
-        $data = $this->getData($formId);
+        $data = $this->getDataForCSV($formId);
         if (count($data) > 0) {
             $columns = array_keys($data[0]);
             $columnsToWrite = implode(";", $columns) . PHP_EOL;
@@ -32,10 +32,10 @@ class CSVManager
         return self::CSVDIR . 'formResponse' . $formId . '.csv';
     }
 
-    public function getData($formId): array
+    public function getDataForCSV(int $formId): array
     {
         $respManager = new CompletedFormManager();
-        $responses = $respManager->getResponses($formId);
+        $responses = $respManager->getResponsesForCSV($formId);
         return $responses;
     }
 }

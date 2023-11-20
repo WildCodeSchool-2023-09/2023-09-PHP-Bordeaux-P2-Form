@@ -2,19 +2,15 @@
 
 namespace App\Controller;
 
-use App\Model\CSVManager;
 use App\Model\DataViewManager;
 
-class TestController extends AbstractController
+class DataViewController extends AbstractController
 {
-    /**
-     * Display home page
-     */
-    public function test(): string
+    public function index(int $formId): string
     {
         $dataManager = new DataViewManager();
 
-        $array = $dataManager->getData(2);
+        $array = $dataManager->getData($formId);
 
         return $this->twig->render('Form/test.html.twig', ['array' => $array]);
     }
