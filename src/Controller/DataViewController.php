@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Model\DataViewManager;
+use App\Model\ResponsesManager;
 
 class DataViewController extends AbstractController
 {

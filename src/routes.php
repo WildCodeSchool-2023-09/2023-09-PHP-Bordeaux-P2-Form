@@ -35,7 +35,7 @@ return [
     'validForm' => ['FormController', 'validForm', ['id']],
 
     'saved' => ['SavedFormController', 'show', ['id']], // affichage formulaire
-    'responses' => ['ResponsesController', 'responses',],
+    'responses' => ['DataViewController', 'responses',],
     'responseToForm' => ['SaveResponseController', 'saveForm', ['id']],
     'thanks' => ['SaveResponseController', 'thanks'],
     'alreadyAnswered' => ['SaveResponseController', 'already'],
