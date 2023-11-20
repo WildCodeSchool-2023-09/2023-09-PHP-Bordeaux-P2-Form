@@ -56,9 +56,9 @@ class DataViewManager
                 $data['questions'][$key]['average'] = $this->calcAverage($question['choices']);
             }
         }
-        echo '<pre>';
-        print_r($data);
-        echo '<pre>';
+        // echo '<pre>';
+        // print_r($data);
+        // echo '<pre>';
         return $data;
     }
 
