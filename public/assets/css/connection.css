@@ -8,7 +8,6 @@
 
 }
 
-
 .connection_box {
     margin-top: 1.5rem;
     border-radius:0.5rem;
@@ -17,8 +16,6 @@
     background-color: var(--secondary-color);
     
 }
-
-
 
 .connection_input {
     background-color: var(--primary-color);
@@ -30,7 +27,6 @@
     width: 80%;
     margin-top: 1.5rem;
     margin-bottom: 1.5rem;
-    padding-left: 1rem;
   
 }
 
@@ -81,22 +77,19 @@ a {
 }
 
 .subscribe_title {
-    width: 80%;
+    /* width: 80%;
     margin: auto;
     margin-top: 1rem;
     margin-bottom: 1.5rem;
     display: flex;
     justify-content: center;
-    font-size: 1.25rem;
-
+    font-size: 1.25rem; */
+    text-align: center;
+    font-size: 3rem;
 }
 
 .subscribe_input::placeholder {
     color: var(--text-color);
-   
-
-
-
 }
 
 .password-container{
@@ -111,4 +104,19 @@ i {
   right: 15%;
   cursor: pointer;
   color: lightgray;
+}
+
+@media screen and (min-width: 600px) {
+
+    .connection_box {
+        width: 60%;
+    }
+
+    .login_button {
+        width: 75%;
+    }
+
+    .subscribe_box {
+        width: 60%;
+    }
 }

@@ -1,5 +1,11 @@
 <div class="formulaire_design">
-  <form action="saved?id={{formName.id}}" method="post">
+  <h1>ID : {{ formId }}</h1>
+
+  <pre>
+    {{ dump(formName) }}
+  </pre>
+  <form action="stylisationForm" method="post">
+
     <div class="form_color" id="backgroundDiv">
       <label for="background">Choisissez votre couleur de fond</label>
       <input type="color" name="background" id="background">
@@ -17,11 +23,11 @@
     </div>
 
     <div class="form_color" id="fontStyleDiv">
-      <label for="police_style">Choisissez le style de police</label>
-      <select name="police_style" id="police_style">
+      <label for="police">Choisissez le style de police</label>
+      <select name="police" id="police">
                     <option value="Arial" class="arial"> Arial </option>
                     <option value="Brush Script MT" class="brush"> Brush Script MT </option>
-                    <option value="Comic Sans" class="comic"> Comic Sans </option>
+                    <option value="Comic Sans MS" class="comic"> Comic Sans MS </option>
                     <option value="Baskerville" class="baskerville"> Baskerville </option>
                     <option value="Garamond" class="garamond"> Garamond </option>
                     <option value="Georgia" class="georgia"> Georgia </option>
@@ -35,8 +41,9 @@
                 </select>
             </div>
             <div>
-              <input type="hidden" name="form_id" value="{{ formName.id }}">
+              <input type="hidden" name="form_id" value="{{ formId }}">
               <button type="submit">Styliser</button>
             </div>
         </form>
+        <div class="exemple"><p>Aperçu du style</p></div>
     </div>

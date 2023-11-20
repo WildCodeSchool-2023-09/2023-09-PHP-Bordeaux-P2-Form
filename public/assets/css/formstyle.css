@@ -178,3 +178,16 @@ main > div:first-of-type {
     flex-direction: column;
     align-items: center;
 }
+
+.ul_center {
+    display: flex;
+    text-align: center;
+}
+
+@media screen and (min-width: 700px) {
+    
+    .formulaire_titreh1 {
+        width: 50%;
+    }
+
+}

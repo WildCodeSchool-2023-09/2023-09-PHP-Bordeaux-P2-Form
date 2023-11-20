@@ -1,18 +1,30 @@
-function changeBackgroundColor() {
-    var backgroundDiv = document.getElementById('backgroundDiv');
-    var color = document.getElementById('background').value;
-    backgroundDiv.style.backgroundColor = color;
-    }
+document.addEventListener("DOMContentLoaded", function () {
+    
+    var backgroundInput = document.getElementById("background");
+    var policeColorInput = document.getElementById("police_color");
+    var policeSizeInput = document.getElementById("police_size");
+    var policeStyleSelect = document.getElementById("police");
+    var selectedSizeSpan = document.getElementById("selected_size");
 
-function changeTextColor() {
-    var textColorDiv = document.getElementById('textColorDiv');
-    var color = document.getElementById('police_color').value;
-    textColorDiv.style.color = color;
-    }
+    var exempleDiv = document.querySelector(".exemple");
 
-function changeTextSize() {
-    var fontSizeDiv = document.getElementById('fontSizeDiv');
-    var size = document.getElementById('police_size').value;
-    var selectedSize = document.getElementById('selected_size');
-    selectedSize.innerText = size;
+    backgroundInput.addEventListener("input", updateExample);
+    policeColorInput.addEventListener("input", updateExample);
+    policeSizeInput.addEventListener("input", updateExample);
+    policeStyleSelect.addEventListener("change", updateExample);
+
+    function updateExample() {
+    
+        var backgroundColor = backgroundInput.value;
+        var policeColor = policeColorInput.value;
+        var policeSize = policeSizeInput.value;
+        var policeStyle = policeStyleSelect.value;
+
+        exempleDiv.style.backgroundColor = backgroundColor;
+        exempleDiv.style.color = policeColor;
+        exempleDiv.style.fontSize = policeSize + "px";
+        exempleDiv.style.fontFamily = policeStyle;
+
+        selectedSizeSpan.textContent = policeSize;
     }
+});

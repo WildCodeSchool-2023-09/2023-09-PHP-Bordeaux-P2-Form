@@ -13,25 +13,32 @@ class SavedFormController extends AbstractController
 {
     public function show(int $id): string
     {
+        // start modif
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            var_dump($_POST);
+        }
+
+        // end modif
 
         $savedFormManager = new SavedFormManager();
 
         $formName = $savedFormManager->selectFormNameById($id);
+        $formName['id'] = $id;
         //var_dump($formName);
 
         $savedForm = $savedFormManager->selectQuestion($id);
         foreach ($savedForm as $key => $question) {
-            if ($question ['question_type'] != "text") {
+            if ($question['question_type'] != "text") {
                 $savedForm[$key]['choice'] = $savedFormManager->selectChoice($question['id']);
-        //var_dump($savedForm[$key]['choice']);
+                //var_dump($savedForm[$key]['choice']);
             }
             $savedForm[$key]['question_name'] = $this->transformSentence($savedForm[$key]['Question']);
         }
-        //var_dump($savedForm);
 
         return $this->twig->render('Form/show_savedForm.html.twig', [
             'savedForm' => $savedForm,
-            'formName' => $formName
+            'formName' => $formName,
+            'formId' => $id,
         ]);
     }
 
@@ -61,4 +68,5 @@ class SavedFormController extends AbstractController
         return trim($sentence, "_");
     }
 
+    
 }

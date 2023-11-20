@@ -38,4 +38,5 @@ return [
     'responseToForm' => ['SaveResponseController', 'saveForm', ['id']],
     'thanks' => ['SaveResponseController', 'thanks'],
     'alreadyAnswered' => ['SaveResponseController', 'already'],
+    'stylisationForm' => ['SavedFormController', 'styleFormulaire'],
 ];

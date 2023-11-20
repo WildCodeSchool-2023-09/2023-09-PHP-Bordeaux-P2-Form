@@ -9,7 +9,7 @@ use App\Model\SaveResponseManager;
 
 class SaveResponseController extends AbstractController
 {
-    public function saveForm(int $formId)
+    public function saveForm($formId)
     {
         $completedFormManager = new CompletedFormManager();
         $respSessionManager = new ResponseSessionManager(); // cette variable s'appelait $responseSessionManager

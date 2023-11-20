@@ -52,9 +52,28 @@ main {
     /* padding-bottom: 1rem; */
 }
 main.index {
-    padding-left: 10vw;
-    padding-right: 10vw;
+    text-align: center;
 }
 main > h1 {
-    padding-top: 2rem;
+    padding-top: 7rem;
+    font-size: 5rem;
+    color: var(--brand-color);
 }
+
+.login_button {
+    text-align: center;
+}
+
+@media screen and (min-width: 650px) {
+    .titreh1 {
+        padding-top: 7rem;
+        font-size: 6rem; /* en dessous de 500 px le titre sort de l'ecran */
+        color: var(--brand-color);
+    }
+    .titreh2 {
+        font-size: 2rem;
+        color: var(--text-color);
+        margin-bottom: 0.5rem;;
+    }
+}
+
