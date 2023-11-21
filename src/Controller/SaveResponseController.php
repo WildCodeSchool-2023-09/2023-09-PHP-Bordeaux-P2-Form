@@ -38,7 +38,9 @@ class SaveResponseController extends AbstractController
             foreach ($sentForm as $key => $formResponse) {
                 $errors = $this->verifyResponses($formResponse);
 
-                return $this->twig->render('Form/errors.html.twig', ['errors' => $errors]);
+                if (!empty($errors)) {
+                    return $this->twig->render('Form/errors.html.twig', ['errors' => $errors]);
+                }
             }
 
 
@@ -77,9 +79,9 @@ class SaveResponseController extends AbstractController
         if (empty($formResponse)) {
             $errors[] = "Le formulaire ne doit pas être vide.";
         } elseif (strlen($formResponse) > 100) {
-                     $errors[] = 'Votre réponse doit comporter au maximum 100 caractères.';
+            $errors[] = 'Votre réponse doit comporter au maximum 100 caractères.';
         } elseif (!preg_match('/^[a-zA-Z0-9]*$/', $formResponse)) {
-                $errors[] = "texte invalide";
+            $errors[] = "texte invalide";
         }
 
 
