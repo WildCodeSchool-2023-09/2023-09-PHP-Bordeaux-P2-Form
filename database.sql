@@ -1,63 +1,160 @@
--- phpMyAdmin SQL Dump
--- version 4.5.4.1deb2ubuntu2
--- http://www.phpmyadmin.net
---
--- Client :  localhost
--- Généré le :  Jeu 26 Octobre 2017 à 13:53
--- Version du serveur :  5.7.19-0ubuntu0.16.04.1
--- Version de PHP :  7.0.22-0ubuntu0.16.04.1
+DROP DATABASE IF EXISTS form_model;
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
+CREATE DATABASE form_model;
+
+use form_model;
+
+CREATE TABLE user (
+    id INT NOT NULL AUTO_INCREMENT,
+    email VARCHAR(255),
+    password VARCHAR(255),
+    username VARCHAR(255),
+    UNIQUE KEY (username),
+    UNIQUE KEY (email),
+    PRIMARY KEY (id)
+) ;
+
+INSERT INTO user (email, password, username) VALUES(
+    'user1@gmail.com', '', 'username1'),
+    ('unknownUser1', '', 'unknownUser1'),
+    ('unknownUser2', '', 'unknownUser2');
+
+CREATE TABLE form (
+    id INT NOT NULL AUTO_INCREMENT,
+    user_id INT, 
+    name VARCHAR(255),
+    state BOOL,
+    FOREIGN KEY (user_id) REFERENCES user(id),
+    PRIMARY KEY (id)
+) ;
+
+INSERT INTO form (user_id, name, state) VALUES ('1', 'formtestmusique', '1');
+
+CREATE TABLE tool_input (
+    id INT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(255),
+    PRIMARY KEY (id)
+) ;
+
+INSERT INTO tool_input (name) VALUES ('text'), ('checkbox'), ('radio'), ('range'), ('date');
 
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+CREATE TABLE tool_form (
+    id INT NOT NULL AUTO_INCREMENT,
+    form_id INT,
+    tool_input_id INT,
+    order_tool INT,
+    label VARCHAR(255),
+    FOREIGN KEY (form_id) REFERENCES form(id),
+    FOREIGN KEY (tool_input_id) REFERENCES tool_input(id),
+    PRIMARY KEY (id)
+) ;
 
---
--- Base de données :  `simple-mvc`
---
+INSERT INTO tool_form 
+    (form_id, tool_input_id, order_tool, label)
+    VALUES
+    (1, 1, 1, 'votre nom'),
+    (1, 1, 2, 'votre prenom'),
+    (1, 3, 3, 'votre style de musique'),
+    (1, 2, 4, 'les styles de musique que vous aimez'),
+    (1, 4, 5, 'Notez Chopin de 1 a 100');
 
--- --------------------------------------------------------
+CREATE TABLE choice (
+   id INT NOT NULL AUTO_INCREMENT,
+   tool_form_id INT,
+   tool_option VARCHAR(255),
+   choice_order INT,
+   FOREIGN KEY (tool_form_id) REFERENCES tool_form(id),
+   PRIMARY KEY (id)
+) ;
 
---
--- Structure de la table `item`
---
+INSERT INTO choice (tool_form_id, tool_option, choice_order)
+    VALUES 
+        (3, 'classique', 1),
+        (3, 'hard', 2),
+        (3, 'pop', 3),
+        (3, 'rock', 4),
+        (3, 'rap', 5),
+        (4, 'classique', 1),
+        (4, 'hard', 2),
+        (4, 'pop', 3),
+        (4, 'rock', 4),
+        (4, 'rap', 5),
+        (5, '1', 1),
+        (5, '100', 2),
+        (5, '1', 3);
 
-CREATE TABLE `item` (
-  `id` int(11) UNSIGNED NOT NULL,
-  `title` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE response_session (
+    id INT NOT NULL AUTO_INCREMENT,
+    tool_form_id INT,
+    user_id INT,
+    FOREIGN KEY (tool_form_id) REFERENCES tool_form(id),
+    FOREIGN KEY (user_id) REFERENCES user(id),
+    PRIMARY KEY (id)
+) ;
 
---
--- Contenu de la table `item`
---
+INSERT INTO response_session
+    (tool_form_id, user_id) VALUES (1, 2), (2, 2), (3, 2), (4, 2), (5, 2), (1, 3), (2, 3), (3, 3), (4, 3), (5, 3);
 
-INSERT INTO `item` (`id`, `title`) VALUES
-(1, 'Stuff'),
-(2, 'Doodads');
+CREATE TABLE completed_form (
+    id INT NOT NULL AUTO_INCREMENT,
+    response_session_id INT,
+    value VARCHAR(255), 
+    FOREIGN KEY (response_session_id) REFERENCES response_session(id),
+    PRIMARY KEY (id)
+) ;
 
---
--- Index pour les tables exportées
---
+INSERT INTO completed_form 
+    (response_session_id, value)
+    VALUES
+        (1, 'Legrand'),
+        (2, 'Louis'),
+        (3, 'classique'),
+        (4, 'classique'),
+        (4, 'hard'),
+        (5, '99'),
+        (6, 'Chavez'),
+        (7, 'Hugo'),
+        (8, 'classique'),
+        (9, 'classique'),
+        (9, 'hard'),
+        (9, 'pop'),
+        (9, 'rock'),
+        (9, 'rap'),
+        (10, '50');
 
---
--- Index pour la table `item`
---
-ALTER TABLE `item`
-  ADD PRIMARY KEY (`id`);
 
---
--- AUTO_INCREMENT pour les tables exportées
---
 
---
--- AUTO_INCREMENT pour la table `item`
---
-ALTER TABLE `item`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+DELIMITER //
+DROP PROCEDURE IF EXISTS create_new_user;
+
+CREATE PROCEDURE create_new_user(OUT last_id INT)
+BEGIN
+    DECLARE myname CHAR(100);
+    DECLARE email CHAR(100);
+    SET @last_id = 0;
+    SELECT id INTO @last_id FROM user ORDER BY id DESC LIMIT 1;
+    SET @myname = CONCAT('unknown', CAST(@last_id as CHAR));
+    SET @email = @myname;
+    
+    PREPARE stmt FROM 'INSERT INTO user (email, password, username) VALUES( ?, "", ?)';
+    EXECUTE stmt USING @myname, @email;
+    DEALLOCATE PREPARE stmt;  
+    SELECT id INTO @last_id FROM user ORDER BY id DESC LIMIT 1;
+    set last_id = @last_id;
+END //
+DELIMITER ;
+
+SELECT * FROM tool_form 
+JOIN form ON tool_form.form_id = form.id;
+
+SELECT tool_form.label, completed_form.value
+    FROM completed_form
+    JOIN response_session ON completed_form.response_session_id = response_session.id
+    JOIN tool_form ON tool_form.id = response_session.tool_form_id;
+
+SELECT label from tool_form where form_id = 1;
+
+SELECT  user_id, COUNT(user_id) FROM response_session GROUP BY user_id;
+
+SELECT  COUNT(DISTINCT user_id) as nb_completed_forms FROM response_session; 
