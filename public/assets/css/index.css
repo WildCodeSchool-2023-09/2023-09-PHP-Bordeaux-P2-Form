@@ -1,9 +1,26 @@
+:root {
+    --example-w: 300px;
+    --example-h: 200px;
+    --scale: 0.5;
+}
+
 .example-form {
     position: relative;
+    width: var(--example-w);
+    height: var(--example-h);
+    display: flex;
 }
 iframe {
-    width: 300px;
-    height: 200px;
+    position: absolute;
+    width: calc(var(--example-w) / var(--scale));
+    height: calc(var(--example-h) / var(--scale));
+    transform: scale(0.5)
+        translate(
+            calc(var(--example-w) - calc(var(--example-w) / var(--scale))),
+            calc(var(--example-h) - calc(var(--example-h) / var(--scale)))
+        );
+    padding: 0;
+    margin: 0;
 }
 .example-form .embed-link {
     background-color: red;
