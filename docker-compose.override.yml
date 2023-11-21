@@ -8,7 +8,7 @@ services:
             DB_USER: user
             DB_PASSWORD: password
             DB_HOST: database
-            DB_NAME: form_model
+            DB_NAME: 2023_09_PHP_Bordeaux_P2_Form
         depends_on:
             database:
                 condition: service_healthy
