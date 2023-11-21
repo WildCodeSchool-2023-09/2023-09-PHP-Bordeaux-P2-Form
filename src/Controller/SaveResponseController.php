@@ -78,9 +78,9 @@ class SaveResponseController extends AbstractController
             $errors[] = "Le formulaire ne doit pas être vide.";
         } elseif (strlen($formResponse) > 100) {
             $errors[] = 'Votre réponse doit comporter au maximum 100 caractères.';
-        } elseif (!preg_match('/^[a-zA-Z0-9]*$/', $formResponse)) {
+        } /* elseif (!preg_match('/^[a-zA-Z0-9]*$/', $formResponse)) {
             $errors[] = "texte invalide";
-        }
+        } */
 
 
         return $errors;
