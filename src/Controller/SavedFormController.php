@@ -38,7 +38,6 @@ class SavedFormController extends AbstractController
         return $this->twig->render('Form/show_savedForm.html.twig', [
             'savedForm' => $savedForm,
             'formName' => $formName,
-            'formId' => $id,
         ]);
     }
 
@@ -68,5 +67,74 @@ class SavedFormController extends AbstractController
         return trim($sentence, "_");
     }
 
-    
+
+    public function styleFormulaire($id)
+    {
+        $savedFormManager = new SavedFormManager();
+
+        $formName = $savedFormManager->selectFormNameById($id);
+        $formName['id'] = $id;
+        //var_dump($formName);
+
+        $savedForm = $savedFormManager->selectQuestion($id);
+        foreach ($savedForm as $key => $question) {
+            if ($question['question_type'] != "text") {
+                $savedForm[$key]['choice'] = $savedFormManager->selectChoice($question['id']);
+                //var_dump($savedForm[$key]['choice']);
+            }
+            $savedForm[$key]['question_name'] = $this->transformSentence($savedForm[$key]['Question']);
+        }
+
+        return $this->twig->render('Form/stylisationForm.html.twig', [
+            'savedForm' => $savedForm,
+            'formName' => $formName,
+            'formId' => $id,
+        ]);
+    }
+
+    public function stylisation()
+    {
+        $errors = [];
+        // $police = ['arial', 'Brush Script MT', 'Comic Sans', 'Baskerville', 'Garamond', 'Georgia', 'Helvetica',
+        //     'Impact', 'Palatino', 'Tahoma', 'Times New Roman', 'Trebuchet', 'Verdana'];
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $inputs =  array_map('trim', $_POST);
+            if (!isset($inputs['background'])) {
+                $errors[] = 'Erreur background';
+            }
+            if (!isset($inputs['police'])) {
+                $errors[] = 'Erreur police';
+            }
+            if (!isset($inputs['police_color'])) {
+                $errors[] = 'Erreur police_color';
+            }
+            if (!isset($inputs['police_size'])) {
+                $errors[] = 'Erreur police_size';
+            }
+            if (!isset($inputs['form_id'])) {
+                $errors[] = 'Erreur id';
+            }
+            // if (!isset($inputs['background']) || !FunctionManager::isColor($inputs['background'])) {
+            //     $errors[] = 'Erreur background';
+            // }
+            // if (!isset($inputs['police']) || !in_array($inputs['police'], $police)) {
+            //     $errors[] = 'Erreur police';
+            // }
+            // if (!isset($inputs['police_color']) || !FunctionManager::isColor($inputs['police_color'])) {
+            //     $errors[] = 'Erreur police_color';
+            // }
+            // if (!isset($inputs['police_size']) || !is_numeric($inputs['police_size'])) {
+            //     $errors[] = 'Erreur police_size';
+            // }
+            // if (!isset($inputs['form_id']) || !is_numeric($inputs['form_id'])) {
+            //     $errors[] = 'Erreur id';
+            // }
+            if (empty($errors)) {
+                $savedFormManager = new SavedFormManager();
+                $savedFormManager->updateStyle($inputs);
+                header('location: /stylisationForm?id=' . $inputs['form_id']);
+            }
+        }
+    }
 }

@@ -6,9 +6,9 @@ use form_model;
 
 CREATE TABLE user (
     id INT NOT NULL AUTO_INCREMENT,
-    email VARCHAR(100),
+    email VARCHAR(255),
     password VARCHAR(255),
-    username VARCHAR(100),
+    username VARCHAR(255),
     UNIQUE KEY (username),
     UNIQUE KEY (email),
     PRIMARY KEY (id)
@@ -22,7 +22,7 @@ INSERT INTO user (email, password, username) VALUES(
 CREATE TABLE form (
     id INT NOT NULL AUTO_INCREMENT,
     user_id INT, 
-    name VARCHAR(100),
+    name VARCHAR(255),
     state BOOL,
     background VARCHAR(10),
     police VARCHAR(30),
@@ -36,7 +36,7 @@ INSERT INTO form (user_id, name, state, background, police, police_color, police
 
 CREATE TABLE tool_input (
     id INT NOT NULL AUTO_INCREMENT,
-    name VARCHAR(100),
+    name VARCHAR(255),
     PRIMARY KEY (id)
 ) ;
 
@@ -48,7 +48,7 @@ CREATE TABLE tool_form (
     form_id INT,
     tool_input_id INT,
     order_tool INT,
-    label VARCHAR(100),
+    label VARCHAR(255),
     FOREIGN KEY (form_id) REFERENCES form(id),
     FOREIGN KEY (tool_input_id) REFERENCES tool_input(id),
     PRIMARY KEY (id)
@@ -58,10 +58,10 @@ INSERT INTO tool_form
     (form_id, tool_input_id, order_tool, label)
     VALUES
     (1, 1, 1, 'votre nom'),
-    (1, 1, 2, 'votre prénom'),
-    (1, 3, 3, 'votre style de musique préféré'),
-    (1, 2, 4, 'les styles de musique que vous écoutez'),
-    (1, 4, 5, 'Notez Chopin de 1 à 100');
+    (1, 1, 2, 'votre prenom'),
+    (1, 3, 3, 'votre style de musique'),
+    (1, 2, 4, 'les styles de musique que vous aimez'),
+    (1, 4, 5, 'Notez Chopin de 1 a 100');
 
 CREATE TABLE choice (
    id INT NOT NULL AUTO_INCREMENT,
@@ -103,7 +103,7 @@ INSERT INTO response_session
 CREATE TABLE completed_form (
     id INT NOT NULL AUTO_INCREMENT,
     response_session_id INT,
-    value VARCHAR(100), 
+    value VARCHAR(255), 
     FOREIGN KEY (response_session_id) REFERENCES response_session(id),
     PRIMARY KEY (id)
 ) ;
@@ -156,15 +156,6 @@ SELECT tool_form.label, completed_form.value
     FROM completed_form
     JOIN response_session ON completed_form.response_session_id = response_session.id
     JOIN tool_form ON tool_form.id = response_session.tool_form_id;
-
-SELECT count(completed_form.value), completed_form.value 
-    FROM completed_form
-    JOIN response_session ON completed_form.response_session_id = response_session.id
-    JOIN tool_form ON tool_form.id = response_session.tool_form_id
-    WHERE tool_form.label = 'votre style de musique préféré'
-    GROUP BY completed_form.value;
- 
-
 
 SELECT label from tool_form where form_id = 1;
 

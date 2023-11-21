@@ -54,7 +54,6 @@ class ResponsesManager extends AbstractManager
         $statement = $this->pdo->prepare($query);
         $statement->bindValue(':id', $formId, \PDO::PARAM_INT);
         $statement->execute();
-        $response = $statement->fetchAll();
-        return $response;
+        return $statement->fetchAll();
     }
 }

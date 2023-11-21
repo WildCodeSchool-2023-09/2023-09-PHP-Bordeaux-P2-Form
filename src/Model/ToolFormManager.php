@@ -86,4 +86,17 @@ class ToolFormManager extends AbstractManager
             }
         }
     }
+
+    public function getQuestions(int $formId)
+    {
+        $query = "SELECT tool_form.id, tool_form.label, tool_input.name AS question_type FROM tool_form
+                    JOIN tool_input ON tool_input.id = tool_form.tool_input_id
+                    WHERE tool_form.form_id = :id";
+
+        $statement = $this->pdo->prepare($query);
+        $statement->bindValue('id', $formId, PDO::PARAM_INT);
+
+        $statement->execute();
+        return $statement->fetchAll();
+    }
 }

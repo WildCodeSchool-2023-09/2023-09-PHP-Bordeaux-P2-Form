@@ -1,17 +1,29 @@
 {% extends 'layout.html.twig' %}
 
 {% block stylesheet %}
-	<link rel="stylesheet" href="/assets/css/styleformulaire.css">
+
+     <link rel="stylesheet" href="/assets/css/draftForm.css">
+     <link rel="stylesheet" href="/assets/css/styleformulaire.css">
+
 {% endblock %}
 
 {% block content %}
-    {% include 'includes/styleForm.html.twig' %}
+{% include 'includes/styleForm.html.twig' %}
+<pre>
+{# {{ dump(savedForm)}}
+{{ dump(formName.id)}} #}
+{# {{ dump(savedForm.id)}} #}
+</pre>
 
+{% block title %}
+ <h1>{{formName.name}}</h1>
+{% endblock %}
 
 {#<div class="main-saved-form">#}
 
 
-     <form method='post' action="responseToForm?id={{formName.id}}" >
+     <form method='post' action="responseToForm?id={{formId}}" >
+     {# {{dump(formId)}} #}
          {% for question in savedForm %}
 
                {% if question.question_type == 'checkbox' %}
@@ -63,15 +75,10 @@
                {% endif %}
                </div> 
           {% endfor %}
-
-          <div>
-               <button class="cta" type="submit">Envoyer</button>
-          </div>
 </form>
 </div>       
 
 {% endblock %}
-
 {% block javascript %}
-		<script src="assets/js/script_design_formulaires.js"></script>
+     <script src="assets/js/script_design_formulaires.js"></script>
 {% endblock %}

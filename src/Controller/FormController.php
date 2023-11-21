@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Model\ChoiceManager;
+use App\Model\CSVManager;
 use App\Model\DataChecker;
 use App\Model\FormManager;
 use App\Model\ResponsesManager;
@@ -26,9 +27,13 @@ class FormController extends AbstractController
         $formManager = new FormManager();
         $forms = $formManager->selectAllByUserId($userId);
         $responsesManager = new ResponsesManager();
+        $csvManager = new CSVManager();
 
         foreach ($forms as $key => $form) {
             $forms[$key]['nb_responses'] = $responsesManager->getNbResponders($form['id'])['nb_responses'];
+            if ($form['state']) {
+                $csvManager->createCSVFile($form['id']);
+            }
         }
 
         return $this->twig->render('Form/index.html.twig', ['forms' => $forms]);
@@ -179,5 +184,31 @@ class FormController extends AbstractController
             $tools[$key]['type'] = $toolInputs[$tools[$key]['type']];
         }
         return $tools;
+    }
+
+    public function validForm(int $formId): void
+    {
+        //check if user is connected
+        if (isset($_SESSION['user_id'])) {
+            $userId = $_SESSION['user_id'];
+            //check if form exists and is link to user
+            $formManager = new FormManager();
+            $forms = array_map(fn ($arr) => $arr['id'], $formManager->selectAllByUserId($userId));
+            if (in_array($formId, $forms)) {
+                //valid form
+                $formManager->validForm($formId);
+                //redirect to myForms
+                header('location: forms');
+                exit();
+            }
+        }
+        //redirect to home page
+        $this->exit();
+    }
+
+    public function exit(): void
+    {
+        header('location: /');
+        exit();
     }
 }

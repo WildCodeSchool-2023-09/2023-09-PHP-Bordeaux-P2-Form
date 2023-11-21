@@ -4,22 +4,32 @@
 
      <link rel="stylesheet" href="/assets/css/draftForm.css">
      <link rel="stylesheet" href="/assets/css/styleformulaire.css">
-
+     <style>
+          .main_formulaire {
+               background-color: {{formName.background|default('#F0E68C')}}; 
+               {# background-color: {{formName.background|default('yellow')}}; #}
+               font-style: {{formName.police|default('Arial')}};
+               font-size: {{formName.police_size|default('24px')}}px;
+               color: {{formName.police_color|default('#A52A2A')}};
+               {# color: {{formName.police_color|default('#blue')}}; #}
+          }
+     </style>
 {% endblock %}
 
 {% block content %}
-{% include 'includes/styleForm.html.twig' %}
+{# {% include 'includes/styleForm.html.twig' %} #}
 <pre>
+{{ dump(formName) }}
 {# {{ dump(savedForm)}}
-{{ dump(formName.id)}} #}
+{{ dump(formName)}} #}
 {# {{ dump(savedForm.id)}} #}
 </pre>
 
 {% block title %}
  <h1>{{formName.name}}</h1>
 {% endblock %}
-
-{#<div class="main-saved-form">#}
+<main class="main_formulaire">
+<div class="main-saved-form">
 
 
      <form method='post' action="responseToForm?id={{formName.id}}" >
@@ -78,9 +88,9 @@
           <div>
                <button class="cta" type="submit">Envoyer</button>
           </div>
-</form>
+     </form>
 </div>       
-
+</main>
 {% endblock %}
 {% block javascript %}
      <script src="assets/js/script_design_formulaires.js"></script>

@@ -12,8 +12,6 @@ class LoginManager extends AbstractManager
         $statement = $this->pdo->prepare($query);
         $statement->bindValue(':email', $email, \PDO::PARAM_STR);
         $statement->execute();
-        $user = $statement->fetch();
-
-        return $user;
+        return $statement->fetch();
     }
 }

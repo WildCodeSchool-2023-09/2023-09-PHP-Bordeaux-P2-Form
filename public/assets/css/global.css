@@ -55,8 +55,8 @@ main.index {
     text-align: center;
 }
 main > h1 {
-    padding-top: 7rem;
-    font-size: 5rem;
+    margin-top: 7rem;
+    font-size: 3rem;
     color: var(--brand-color);
 }
 

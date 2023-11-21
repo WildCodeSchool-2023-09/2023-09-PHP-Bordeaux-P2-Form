@@ -30,13 +30,17 @@ return [
     'chooseName' => ['FormController', 'chooseName'],
     'modifyForm' => ['FormController', 'modifyForm', ['id']],
     'error' => ['HomeController', 'error'],
-    'test' => ['FormController', 'test'],
+    'test' => ['TestController', 'test'],
     'delete' => ['FormController', 'delete', ['id']],
+    'validForm' => ['FormController', 'validForm', ['id']],
 
     'saved' => ['SavedFormController', 'show', ['id']], // affichage formulaire
     'responses' => ['ResponsesController', 'responses',],
     'responseToForm' => ['SaveResponseController', 'saveForm', ['id']],
     'thanks' => ['SaveResponseController', 'thanks'],
     'alreadyAnswered' => ['SaveResponseController', 'already'],
-    'stylisationForm' => ['SavedFormController', 'styleFormulaire'],
+    'errors' => ['SaveResponseController', 'errors'],
+    'verifyResponses' => ['SaveResponseController', 'verifyResponses'],
+    'charts' => ['DataViewController', 'index', ['id']],
+    'stylisationForm' => ['SavedFormController', 'styleFormulaire', ['id']],
 ];

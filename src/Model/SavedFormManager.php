@@ -40,7 +40,7 @@ class SavedFormManager extends AbstractManager
 
     public function selectFormNameById(int $formId): array
     {
-        $query = "SELECT form.name
+        $query = "SELECT form.name, form.background, form.police, form.police_size, form.police_color
         FROM form
         WHERE form.id = :formId";
 
@@ -48,8 +48,21 @@ class SavedFormManager extends AbstractManager
         $statement->bindValue(':formId', $formId, \PDO::PARAM_INT);
         $statement->execute();
         //var_dump($query);
-        return $statement->fetch();
+        return $statement->fetchAll();
     }
+
+    // public function selectFormNameById(int $formId): array
+    // {
+    //     $query = "SELECT form.name, form.background, form.
+    //     FROM form
+    //     WHERE form.id = :formId";
+
+    //     $statement = $this->pdo->prepare($query);
+    //     $statement->bindValue(':formId', $formId, \PDO::PARAM_INT);
+    //     $statement->execute();
+    //     //var_dump($query);
+    //     return $statement->fetch();
+    // }
 
     public function selectOneById(int $id): array|false
     {
@@ -79,8 +92,7 @@ class SavedFormManager extends AbstractManager
         $statement->bindValue('tool_form_id', $formId, PDO::PARAM_INT);
         $statement->execute();
 
-        $returns = $statement->fetchAll();
-        return $returns;
+        return $statement->fetchAll();
     }
 
     public function getTools(int $formId)
@@ -101,20 +113,23 @@ class SavedFormManager extends AbstractManager
         return $this->pdo->query($query)->fetchAll();
     }
 
-    public function updateStyle(int $formid, array $array): void
+    public function updateStyle(array $styleData): void
     {
         $query = "UPDATE form
-            SET background = :background,
-                police = :police,
-                police_color = :police_color,
-                police_size = :police_size
-                WHERE id = :id";
+                    SET background = ':background',
+                        police = ':police',
+                        police_color = ':police_color',
+                        police_size = ':police_size'
+                    WHERE id = :id";
+
         $statement = $this->pdo->prepare($query);
-        $statement->bindValue(':background', $array['background'], PDO::PARAM_STR);
-        $statement->bindValue(':police', $array['police'], PDO::PARAM_STR);
-        $statement->bindValue(':police_color', $array['police_color'], PDO::PARAM_STR);
-        $statement->bindValue(':police_size', $array['police_size'], PDO::PARAM_INT);
-        $statement->bindValue(':id', $formid, PDO::PARAM_INT);
+
+        $statement->bindValue(':background', $styleData['background'], \PDO::PARAM_STR);
+        $statement->bindValue(':police', $styleData['police'], \PDO::PARAM_STR);
+        $statement->bindValue(':police_color', $styleData['police_color'], \PDO::PARAM_STR);
+        $statement->bindValue(':police_size', (int)$styleData['police_size'], \PDO::PARAM_INT);
+        $statement->bindValue(':id', (int)$styleData['id'], \PDO::PARAM_INT);
+
         $statement->execute();
     }
 }
