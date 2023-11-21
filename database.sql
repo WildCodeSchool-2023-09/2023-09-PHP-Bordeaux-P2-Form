@@ -1,8 +1,8 @@
-DROP DATABASE IF EXISTS form_model;
+DROP DATABASE IF EXISTS 2023_09_PHP_Bordeaux_P2_Form;
 
-CREATE DATABASE form_model;
+CREATE DATABASE 2023_09_PHP_Bordeaux_P2_Form;
 
-use form_model;
+use 2023_09_PHP_Bordeaux_P2_Form;
 
 CREATE TABLE user (
     id INT NOT NULL AUTO_INCREMENT,
