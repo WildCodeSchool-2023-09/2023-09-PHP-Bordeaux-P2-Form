@@ -43,6 +43,12 @@ iframe {
         flex-wrap: wrap;
     }
 }
+main > h1 {
+    color: var(--brand-color);
+
+    font-size: 3rem;
+    margin-bottom: 3rem;
+}
 main > h2 {
     margin-top: 1rem;
     margin-bottom: 1rem;
