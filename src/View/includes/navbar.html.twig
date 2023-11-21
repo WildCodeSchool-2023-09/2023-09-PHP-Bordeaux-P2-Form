@@ -1,6 +1,6 @@
 {% block navbar %}
 <nav>
-    <a href="#" class="nav_icon" aria-label="page d'accueil" aria-current="page"><img src="/assets/images/logo.png" alt="logo wildform"></a>
+    <a href="/" class="nav_icon" aria-label="page d'accueil" aria-current="page"><img src="/assets/images/logo.png" alt="logo wildform"></a>
 
     <div class="main_navlinks">
       <button class="hamburger" type="button" aria-label="bouton burger">
@@ -11,7 +11,11 @@
     </div>
 
     <div class="navlinks_container">
-      <a href="forms">Créer un formulaire</a>
+      {% if user %}
+        <a href="forms">Mes formulaires</a>
+      {% else %}
+        <a href="forms">Créer un formulaire</a>
+      {% endif %}
       <a href="#">Modèles</a>
       <a href="#">Assistance</a>
     </div>
