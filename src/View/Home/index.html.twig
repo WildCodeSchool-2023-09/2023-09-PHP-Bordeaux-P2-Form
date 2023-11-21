@@ -1,8 +1,7 @@
 {% extends 'layout.html.twig' %}
 
 {% block stylesheet %}
-	<link rel="stylesheet" href="/assets/css/index.css">
-
+  <link rel="stylesheet" href="/assets/css/index.css" />
 {% endblock %}
 
 {% block content %}
@@ -19,6 +18,7 @@
         ou <a href="/register">Créer un compte</a>.
       {% endif %}
     </div>
+    {#
     <h2>Répondre à des questionnaires</h2>
     <div class='all-forms'>
       {% for form in forms %}
@@ -33,5 +33,6 @@
       </article>
       {% endfor %}
     </div>
+    #}
   </main>
 {% endblock %}
