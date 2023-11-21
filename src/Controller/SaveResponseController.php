@@ -39,7 +39,7 @@ class SaveResponseController extends AbstractController
                 $errors = $this->verifyResponses($formResponse);
 
                 if (!empty($errors)) {
-                    return $this->twig->render('Form/errors.html.twig', ['errors' => $errors]);
+                    return $this->twig->render('Form/errors.html.twig', ['errors' => $errors, 'formId' => $formId]);
                 }
             }
 
