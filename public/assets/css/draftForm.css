@@ -19,7 +19,9 @@ range {
     flex-direction: column;
     margin-left: 20rem;
 }
-
+.range p {
+    padding-bottom: 10px;
+}
 .checkbox,
 .radio,
 .range,
@@ -27,18 +29,28 @@ range {
     text-align: left; /* Ajoutez cette ligne pour aligner les éléments à gauche */
     padding-bottom: 2rem;
 }
-
+input[type="range"] {
+    margin: 5px;
+}
 .radio {
     align-items: flex-start;
 }
 
-.cta {
+/* .cta {
     width: 20%;
     height: 2rem;
     display: flex;
     justify-content: center;
     align-items: center;
+} */
+.cta {
+    margin-bottom: 15px;
 }
+/* @media screen and (width > 600px) {
+    .cta {
+        
+    }
+} */
 
 .text {
     display: flex;
@@ -56,7 +68,4 @@ range {
 }
 
 .text > label {
-    width: 10rem;
-    height: 2rem;
-    margin: 0;
 }
