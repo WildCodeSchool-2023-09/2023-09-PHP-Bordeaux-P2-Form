@@ -49,7 +49,7 @@ class SaveResponseController extends AbstractController
 
                 if ($formResponse === 'on') {
                     unset($responseArray[0]);
-                    $response = implode(' ', $responseArray);
+                    $response = implode('_', $responseArray);
                 } else {
                     $response = $formResponse;
                     $sessionId = $respSessionManager->insert($toolFormId, $user);
@@ -67,8 +67,6 @@ class SaveResponseController extends AbstractController
 
         return $this->twig->render('Form/already.html.twig');
     }
-
-
 
 
     public function verifyResponses($formResponse)

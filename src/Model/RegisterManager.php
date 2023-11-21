@@ -10,7 +10,7 @@ class RegisterManager extends AbstractManager
     public function setUser($username, $email, $password): int
     {
         $query = "
-INSERT INTO " . static::TABLE . "(`username`, `email`, `password`) VALUES (:username, :email, :password)
+INSERT INTO " . self::TABLE . "(`username`, `email`, `password`) VALUES (:username, :email, :password)
 ";
         $statement = $this->pdo->prepare($query);
         $statement->bindValue(':username', $username);
@@ -35,7 +35,7 @@ INSERT INTO " . static::TABLE . "(`username`, `email`, `password`) VALUES (:user
     public function isUsernameTaken($username)
     {
 
-        $query = "SELECT * FROM user WHERE username = :username";
+        $query = "SELECT * FROM  "  . self::TABLE . "   WHERE username = :username";
         $statement = $this->pdo->prepare($query);
         $statement->bindValue(':username', $username, \PDO::PARAM_STR);
         $statement->execute();
@@ -46,7 +46,7 @@ INSERT INTO " . static::TABLE . "(`username`, `email`, `password`) VALUES (:user
     public function isEmailTaken($email)
     {
 
-        $query = "SELECT * FROM user WHERE email = :email";
+        $query = "SELECT * FROM  "  . self::TABLE . "  WHERE email = :email";
         $statement = $this->pdo->prepare($query);
         $statement->bindValue(':email', $email, \PDO::PARAM_STR);
         $statement->execute();
