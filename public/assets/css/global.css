@@ -1,7 +1,7 @@
-@import "connection.css";
-@import "errors.css";
-@import "global.css";
-@import "responses.css";
+* {
+    box-sizing: border-box;
+    margin: auto;
+}
 
 :root {
     --primary-color: #ffffff;
@@ -11,29 +11,22 @@
     --tertiary-color: #d8d8d8;
     --size-navbar: 72px;
     --size-footer: 50px;
+    --padding_top-main: 90px;
 }
-
 body {
     color: var(--text-color);
     font-family: Verdana, sans-serif;
 }
 
 .footer {
-    height: 3rem;
-    height: var(--size-footer);
-    left: 0;
-    bottom: 0;
     width: 100%;
     background-color: var(--secondary-color);
     display: flex;
-    justify-content: space-around;
-    box-shadow: inset 0px 0px 0px 1px var(--tertiary-color);
+    justify-content: space-between;
 }
 
 .footer img {
     height: 3rem;
-    height: 47px;
-    margin: auto;
 }
 
 .button {
@@ -47,17 +40,21 @@ body {
     display: flex;
     justify-content: center;
     font-size: 1.25rem;
-    -webkit-box-shadow: 5px 5px 15px -2px #000000;
-    box-shadow: 5px 5px 15px -2px #000000;
-    transition: box-shadow 1s;
 }
-.button:hover {
-    -webkit-box-shadow: none;
-    box-shadow: none;
-    transition: box-shadow 1s;
+
+ul {
+    list-style: none;
 }
-.button:active {
-    -webkit-box-shadow: -5px -5px 15px -2px #000000;
-    box-shadow: -5px -5px 15px -2px #000000;
-    transition: box-shadow 1s;
+main {
+    /* padding-top: 90px; */
+    margin: auto;
+    min-height: calc(100vh - calc(var(--size-footer) + var(--size-navbar)));
+    /* padding-bottom: 1rem; */
+}
+main.index {
+    padding-left: 10vw;
+    padding-right: 10vw;
+}
+main > h1 {
+    padding-top: 2rem;
 }

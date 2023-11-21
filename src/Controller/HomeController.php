@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Model\FormManager;
+
 class HomeController extends AbstractController
 {
     /**
@@ -9,6 +11,12 @@ class HomeController extends AbstractController
      */
     public function index(): string
     {
-        return $this->twig->render('Home/index.html.twig');
+        $formManager = new FormManager();
+        $forms = $formManager->getAllFinished();
+        return $this->twig->render('Home/index.html.twig', ['forms' => $forms]);
     }
+
+    /*
+    TODO : add an errors page who take $_SESSION['errors'] and use it.
+    */
 }

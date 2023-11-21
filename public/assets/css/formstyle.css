@@ -1,0 +1,174 @@
+body > main > section {
+    width: 80vw;
+    font-size: 16px;
+}
+#formToModifyTitle {
+    visibility: hidden;
+}
+section {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+section > a > button.button {
+    width: 80%;
+}
+h1 {
+    background-color: var(--secondary-color);
+    color: var(--brand-color);
+    border-radius: 10px;
+    text-align: center;
+    padding-bottom: 1rem;
+    width: 80vw;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+main > div {
+    width: 100%;
+    margin: 0;
+}
+h2 {
+    /*
+    background-color: var(--brand-color);
+    color: var(--primary-color);
+    */
+    padding: 8px;
+    text-align: center;
+    margin: auto;
+    width: 80vw;
+    margin-bottom: 1rem;
+    background-color: var(--secondary-color);
+    color: var(--brand-color);
+    border-radius: 10px;
+}
+ul {
+    list-style: none;
+}
+li {
+    font-size: 16px;
+}
+body > main > section > a {
+    text-decoration: none;
+}
+
+.not-priority {
+    color: var(--text-color);
+    background-color: var(--tertiary-color);
+}
+.createForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+ul > form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 1rem;
+}
+
+input {
+    height: 3rem;
+    font-size: 16px;
+    padding: auto;
+    width: 80vw;
+}
+.info {
+    width: 80%;
+    text-align: right;
+    font-size: 0.75rem;
+    color: var(--brand-color);
+}
+
+button.validateQuestion {
+    width: 10rem;
+    height: 3rem;
+    border-radius: 1rem;
+    background-color: var(--primary-color);
+    margin-top: 1rem;
+    font-size: 2rem;
+}
+button.validateQuestion:hover {
+    background-color: var(--secondary-color);
+    background-image: linear-gradient(
+        var(--tertiary-color),
+        var(--secondary-color),
+        var(--tertiary-color)
+    );
+}
+button.supprQuestion {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background-color: rgb(0, 47, 255);
+}
+.errors {
+    color: red;
+    font-weight: bold;
+}
+#savedQuestions {
+    width: 80vw;
+    text-align: right;
+}
+.savedQuestion {
+    margin: 0;
+}
+.newQuestion {
+    display: flex;
+    justify-content: space-between;
+}
+div.formButtons {
+    width: 3rem;
+    margin: 0;
+}
+.formLink {
+    padding-bottom: 4px;
+    font-size: 1.5rem;
+}
+.formLink > a {
+    text-decoration: none;
+}
+.drop-parent {
+    display: inline-block;
+    text-decoration: none;
+    position: relative;
+}
+.form-dropdown-content {
+    display: none;
+    font-size: 1rem;
+    position: absolute;
+    z-index: 1;
+    border: 2px solid var(--brand-color);
+    border-radius: 10px;
+    background-color: var(--secondary-color);
+    padding: 5px;
+    box-shadow: 5px 5px 10px 5px var(--tertiary-color);
+    transition: all 0.5s ease;
+    left: -2.5rem;
+}
+.drop-parent:hover .form-dropdown-content {
+    display: block;
+    width: auto;
+    height: auto;
+}
+
+.index-form-layout > a > svg,
+.dashboard > a > svg {
+    height: 1rem;
+    width: 1rem;
+    color: black;
+}
+
+button.none {
+    background-color: var(--primary-color);
+    float: right;
+    border: none;
+    color: var(--brand-color);
+}
+main > div:first-of-type {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

@@ -1,0 +1,203 @@
+.nav_authentication img {
+    height: 40px;
+}
+
+nav {
+    position: relative;
+    height: 72px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 15px 25px;
+    background-color: var(--secondary-color);
+    box-shadow: inset 0px -1px var(--tertiary-color);
+    margin: 0;
+    padding: 0;
+}
+nav * {
+    margin: 0;
+}
+.nav_icon {
+    display: flex;
+    align-items: center;
+    margin-right: auto;
+    padding: 10px;
+}
+
+.nav_icon img {
+    height: 70px;
+}
+
+.hamburger {
+    display: none;
+}
+
+.navlinks_container {
+    margin-right: auto;
+}
+
+.navlinks_container a {
+    margin: 0 10px;
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+    color: var(--text-color);
+    display: inline-block;
+    position: relative;
+}
+
+.navlinks_container a::after {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: -3px;
+    width: 100%;
+    height: 2px;
+    transform: scaleX(0);
+    transform-origin: left;
+    background: var(--brand-color);
+    transition: transform 0.3s ease-out;
+}
+
+.navlinks_container a:hover::after {
+    transform: scaleX(1);
+}
+
+.nav_authentication {
+    padding-right: 10px;
+}
+
+.nav_authentication a {
+    margin-left: auto;
+}
+
+.user_connected {
+    width: 60px;
+    display: flex;
+    flex-direction: column;
+}
+
+.user_connected img {
+    margin: auto;
+}
+
+.logout_button {
+    position: absolute;
+    display: none;
+    background-color: var(--brand-color);
+    border-radius: 8px;
+    color: var(--primary-color);
+}
+
+/* .user_connected:hover {
+    padding-top: 22px;
+} */
+
+.user_connected:hover .logout_button {
+    display: block;
+    left: -34px;
+    width: 4rem;
+}
+
+.dropdown_content {
+    position: relative;
+    margin: auto;
+}
+
+@media (max-width: 600px) {
+    nav {
+        justify-content: space-around;
+    }
+
+    .nav_icon {
+        order: 2;
+        margin: 0 auto;
+    }
+
+    .main_navlinks {
+        order: 1;
+    }
+
+    .hamburger {
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+        border: none;
+        display: flex;
+        background: var(--secondary-color);
+        align-items: center;
+        position: relative;
+        margin-left: 20px;
+        padding-left: 0;
+    }
+
+    .hamburger span {
+        display: block;
+        width: 100%;
+        height: 3px;
+        background: var(--text-color);
+        position: absolute;
+        pointer-events: none; /* pour ne pas cliquer sur les span mais bien sur le boutton */
+        transition: opacity 0.3s 0.15s ease-out;
+    }
+
+    .hamburger span:nth-child(1),
+    .hamburger span:nth-child(3) {
+        transition: transform 0.3s ease-out;
+    }
+
+    .hamburger span:nth-child(1) {
+        transform: translateY(7px);
+    }
+    .hamburger span:nth-child(3) {
+        transform: translateY(-7px);
+    }
+
+    .hamburger.open span:nth-child(1) {
+        transform: translate(0) rotate(135deg);
+    }
+    .hamburger.open span:nth-child(2) {
+        opacity: 0;
+        transition: opacity 0s ease-out;
+    }
+    .hamburger.open span:nth-child(3) {
+        transform: translate(0) rotate(-135deg);
+    }
+
+    .navlinks_container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        position: absolute;
+        background: var(--secondary-color);
+        top: 100%;
+        left: 0;
+        height: calc(100vh - 72px);
+        padding: 20px;
+        border-right: 1px solid var(--tertiary-color);
+        transform: translate(-100%);
+        transition: transform 0.2s ease-out;
+    }
+
+    .open {
+        transform: translate(0%);
+        position: absolute;
+        z-index: 100;
+    }
+
+    .nav_authentication {
+        order: 3;
+        margin-left: 0;
+    }
+
+    .navlinks_container a {
+        font-size: 16px;
+        margin: 8px 0;
+    }
+
+    .sign_user {
+        display: block;
+        cursor: pointer;
+        border: none;
+    }
+}

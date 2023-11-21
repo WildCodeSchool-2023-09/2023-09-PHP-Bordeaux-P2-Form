@@ -1,0 +1,36 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}
+	Mes formulaires
+{% endblock %}
+
+{% block stylesheet %}
+	<link rel="stylesheet" href="/assets/css/formstyle.css">
+{% endblock %}
+
+{% block content %}
+	<main class='createForm'>
+		<h1>Choisissez un nom pour votre questionnaire</h1>
+		{% if errors %}
+			<ul>
+				{% for error in errors %}
+					<li>
+						<span class='errors'>{{error}}</span>
+					</li>
+				{% endfor %}
+			</ul>
+		{% endif %}
+		<form method='post'>
+			<input
+			type='text' name='formName' id='formName' minlength='1' maxlength='255' required>
+			<!-- add required minLength and maxLength after do verification in FormController -->
+			<div class="info" id='formInfo'>
+				Il reste 256 caractères.
+			</div>
+			<button class='button' action='send'>Créer le questionnaire</button>
+		</form>
+	</main>
+{% endblock %}
+{% block javascript %}
+	<script src='assets/js/formCreateName.js'></script>
+{% endblock %}

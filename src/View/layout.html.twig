@@ -1,21 +1,31 @@
 <!doctype html>
 <html lang="fr">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="/assets/images/favicon.png">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="icon" href="/assets/images/favicon.png">
 
     <title>{% block title %}{% endblock %}</title>
 
     <link rel="stylesheet" href="/assets/css/style.css">
-    {% block stylesheet %}{% endblock %}
+	<link rel="stylesheet" href="/assets/css/navbar_style.css">
+    {% block stylesheet %}
+	
+	{% endblock %}
 </head>
 
 <body>
+	{% include 'includes/navbar.html.twig' %}
+	<main>
+
     {% block content %}{% endblock %}
-    {% block javascript %}{% endblock %}
+	</main>
+	{% include 'includes/footer.html.twig' %}
+	{% block javascript %}
+		
+	{% endblock %}
+    <script src='assets/js/script_navbar.js'></script>
 </body>
 </html>
-
 

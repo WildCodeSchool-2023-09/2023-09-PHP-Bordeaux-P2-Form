@@ -1,6 +1,37 @@
 {% extends 'layout.html.twig' %}
 
+{% block stylesheet %}
+	<link rel="stylesheet" href="/assets/css/index.css">
+
+{% endblock %}
+
 {% block content %}
-    <h1>Hello Wilder !</h1>
-    <p>Find a complete CRUD example on <a href="/items">/items</a> page.</p>
+  <main class="index">
+    <h1>WildForms</h1>
+    <h2>Créer et partager des formulaires en ligne</h2>
+    <div>
+      {% if user %}
+        🥳<p>
+          You are connected as <strong>{{ user.username }}</strong>!
+        </p>
+      {% else %}
+        <a href="/login">Se connecter</a>
+        ou <a href="/register">Créer un compte</a>.
+      {% endif %}
+    </div>
+    <h2>Répondre à des questionnaires</h2>
+    <div class='all-forms'>
+      {% for form in forms %}
+      <article>
+        <h3>{{ form.name }}</h3>
+        <a href="saved?id={{ form.id }}">
+          <div class='example-form'>
+            <iframe src="saved?id={{form.id}}#title"></iframe>
+            <div class='embed-link'></div>
+          </div>
+        </a>
+      </article>
+      {% endfor %}
+    </div>
+  </main>
 {% endblock %}

@@ -1,0 +1,114 @@
+.connection_title {
+    width: 80%;
+    margin: auto;
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    font-size: 1.25rem;
+
+}
+
+
+.connection_box {
+    margin-top: 1.5rem;
+    border-radius:0.5rem;
+    padding: 0.5rem;
+    width: 80%;
+    background-color: var(--secondary-color);
+    
+}
+
+
+
+.connection_input {
+    background-color: var(--primary-color);
+    border-radius:0.5rem;
+    border: none;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    width: 80%;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding-left: 1rem;
+  
+}
+
+.connection_input::placeholder {
+    color: var(--text-color);
+
+}
+
+a {
+    color: var(--brand-color);
+    text-decoration: none;
+}
+
+.connection_link {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+    width: 80%;
+}
+
+.subscribe_box {
+    margin-top: 1.5rem;
+    border-radius:0.5rem;
+    padding: 0.5rem;
+    width: 80%;
+    background-color: var(--secondary-color);
+    
+}
+
+.subscribe_input {
+    background-color: var(--primary-color);
+    border-radius:0.5rem;
+    border: none;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    width: 80%;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding-left: 1rem;
+}
+
+.subscribe_label {
+    color: var(--text-color);
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    margin-left: 1rem;
+}
+
+.subscribe_title {
+    width: 80%;
+    margin: auto;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: center;
+    font-size: 1.25rem;
+
+}
+
+.subscribe_input::placeholder {
+    color: var(--text-color);
+   
+
+
+
+}
+
+.password-container{
+  width: 100%;
+  position: relative;
+}
+
+
+i {
+  position: absolute;
+  top: 15%;
+  right: 15%;
+  cursor: pointer;
+  color: lightgray;
+}
