@@ -6,4 +6,4 @@ db.php
 .idea
 .vscode
 config.php
-/public/assets/csv/
+/public/assets/csv/*.csv
