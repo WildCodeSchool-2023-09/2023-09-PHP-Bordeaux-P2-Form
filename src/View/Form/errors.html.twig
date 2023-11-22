@@ -1,9 +1,9 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-{% for error in errors %}
-<div>{{error}}</div>
-{% endfor %}
+  {% for error in errors %}
+    <div>{{ error }}</div>
+  {% endfor %}
 
-  <a href="..">Cliquez ici pour revenir au formulaire</a>
+  <a href="saved?id={{ formId }}">Cliquez ici pour revenir au formulaire</a>
 {% endblock %}
