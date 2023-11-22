@@ -29,6 +29,9 @@ class CSVManager
 
     public function createCSVName(int $formId): string
     {
+        if (!is_dir(self::CSVDIR)) {
+            mkdir(self::CSVDIR);
+        }
         return self::CSVDIR . 'formResponse' . $formId . '.csv';
     }
 
